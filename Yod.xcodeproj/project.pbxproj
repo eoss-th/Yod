@@ -1,0 +1,545 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BB7E33E51DD1604900321813 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E33E41DD1604900321813 /* AppDelegate.swift */; };
+		BB7E33E71DD1604900321813 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E33E61DD1604900321813 /* RootViewController.swift */; };
+		BB7E33E91DD1604900321813 /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E33E81DD1604900321813 /* DataViewController.swift */; };
+		BB7E33EB1DD1604900321813 /* ModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E33EA1DD1604900321813 /* ModelController.swift */; };
+		BB7E33EE1DD1604900321813 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB7E33EC1DD1604900321813 /* Main.storyboard */; };
+		BB7E33F01DD1604900321813 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB7E33EF1DD1604900321813 /* Assets.xcassets */; };
+		BB7E33F31DD1604900321813 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB7E33F11DD1604900321813 /* LaunchScreen.storyboard */; };
+		BB7E33FE1DD1604900321813 /* YodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E33FD1DD1604900321813 /* YodTests.swift */; };
+		BB7E34091DD1604900321813 /* YodUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E34081DD1604900321813 /* YodUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BB7E33FA1DD1604900321813 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BB7E33D91DD1604900321813 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BB7E33E01DD1604900321813;
+			remoteInfo = Yod;
+		};
+		BB7E34051DD1604900321813 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BB7E33D91DD1604900321813 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BB7E33E01DD1604900321813;
+			remoteInfo = Yod;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		BB7E33E11DD1604900321813 /* Yod.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yod.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB7E33E41DD1604900321813 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		BB7E33E61DD1604900321813 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		BB7E33E81DD1604900321813 /* DataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataViewController.swift; sourceTree = "<group>"; };
+		BB7E33EA1DD1604900321813 /* ModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelController.swift; sourceTree = "<group>"; };
+		BB7E33ED1DD1604900321813 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BB7E33EF1DD1604900321813 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BB7E33F21DD1604900321813 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		BB7E33F41DD1604900321813 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BB7E33F91DD1604900321813 /* YodTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YodTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB7E33FD1DD1604900321813 /* YodTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YodTests.swift; sourceTree = "<group>"; };
+		BB7E33FF1DD1604900321813 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BB7E34041DD1604900321813 /* YodUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YodUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB7E34081DD1604900321813 /* YodUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YodUITests.swift; sourceTree = "<group>"; };
+		BB7E340A1DD1604900321813 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BB7E33DE1DD1604900321813 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB7E33F61DD1604900321813 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB7E34011DD1604900321813 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BB7E33D81DD1604900321813 = {
+			isa = PBXGroup;
+			children = (
+				BB7E33E31DD1604900321813 /* Yod */,
+				BB7E33FC1DD1604900321813 /* YodTests */,
+				BB7E34071DD1604900321813 /* YodUITests */,
+				BB7E33E21DD1604900321813 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BB7E33E21DD1604900321813 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BB7E33E11DD1604900321813 /* Yod.app */,
+				BB7E33F91DD1604900321813 /* YodTests.xctest */,
+				BB7E34041DD1604900321813 /* YodUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BB7E33E31DD1604900321813 /* Yod */ = {
+			isa = PBXGroup;
+			children = (
+				BB7E33E41DD1604900321813 /* AppDelegate.swift */,
+				BB7E33E61DD1604900321813 /* RootViewController.swift */,
+				BB7E33E81DD1604900321813 /* DataViewController.swift */,
+				BB7E33EA1DD1604900321813 /* ModelController.swift */,
+				BB7E33EC1DD1604900321813 /* Main.storyboard */,
+				BB7E33EF1DD1604900321813 /* Assets.xcassets */,
+				BB7E33F11DD1604900321813 /* LaunchScreen.storyboard */,
+				BB7E33F41DD1604900321813 /* Info.plist */,
+			);
+			path = Yod;
+			sourceTree = "<group>";
+		};
+		BB7E33FC1DD1604900321813 /* YodTests */ = {
+			isa = PBXGroup;
+			children = (
+				BB7E33FD1DD1604900321813 /* YodTests.swift */,
+				BB7E33FF1DD1604900321813 /* Info.plist */,
+			);
+			path = YodTests;
+			sourceTree = "<group>";
+		};
+		BB7E34071DD1604900321813 /* YodUITests */ = {
+			isa = PBXGroup;
+			children = (
+				BB7E34081DD1604900321813 /* YodUITests.swift */,
+				BB7E340A1DD1604900321813 /* Info.plist */,
+			);
+			path = YodUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BB7E33E01DD1604900321813 /* Yod */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BB7E340D1DD1604900321813 /* Build configuration list for PBXNativeTarget "Yod" */;
+			buildPhases = (
+				BB7E33DD1DD1604900321813 /* Sources */,
+				BB7E33DE1DD1604900321813 /* Frameworks */,
+				BB7E33DF1DD1604900321813 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Yod;
+			productName = Yod;
+			productReference = BB7E33E11DD1604900321813 /* Yod.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BB7E33F81DD1604900321813 /* YodTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BB7E34101DD1604900321813 /* Build configuration list for PBXNativeTarget "YodTests" */;
+			buildPhases = (
+				BB7E33F51DD1604900321813 /* Sources */,
+				BB7E33F61DD1604900321813 /* Frameworks */,
+				BB7E33F71DD1604900321813 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BB7E33FB1DD1604900321813 /* PBXTargetDependency */,
+			);
+			name = YodTests;
+			productName = YodTests;
+			productReference = BB7E33F91DD1604900321813 /* YodTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		BB7E34031DD1604900321813 /* YodUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BB7E34131DD1604900321813 /* Build configuration list for PBXNativeTarget "YodUITests" */;
+			buildPhases = (
+				BB7E34001DD1604900321813 /* Sources */,
+				BB7E34011DD1604900321813 /* Frameworks */,
+				BB7E34021DD1604900321813 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BB7E34061DD1604900321813 /* PBXTargetDependency */,
+			);
+			name = YodUITests;
+			productName = YodUITests;
+			productReference = BB7E34041DD1604900321813 /* YodUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BB7E33D91DD1604900321813 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0810;
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = "Enterprise Open Source Solution";
+				TargetAttributes = {
+					BB7E33E01DD1604900321813 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = CU23D7G53Q;
+						ProvisioningStyle = Automatic;
+					};
+					BB7E33F81DD1604900321813 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = CU23D7G53Q;
+						ProvisioningStyle = Automatic;
+						TestTargetID = BB7E33E01DD1604900321813;
+					};
+					BB7E34031DD1604900321813 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = CU23D7G53Q;
+						ProvisioningStyle = Automatic;
+						TestTargetID = BB7E33E01DD1604900321813;
+					};
+				};
+			};
+			buildConfigurationList = BB7E33DC1DD1604900321813 /* Build configuration list for PBXProject "Yod" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BB7E33D81DD1604900321813;
+			productRefGroup = BB7E33E21DD1604900321813 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BB7E33E01DD1604900321813 /* Yod */,
+				BB7E33F81DD1604900321813 /* YodTests */,
+				BB7E34031DD1604900321813 /* YodUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BB7E33DF1DD1604900321813 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB7E33F31DD1604900321813 /* LaunchScreen.storyboard in Resources */,
+				BB7E33F01DD1604900321813 /* Assets.xcassets in Resources */,
+				BB7E33EE1DD1604900321813 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB7E33F71DD1604900321813 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB7E34021DD1604900321813 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BB7E33DD1DD1604900321813 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB7E33E71DD1604900321813 /* RootViewController.swift in Sources */,
+				BB7E33EB1DD1604900321813 /* ModelController.swift in Sources */,
+				BB7E33E91DD1604900321813 /* DataViewController.swift in Sources */,
+				BB7E33E51DD1604900321813 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB7E33F51DD1604900321813 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB7E33FE1DD1604900321813 /* YodTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB7E34001DD1604900321813 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB7E34091DD1604900321813 /* YodUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BB7E33FB1DD1604900321813 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BB7E33E01DD1604900321813 /* Yod */;
+			targetProxy = BB7E33FA1DD1604900321813 /* PBXContainerItemProxy */;
+		};
+		BB7E34061DD1604900321813 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BB7E33E01DD1604900321813 /* Yod */;
+			targetProxy = BB7E34051DD1604900321813 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		BB7E33EC1DD1604900321813 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BB7E33ED1DD1604900321813 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		BB7E33F11DD1604900321813 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BB7E33F21DD1604900321813 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BB7E340B1DD1604900321813 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BB7E340C1DD1604900321813 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BB7E340E1DD1604900321813 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = CU23D7G53Q;
+				INFOPLIST_FILE = Yod/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.th.eoss.Yod;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		BB7E340F1DD1604900321813 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = CU23D7G53Q;
+				INFOPLIST_FILE = Yod/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.th.eoss.Yod;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		BB7E34111DD1604900321813 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = CU23D7G53Q;
+				INFOPLIST_FILE = YodTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.th.eoss.YodTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Yod.app/Yod";
+			};
+			name = Debug;
+		};
+		BB7E34121DD1604900321813 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = CU23D7G53Q;
+				INFOPLIST_FILE = YodTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.th.eoss.YodTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Yod.app/Yod";
+			};
+			name = Release;
+		};
+		BB7E34141DD1604900321813 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = CU23D7G53Q;
+				INFOPLIST_FILE = YodUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.th.eoss.YodUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = Yod;
+			};
+			name = Debug;
+		};
+		BB7E34151DD1604900321813 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = CU23D7G53Q;
+				INFOPLIST_FILE = YodUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.th.eoss.YodUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = Yod;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BB7E33DC1DD1604900321813 /* Build configuration list for PBXProject "Yod" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB7E340B1DD1604900321813 /* Debug */,
+				BB7E340C1DD1604900321813 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BB7E340D1DD1604900321813 /* Build configuration list for PBXNativeTarget "Yod" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB7E340E1DD1604900321813 /* Debug */,
+				BB7E340F1DD1604900321813 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		BB7E34101DD1604900321813 /* Build configuration list for PBXNativeTarget "YodTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB7E34111DD1604900321813 /* Debug */,
+				BB7E34121DD1604900321813 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		BB7E34131DD1604900321813 /* Build configuration list for PBXNativeTarget "YodUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB7E34141DD1604900321813 /* Debug */,
+				BB7E34151DD1604900321813 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BB7E33D91DD1604900321813 /* Project object */;
+}
