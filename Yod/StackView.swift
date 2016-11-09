@@ -12,14 +12,30 @@ class StackView: UIView {
     
     var stacks = [StackView]()
     
-    func add(value:CGFloat, color:UIColor) -> StackView {
+    func add(value:CGFloat, percentChg:Float, color:UIColor) -> StackView {
         
         let width = value * self.frame.width
+        
         let stackView = StackView(frame: CGRect(x: 0, y: 0, width: width, height: self.frame.height))
         stackView.backgroundColor = color
-        stackView.layer.shadowColor = UIColor.gray.cgColor
-        stackView.layer.shadowOffset = CGSize()
-        stackView.layer.shadowOpacity = 1
+        
+        if percentChg != 0 {
+            
+            let gradientLayer = CAGradientLayer()
+            gradientLayer.frame = stackView.frame
+            
+            if percentChg >= 0 {
+                gradientLayer.colors = [color, color, UIColor.green]
+            } else {
+                gradientLayer.colors = [color, color, UIColor.gray]
+            }
+            
+            let pos = 1 - Swift.abs(percentChg)/100
+            
+            gradientLayer.locations = [0.0, NSNumber(value: pos), 1.0]
+            stackView.layer.addSublayer(gradientLayer)
+        }
+        
         self.addSubview(stackView)
         stacks.append(stackView)
         return stackView
@@ -29,6 +45,7 @@ class StackView: UIView {
         for s in stacks.reversed() {
             s.removeFromSuperview()
         }
+        stacks.removeAll()
     }
     
 }

@@ -10,7 +10,7 @@ import UIKit
 
 class AssetTableViewController: UITableViewController {
     
-    let stringURL = "http://eoss-setfin.appspot.com/csv"
+    var stringURL = "http://eoss-setfin.appspot.com/csv?"
     
     var symbols = [Symbol]()
 
@@ -19,6 +19,7 @@ class AssetTableViewController: UITableViewController {
         
         DispatchQueue.global().async {
             
+            self.stringURL += String(arc4random_uniform(1000))
             if let url = URL(string: self.stringURL) {
                 let text = try! String(contentsOf: url)
                 var lines = text.components(separatedBy: "\n")
@@ -100,15 +101,45 @@ class AssetTableViewController: UITableViewController {
                     ne = ne * -1
                 }
                 
-                let _ = cell.stackView
-                    .add(value: CGFloat(ea), color: eaColor)
-                    .add(value: CGFloat(ne), color: neColor)
-                
-                if ea > 1 {
-                    print (set.symbol!)
-                    print (ea)
+                if ne == 1 && ea == 1 {
+                    let _ = cell.stackView
+                        .add(value: CGFloat(ea), percentChg: 0, color: eaColor)
+                    
+                } else {
+                    
+                    let eaView:StackView
+                    
+                    if var eaGrowth = set.values["E/A Growth %"] {
+                        
+                        if eaGrowth > 100 {
+                            eaGrowth = 100
+                        }
+                        
+                        eaView = cell.stackView.add(value: CGFloat(ea), percentChg: eaGrowth, color: eaColor)
+                        
+                    } else {
+                        
+                        eaView = cell.stackView.add(value: CGFloat(ea), percentChg: 0, color: eaColor)
+                        
+                    }
+                    
+                    
+                    if var netGrowth = set.values["Net Growth %"] {
+                        
+                        if netGrowth > 100 {
+                            netGrowth = 100
+                        }
+                        
+                        let _ = eaView.add(value: CGFloat(ne), percentChg: netGrowth, color: neColor)
+                        
+                    } else {
+                        
+                        let _ = eaView.add(value: CGFloat(ne), percentChg: 0, color: neColor)
+                        
+                    }
+                    
+                    
                 }
-                
             }
             
         }
