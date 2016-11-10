@@ -10,39 +10,18 @@ import UIKit
 
 class AssetTableViewController: UITableViewController {
     
-    var stringURL = "http://eoss-setfin.appspot.com/csv?"
-    
-    var symbols = [Symbol]()
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        DispatchQueue.global().async {
-            
-            self.stringURL += String(arc4random_uniform(1000))
-            if let url = URL(string: self.stringURL) {
-                let text = try! String(contentsOf: url)
-                var lines = text.components(separatedBy: "\n")
-                lines.remove(at: 0)
-                for line in lines {
-                    if line.isEmpty {
-                        continue
-                    }
-                    self.symbols.append(Symbol(line: line))
-                }
-            }
-            
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-            
-        }
-
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func symbols() -> [Symbol] {
+        let slideTabBarController = self.tabBarController! as! SlideTabBarController
+        return slideTabBarController.symbols
     }
 
     // MARK: - Table view data source
@@ -54,13 +33,25 @@ class AssetTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return symbols.count
+        return symbols().count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "stackAsset", for: indexPath) as! UIStackTableViewCell
+        
+        let symbols = self.symbols()
 
+        if(UIDeviceOrientationIsLandscape(UIDevice.current.orientation))
+        {
+            print("landscape")
+        }
+        
+        if(UIDeviceOrientationIsPortrait(UIDevice.current.orientation))
+        {
+            print("Portrait")
+        }
+        
         if indexPath.row < symbols.count {
             
             let set = symbols[indexPath.row]
@@ -147,7 +138,9 @@ class AssetTableViewController: UITableViewController {
         return cell
     }
  
-
+    override func willAnimateRotation(to toInterfaceOrientation:      UIInterfaceOrientation, duration: TimeInterval) {
+        self.tableView.reloadData()
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

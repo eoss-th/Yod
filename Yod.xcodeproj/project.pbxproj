@@ -14,13 +14,12 @@
 		BB7E33F31DD1604900321813 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB7E33F11DD1604900321813 /* LaunchScreen.storyboard */; };
 		BB7E33FE1DD1604900321813 /* YodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E33FD1DD1604900321813 /* YodTests.swift */; };
 		BB7E34091DD1604900321813 /* YodUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E34081DD1604900321813 /* YodUITests.swift */; };
-		BB7E34221DD1615B00321813 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB7E341D1DD1613800321813 /* Charts.framework */; };
-		BB7E34231DD1615B00321813 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB7E341D1DD1613800321813 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BB7E34301DD16B3E00321813 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7E342F1DD16B3E00321813 /* SWRevealViewController.m */; };
 		BB7E34321DD16F3500321813 /* SectorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E34311DD16F3500321813 /* SectorTableViewController.swift */; };
 		BBE513A71DD1FE22005E2183 /* AssetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE513A61DD1FE22005E2183 /* AssetTableViewController.swift */; };
 		BBE513A91DD1FE83005E2183 /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE513A81DD1FE83005E2183 /* StackView.swift */; };
 		BBE513AB1DD202CF005E2183 /* UIStackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE513AA1DD202CF005E2183 /* UIStackTableViewCell.swift */; };
+		C7F5555A1DD411C200339377 /* SlideTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F555591DD411C200339377 /* SlideTabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,34 +37,6 @@
 			remoteGlobalIDString = BB7E33E01DD1604900321813;
 			remoteInfo = Yod;
 		};
-		BB7E341C1DD1613800321813 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BB7E34161DD1613800321813 /* Charts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 06165F241D8110E600722320;
-			remoteInfo = Charts;
-		};
-		BB7E341E1DD1613800321813 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BB7E34161DD1613800321813 /* Charts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 06B120D51D811E6200D14B02;
-			remoteInfo = ChartsRealm;
-		};
-		BB7E34201DD1613800321813 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BB7E34161DD1613800321813 /* Charts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 06165F2E1D8110E600722320;
-			remoteInfo = ChartsTests;
-		};
-		BB7E34241DD1615B00321813 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BB7E34161DD1613800321813 /* Charts.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 06165F231D8110E600722320;
-			remoteInfo = Charts;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -75,7 +46,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				BB7E34231DD1615B00321813 /* Charts.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -96,7 +66,6 @@
 		BB7E34041DD1604900321813 /* YodUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YodUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB7E34081DD1604900321813 /* YodUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YodUITests.swift; sourceTree = "<group>"; };
 		BB7E340A1DD1604900321813 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BB7E34161DD1613800321813 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../../../Downloads/Charts-master/Charts.xcodeproj"; sourceTree = "<group>"; };
 		BB7E342D1DD16B3D00321813 /* Yod-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Yod-Bridging-Header.h"; sourceTree = "<group>"; };
 		BB7E342E1DD16B3E00321813 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		BB7E342F1DD16B3E00321813 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
@@ -106,6 +75,7 @@
 		BBE513A61DD1FE22005E2183 /* AssetTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetTableViewController.swift; sourceTree = "<group>"; };
 		BBE513A81DD1FE83005E2183 /* StackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackView.swift; sourceTree = "<group>"; };
 		BBE513AA1DD202CF005E2183 /* UIStackTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIStackTableViewCell.swift; sourceTree = "<group>"; };
+		C7F555591DD411C200339377 /* SlideTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideTabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,7 +83,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB7E34221DD1615B00321813 /* Charts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,7 +107,6 @@
 			isa = PBXGroup;
 			children = (
 				BB7E342C1DD16AD800321813 /* SWRevealViewController */,
-				BB7E34161DD1613800321813 /* Charts.xcodeproj */,
 				BB7E33E31DD1604900321813 /* Yod */,
 				BB7E33FC1DD1604900321813 /* YodTests */,
 				BB7E34071DD1604900321813 /* YodUITests */,
@@ -163,6 +131,7 @@
 				BB7E34331DD17CC000321813 /* Yod.entitlements */,
 				BB7E33E41DD1604900321813 /* AppDelegate.swift */,
 				BB7E33EC1DD1604900321813 /* Main.storyboard */,
+				C7F555591DD411C200339377 /* SlideTabBarController.swift */,
 				BBE513A61DD1FE22005E2183 /* AssetTableViewController.swift */,
 				BBE513A81DD1FE83005E2183 /* StackView.swift */,
 				BB7E33EF1DD1604900321813 /* Assets.xcassets */,
@@ -193,16 +162,6 @@
 			path = YodUITests;
 			sourceTree = "<group>";
 		};
-		BB7E34171DD1613800321813 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				BB7E341D1DD1613800321813 /* Charts.framework */,
-				BB7E341F1DD1613800321813 /* ChartsRealm.framework */,
-				BB7E34211DD1613800321813 /* ChartsTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		BB7E342C1DD16AD800321813 /* SWRevealViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -228,7 +187,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				BB7E34251DD1615B00321813 /* PBXTargetDependency */,
 			);
 			name = Yod;
 			productName = Yod;
@@ -317,12 +275,6 @@
 			mainGroup = BB7E33D81DD1604900321813;
 			productRefGroup = BB7E33E21DD1604900321813 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = BB7E34171DD1613800321813 /* Products */;
-					ProjectRef = BB7E34161DD1613800321813 /* Charts.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				BB7E33E01DD1604900321813 /* Yod */,
@@ -331,30 +283,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		BB7E341D1DD1613800321813 /* Charts.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Charts.framework;
-			remoteRef = BB7E341C1DD1613800321813 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		BB7E341F1DD1613800321813 /* ChartsRealm.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ChartsRealm.framework;
-			remoteRef = BB7E341E1DD1613800321813 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		BB7E34211DD1613800321813 /* ChartsTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = ChartsTests.xctest;
-			remoteRef = BB7E34201DD1613800321813 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		BB7E33DF1DD1604900321813 /* Resources */ = {
@@ -395,6 +323,7 @@
 				BB753DD81DD2B33F001428ED /* Symbol.swift in Sources */,
 				BB7E33E51DD1604900321813 /* AppDelegate.swift in Sources */,
 				BBE513A91DD1FE83005E2183 /* StackView.swift in Sources */,
+				C7F5555A1DD411C200339377 /* SlideTabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,11 +355,6 @@
 			isa = PBXTargetDependency;
 			target = BB7E33E01DD1604900321813 /* Yod */;
 			targetProxy = BB7E34051DD1604900321813 /* PBXContainerItemProxy */;
-		};
-		BB7E34251DD1615B00321813 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Charts;
-			targetProxy = BB7E34241DD1615B00321813 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
