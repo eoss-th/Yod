@@ -16,7 +16,7 @@ class SlideTabBarController: UITabBarController {
         if self.revealViewController() != nil {
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
-                
+        
         //NotificationCenter.default.addObserver(self, selector: #selector(SlideTabBarController.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
     }
 

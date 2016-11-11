@@ -201,6 +201,25 @@ class AssetTableViewController: UITableViewController {
     override func willAnimateRotation(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
         self.tableView.reloadData()
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if indexPath.row < SET.filters.count {
+            DispatchQueue.global().async {
+                let yahoo = Yahoo(symbol: SET.filters[indexPath.row].symbol!)
+                DispatchQueue.main.async {
+                    
+                    self.tabBarController?.selectedIndex = 1
+                    
+                    let chartViewController = self.tabBarController?.viewControllers?[1] as! ChartViewController
+                    
+                    
+                    chartViewController.chartLoadSymbol(description: "", yahoo: yahoo)
+                }
+            }
+        }
+    }
+    
  
     /*
     // Override to support conditional editing of the table view.
