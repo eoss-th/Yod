@@ -19,13 +19,35 @@ class AssetTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func symbols() -> [Symbol] {
-        let slideTabBarController = self.tabBarController! as! SlideTabBarController
-        return slideTabBarController.symbols
+    @IBAction func toggleNet(_ sender: UIButton) {
+        SET.toggleSort("N/E")
+        self.tableView.reloadData()
     }
-
-    // MARK: - Table view data source
-
+    @IBAction func toggleEquity(_ sender: UIButton) {
+        SET.toggleSort("E/A")
+        self.tableView.reloadData()
+    }
+    @IBAction func toggleAsset(_ sender: UIButton) {
+        SET.toggleSort("Estimated Asset")
+        self.tableView.reloadData()
+    }
+    @IBAction func toggleGrowth(_ sender: UIButton) {
+        SET.toggleSort("E/A Growth %")
+        self.tableView.reloadData()
+    }
+    @IBAction func togglePE(_ sender: UIButton) {
+        SET.toggleSort("P/E")
+        self.tableView.reloadData()
+    }
+    @IBAction func toggleLast(_ sender: UIButton) {
+        SET.toggleSort("Last")
+        self.tableView.reloadData()
+    }
+    @IBAction func togglePredict(_ sender: UIButton) {
+        SET.toggleSort("Predict Chg %")
+        self.tableView.reloadData()
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -33,114 +55,153 @@ class AssetTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return symbols().count
+        return SET.filters.count
     }
 
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "stackAsset", for: indexPath) as! UIStackTableViewCell
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-        let symbols = self.symbols()
-
+        let  cell = tableView.dequeueReusableCell(withIdentifier: "headerAsset") as! UIHeaderTableViewCell
+        
         if(UIDeviceOrientationIsLandscape(UIDevice.current.orientation))
         {
-            print("landscape")
+            cell.growthButton.isHidden = false
+            cell.peButton.isHidden = false
+            cell.lastButton.isHidden = false
+            cell.predictButton.isHidden = false
         }
         
         if(UIDeviceOrientationIsPortrait(UIDevice.current.orientation))
         {
-            print("Portrait")
+            cell.growthButton.isHidden = true
+            cell.peButton.isHidden = true
+            cell.lastButton.isHidden = true
+            cell.predictButton.isHidden = true
         }
         
-        if indexPath.row < symbols.count {
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 49.0
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "stackAsset", for: indexPath) as! UIStackTableViewCell
+        
+        let filters = SET.filters
+        
+        if indexPath.row < filters.count {
             
-            let set = symbols[indexPath.row]
+            let set = filters[indexPath.row]
             
             cell.symbolLabel.text = set.symbol
             cell.stackView.clear()
-            cell.stackView.backgroundColor = UIColor.lightGray
+            //cell.stackView.backgroundColor = UIColor(netHex:0xfbfbfa)
             
-            if let asset = set.values["Estimated Asset"] , let equity = set.values["Estimated Equity"], let net = set.values["Estimated Net"] {
+            let greenColor = UIColor(netHex:0x196319)
+            let redColor = UIColor(netHex:0x880700)
+            
+            if let growth = set.values["E/A Growth %"] {
+                cell.netGrowthLabel.text = String(growth)
+                cell.netGrowthLabel.textColor = (growth >= 0) ? greenColor : redColor
+            }
+            
+            if let pe = set.values["P/E"] {
+                cell.peLabel.text = String(pe)
+                cell.peLabel.textColor = (pe >= 0) ? greenColor : redColor
+            }
+            
+            if let last = set.values["Last"] {
+                cell.lastLabel.text = String(last)
+                cell.lastLabel.textColor = (last >= 0) ? greenColor : redColor
+            }
+            
+            if let predict = set.values["Predict Chg %"] {
+                cell.predictLabel.text = String(predict)
+                cell.predictLabel.textColor = (predict >= 0) ? greenColor : redColor
+            }
+            
+            if(UIDeviceOrientationIsLandscape(UIDevice.current.orientation))
+            {
+                cell.netGrowthLabel.isHidden = false
+                cell.peLabel.isHidden = false
+                cell.lastLabel.isHidden = false
+                cell.predictLabel.isHidden = false
+            }
+            
+            if(UIDeviceOrientationIsPortrait(UIDevice.current.orientation))
+            {
+                cell.netGrowthLabel.isHidden = true
+                cell.peLabel.isHidden = true
+                cell.lastLabel.isHidden = true
+                cell.predictLabel.isHidden = true
+            }
+            
+            var ea = set.values["E/A"]!
+            var ne = set.values["N/E"]!
+            
+            let eaColor:UIColor
+            if ea > 0 {
+                eaColor = UIColor(netHex:0xf2f2ef)
+            } else {
+                eaColor = UIColor(netHex:0xffebea)
+                ea = ea * -1
+            }
+            
+            let neColor:UIColor
+            if ne > 0 {
+                neColor = UIColor(netHex:0xb4ecb4)
+            } else {
+                neColor = UIColor(netHex:0xffb2ae)
+                ne = ne * -1
+            }
+            
+            if ne == 1 && ea == 1 {
+                let _ = cell.stackView
+                    .add(value: CGFloat(ea), percentChg: 0, color: eaColor)
                 
-                var ea,ne :Float
+            } else {
                 
-                if equity == 0 {
-                    ne = 1
-                } else {
-                    ne = net/equity
-                }
+                let eaView:StackView
                 
-                if asset == 0 {
-                    ea = 1
-                } else {
-                    ea = equity/asset
-                }
-                
-                let eaColor:UIColor
-                if ea > 0 {
-                    eaColor = UIColor(netHex:0xf2f2ef)
-                } else {
-                    eaColor = UIColor(netHex:0xffebea)
-                    ea = ea * -1
-                }
-                
-                let neColor:UIColor
-                if ne > 0 {
-                    neColor = UIColor(netHex:0xb4ecb4)
-                } else {
-                    neColor = UIColor(netHex:0xffb2ae)
-                    ne = ne * -1
-                }
-                
-                if ne == 1 && ea == 1 {
-                    let _ = cell.stackView
-                        .add(value: CGFloat(ea), percentChg: 0, color: eaColor)
+                if var eaGrowth = set.values["E/A Growth %"] {
                     
-                } else {
-                    
-                    let eaView:StackView
-                    
-                    if var eaGrowth = set.values["E/A Growth %"] {
-                        
-                        if eaGrowth > 100 {
-                            eaGrowth = 100
-                        }
-                        
-                        eaView = cell.stackView.add(value: CGFloat(ea), percentChg: eaGrowth, color: eaColor)
-                        
-                    } else {
-                        
-                        eaView = cell.stackView.add(value: CGFloat(ea), percentChg: 0, color: eaColor)
-                        
+                    if eaGrowth > 100 {
+                        eaGrowth = 100
                     }
                     
+                    eaView = cell.stackView.add(value: CGFloat(ea), percentChg: eaGrowth, color: eaColor)
                     
-                    if var netGrowth = set.values["Net Growth %"] {
-                        
-                        if netGrowth > 100 {
-                            netGrowth = 100
-                        }
-                        
-                        let _ = eaView.add(value: CGFloat(ne), percentChg: netGrowth, color: neColor)
-                        
-                    } else {
-                        
-                        let _ = eaView.add(value: CGFloat(ne), percentChg: 0, color: neColor)
-                        
+                } else {
+                    
+                    eaView = cell.stackView.add(value: CGFloat(ea), percentChg: 0, color: eaColor)
+                    
+                }
+                
+                
+                if var netGrowth = set.values["Net Growth %"] {
+                    
+                    if netGrowth > 100 {
+                        netGrowth = 100
                     }
                     
+                    let _ = eaView.add(value: CGFloat(ne), percentChg: netGrowth, color: neColor)
+                    
+                } else {
+                    
+                    let _ = eaView.add(value: CGFloat(ne), percentChg: 0, color: neColor)
                     
                 }
             }
-            
         }
 
         return cell
     }
- 
-    override func willAnimateRotation(to toInterfaceOrientation:      UIInterfaceOrientation, duration: TimeInterval) {
+
+    override func willAnimateRotation(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
         self.tableView.reloadData()
     }
+ 
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BB753DD81DD2B33F001428ED /* Symbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB753DD71DD2B33F001428ED /* Symbol.swift */; };
+		BB753DD81DD2B33F001428ED /* SET.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB753DD71DD2B33F001428ED /* SET.swift */; };
+		BB7D0B341DD4870D002B4BD9 /* UIHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7D0B331DD4870D002B4BD9 /* UIHeaderTableViewCell.swift */; };
 		BB7E33E51DD1604900321813 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E33E41DD1604900321813 /* AppDelegate.swift */; };
 		BB7E33EE1DD1604900321813 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB7E33EC1DD1604900321813 /* Main.storyboard */; };
 		BB7E33F01DD1604900321813 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB7E33EF1DD1604900321813 /* Assets.xcassets */; };
@@ -16,6 +17,19 @@
 		BB7E34091DD1604900321813 /* YodUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E34081DD1604900321813 /* YodUITests.swift */; };
 		BB7E34301DD16B3E00321813 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7E342F1DD16B3E00321813 /* SWRevealViewController.m */; };
 		BB7E34321DD16F3500321813 /* SectorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E34311DD16F3500321813 /* SectorTableViewController.swift */; };
+		BBC11B111DD55C8E00F854C3 /* Yod.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC11B101DD55C8E00F854C3 /* Yod.png */; };
+		BBC11B1E1DD562A700F854C3 /* Yod20.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC11B121DD562A700F854C3 /* Yod20.png */; };
+		BBC11B1F1DD562A700F854C3 /* Yod29.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC11B131DD562A700F854C3 /* Yod29.png */; };
+		BBC11B201DD562A700F854C3 /* Yod40.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC11B141DD562A700F854C3 /* Yod40.png */; };
+		BBC11B211DD562A700F854C3 /* Yod58.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC11B151DD562A700F854C3 /* Yod58.png */; };
+		BBC11B221DD562A700F854C3 /* Yod60.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC11B161DD562A700F854C3 /* Yod60.png */; };
+		BBC11B231DD562A700F854C3 /* Yod76.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC11B171DD562A700F854C3 /* Yod76.png */; };
+		BBC11B241DD562A700F854C3 /* Yod80.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC11B181DD562A700F854C3 /* Yod80.png */; };
+		BBC11B251DD562A700F854C3 /* Yod87.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC11B191DD562A700F854C3 /* Yod87.png */; };
+		BBC11B261DD562A700F854C3 /* Yod120.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC11B1A1DD562A700F854C3 /* Yod120.png */; };
+		BBC11B271DD562A700F854C3 /* Yod152.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC11B1B1DD562A700F854C3 /* Yod152.png */; };
+		BBC11B281DD562A700F854C3 /* Yod167.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC11B1C1DD562A700F854C3 /* Yod167.png */; };
+		BBC11B291DD562A700F854C3 /* Yod180.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC11B1D1DD562A700F854C3 /* Yod180.png */; };
 		BBE513A71DD1FE22005E2183 /* AssetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE513A61DD1FE22005E2183 /* AssetTableViewController.swift */; };
 		BBE513A91DD1FE83005E2183 /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE513A81DD1FE83005E2183 /* StackView.swift */; };
 		BBE513AB1DD202CF005E2183 /* UIStackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE513AA1DD202CF005E2183 /* UIStackTableViewCell.swift */; };
@@ -53,7 +67,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		BB753DD71DD2B33F001428ED /* Symbol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Symbol.swift; sourceTree = "<group>"; };
+		BB753DD71DD2B33F001428ED /* SET.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SET.swift; sourceTree = "<group>"; };
+		BB7D0B331DD4870D002B4BD9 /* UIHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		BB7E33E11DD1604900321813 /* Yod.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yod.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB7E33E41DD1604900321813 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB7E33ED1DD1604900321813 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -71,6 +86,19 @@
 		BB7E342F1DD16B3E00321813 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		BB7E34311DD16F3500321813 /* SectorTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectorTableViewController.swift; sourceTree = "<group>"; };
 		BB7E34331DD17CC000321813 /* Yod.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Yod.entitlements; sourceTree = "<group>"; };
+		BBC11B101DD55C8E00F854C3 /* Yod.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Yod.png; sourceTree = "<group>"; };
+		BBC11B121DD562A700F854C3 /* Yod20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Yod20.png; sourceTree = "<group>"; };
+		BBC11B131DD562A700F854C3 /* Yod29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Yod29.png; sourceTree = "<group>"; };
+		BBC11B141DD562A700F854C3 /* Yod40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Yod40.png; sourceTree = "<group>"; };
+		BBC11B151DD562A700F854C3 /* Yod58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Yod58.png; sourceTree = "<group>"; };
+		BBC11B161DD562A700F854C3 /* Yod60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Yod60.png; sourceTree = "<group>"; };
+		BBC11B171DD562A700F854C3 /* Yod76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Yod76.png; sourceTree = "<group>"; };
+		BBC11B181DD562A700F854C3 /* Yod80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Yod80.png; sourceTree = "<group>"; };
+		BBC11B191DD562A700F854C3 /* Yod87.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Yod87.png; sourceTree = "<group>"; };
+		BBC11B1A1DD562A700F854C3 /* Yod120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Yod120.png; sourceTree = "<group>"; };
+		BBC11B1B1DD562A700F854C3 /* Yod152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Yod152.png; sourceTree = "<group>"; };
+		BBC11B1C1DD562A700F854C3 /* Yod167.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Yod167.png; sourceTree = "<group>"; };
+		BBC11B1D1DD562A700F854C3 /* Yod180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Yod180.png; sourceTree = "<group>"; };
 		BBE513A51DD1FB73005E2183 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		BBE513A61DD1FE22005E2183 /* AssetTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetTableViewController.swift; sourceTree = "<group>"; };
 		BBE513A81DD1FE83005E2183 /* StackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackView.swift; sourceTree = "<group>"; };
@@ -127,13 +155,27 @@
 		BB7E33E31DD1604900321813 /* Yod */ = {
 			isa = PBXGroup;
 			children = (
-				BB753DD71DD2B33F001428ED /* Symbol.swift */,
+				BB753DD71DD2B33F001428ED /* SET.swift */,
 				BB7E34331DD17CC000321813 /* Yod.entitlements */,
 				BB7E33E41DD1604900321813 /* AppDelegate.swift */,
 				BB7E33EC1DD1604900321813 /* Main.storyboard */,
+				BB7D0B331DD4870D002B4BD9 /* UIHeaderTableViewCell.swift */,
 				C7F555591DD411C200339377 /* SlideTabBarController.swift */,
 				BBE513A61DD1FE22005E2183 /* AssetTableViewController.swift */,
 				BBE513A81DD1FE83005E2183 /* StackView.swift */,
+				BBC11B101DD55C8E00F854C3 /* Yod.png */,
+				BBC11B121DD562A700F854C3 /* Yod20.png */,
+				BBC11B131DD562A700F854C3 /* Yod29.png */,
+				BBC11B141DD562A700F854C3 /* Yod40.png */,
+				BBC11B151DD562A700F854C3 /* Yod58.png */,
+				BBC11B161DD562A700F854C3 /* Yod60.png */,
+				BBC11B171DD562A700F854C3 /* Yod76.png */,
+				BBC11B181DD562A700F854C3 /* Yod80.png */,
+				BBC11B191DD562A700F854C3 /* Yod87.png */,
+				BBC11B1A1DD562A700F854C3 /* Yod120.png */,
+				BBC11B1B1DD562A700F854C3 /* Yod152.png */,
+				BBC11B1C1DD562A700F854C3 /* Yod167.png */,
+				BBC11B1D1DD562A700F854C3 /* Yod180.png */,
 				BB7E33EF1DD1604900321813 /* Assets.xcassets */,
 				BB7E33F11DD1604900321813 /* LaunchScreen.storyboard */,
 				BB7E33F41DD1604900321813 /* Info.plist */,
@@ -289,9 +331,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBC11B201DD562A700F854C3 /* Yod40.png in Resources */,
 				BB7E33F31DD1604900321813 /* LaunchScreen.storyboard in Resources */,
+				BBC11B291DD562A700F854C3 /* Yod180.png in Resources */,
+				BBC11B1F1DD562A700F854C3 /* Yod29.png in Resources */,
+				BBC11B271DD562A700F854C3 /* Yod152.png in Resources */,
+				BBC11B1E1DD562A700F854C3 /* Yod20.png in Resources */,
+				BBC11B261DD562A700F854C3 /* Yod120.png in Resources */,
 				BB7E33F01DD1604900321813 /* Assets.xcassets in Resources */,
+				BBC11B211DD562A700F854C3 /* Yod58.png in Resources */,
+				BBC11B281DD562A700F854C3 /* Yod167.png in Resources */,
+				BBC11B111DD55C8E00F854C3 /* Yod.png in Resources */,
+				BBC11B251DD562A700F854C3 /* Yod87.png in Resources */,
+				BBC11B241DD562A700F854C3 /* Yod80.png in Resources */,
+				BBC11B221DD562A700F854C3 /* Yod60.png in Resources */,
 				BB7E33EE1DD1604900321813 /* Main.storyboard in Resources */,
+				BBC11B231DD562A700F854C3 /* Yod76.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,7 +375,8 @@
 				BBE513A71DD1FE22005E2183 /* AssetTableViewController.swift in Sources */,
 				BB7E34301DD16B3E00321813 /* SWRevealViewController.m in Sources */,
 				BB7E34321DD16F3500321813 /* SectorTableViewController.swift in Sources */,
-				BB753DD81DD2B33F001428ED /* Symbol.swift in Sources */,
+				BB7D0B341DD4870D002B4BD9 /* UIHeaderTableViewCell.swift in Sources */,
+				BB753DD81DD2B33F001428ED /* SET.swift in Sources */,
 				BB7E33E51DD1604900321813 /* AppDelegate.swift in Sources */,
 				BBE513A91DD1FE83005E2183 /* StackView.swift in Sources */,
 				C7F5555A1DD411C200339377 /* SlideTabBarController.swift in Sources */,

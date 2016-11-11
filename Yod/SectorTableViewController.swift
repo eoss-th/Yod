@@ -24,26 +24,29 @@ class SectorTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        if let url = URL(string: stringURL) {
-            let text = try! String(contentsOf: url)
-            let lines = text.components(separatedBy: "\n")
-            for line in lines {
-                if line.isEmpty {
-                    continue
+        DispatchQueue.global().async {
+            
+            if let url = URL(string: self.stringURL) {
+                let text = try! String(contentsOf: url)
+                let lines = text.components(separatedBy: "\n")
+                for line in lines {
+                    if line.isEmpty {
+                        continue
+                    }
+                    var names = line.components(separatedBy: ",")
+                    let sector = names[0]
+                    names.remove(at: 0)
+                    self.sections[sector] = names.sorted()
                 }
-                var names = line.components(separatedBy: ",")
-                let sector = names[0]
-                names.remove(at: 0)
-                sections[sector] = names.sorted()
+                
+                self.industries = self.sections.keys.sorted()
+                
             }
             
-            industries = sections.keys.sorted()
-            
-            for i in industries {
-                print (i)
-                print (sections[i]!)
-                print ()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
             }
+            
         }
     }
 
