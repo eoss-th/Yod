@@ -17,7 +17,7 @@ class SlideTabBarController: UITabBarController {
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
         
-        //NotificationCenter.default.addObserver(self, selector: #selector(SlideTabBarController.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SlideTabBarController.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,4 +32,7 @@ class SlideTabBarController: UITabBarController {
         
     }
     
+    func rotated () {
+        reloadData()
+    }
 }

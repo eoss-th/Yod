@@ -10,14 +10,14 @@ import Foundation
 
 struct Historical {
     
-    let date:String
+    let date:Date
     let open:Float
     let high:Float
     let low:Float
     let close:Float
     let volume:Int
     
-    init (date:String, open:Float, high:Float, low:Float, close:Float, volume: Int) {
+    init (date:Date, open:Float, high:Float, low:Float, close:Float, volume: Int) {
         self.date = date
         self.open = open
         self.high = high
@@ -30,6 +30,8 @@ struct Historical {
 class Yahoo {
     
     let YAHOO_URL = "http://ichart.finance.yahoo.com/table.csv?a=01&b=01&c=2010&s="
+    
+    let dateFormatter = DateFormatter()
     
     let symbol:String
     
@@ -69,11 +71,14 @@ class Yahoo {
             
             let lines = data.components(separatedBy: "\n")
             
+            dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            
             for i in 1..<lines.count {
                 let columns = lines[i].components(separatedBy: ",")
                 
                 if columns.count > 5 {
-                    histories.append(Historical(date:columns[0],
+                    histories.append(Historical(date: dateFormatter.date(from: columns[0])!,
                                                 open:Float(columns[1])!,
                                                 high:Float(columns[2])!,
                                                 low:Float(columns[3])!,

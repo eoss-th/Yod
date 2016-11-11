@@ -198,9 +198,11 @@ class AssetTableViewController: UITableViewController {
         return cell
     }
 
+    /*
     override func willAnimateRotation(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
         self.tableView.reloadData()
     }
+    */
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         

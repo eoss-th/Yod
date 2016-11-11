@@ -11,6 +11,8 @@ import Charts
 
 class ChartViewController : UIViewController {
     
+    let dateFormatter = DateFormatter()
+    
     let DAYS = [7, 30, 180, 365, 365*2, 365*3, 365*4]
     
     var daysIndex = 0
@@ -35,8 +37,10 @@ class ChartViewController : UIViewController {
     
     override func viewDidLoad() {
         
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         combinedChartView.noDataText = "Please select a symbol"
         
+        /*
         combinedChartView.backgroundColor = UIColor.black
         combinedChartView.noDataTextColor = UIColor.white
         combinedChartView.tintColor = UIColor.white
@@ -49,19 +53,20 @@ class ChartViewController : UIViewController {
         combinedChartView.rightAxis.gridColor = UIColor.white
         combinedChartView.rightAxis.axisLineColor = UIColor.white
         combinedChartView.rightAxis.labelTextColor = UIColor.white
-        combinedChartView.rightAxis.drawGridLinesEnabled = false
         
         combinedChartView.leftAxis.zeroLineColor = UIColor.white
         combinedChartView.leftAxis.gridColor = UIColor.white
         combinedChartView.leftAxis.axisLineColor = UIColor.white
         combinedChartView.leftAxis.labelTextColor = UIColor.white
-        combinedChartView.leftAxis.drawGridLinesEnabled = false
         
         combinedChartView.xAxis.gridColor = UIColor.white
         combinedChartView.xAxis.labelTextColor = UIColor.white
         combinedChartView.xAxis.axisLineColor = UIColor.white
-        combinedChartView.xAxis.drawGridLinesEnabled = false
         combinedChartView.xAxis.labelPosition = XAxis.LabelPosition.bottom
+         */
+        combinedChartView.xAxis.drawGridLinesEnabled = false
+        combinedChartView.rightAxis.drawGridLinesEnabled = false
+        combinedChartView.leftAxis.drawGridLinesEnabled = false
     }
     
     @IBAction func loadWeek(sender: UIButton) {
@@ -95,28 +100,28 @@ class ChartViewController : UIViewController {
         closeDataSet = LineChartDataSet (values: createCloseDataEntries(), label: "Close")
         closeDataSet!.circleRadius = 0
         closeDataSet?.axisDependency = combinedChartView.rightAxis.axisDependency
-        closeDataSet!.setColor(NSUIColor.black)
+        closeDataSet!.setColor(NSUIColor.gray)
         
         ma5DataSet = LineChartDataSet (values: createEMA5DataEntries(), label: "EMA5")
         ma5DataSet!.circleRadius = 0
         ma5DataSet?.axisDependency = combinedChartView.rightAxis.axisDependency
-        ma5DataSet?.valueTextColor = NSUIColor.white
-        ma5DataSet?.highlightColor = NSUIColor.white
-        ma5DataSet!.setColor(NSUIColor.white)
+        //ma5DataSet?.valueTextColor = NSUIColor.white
+        //ma5DataSet?.highlightColor = NSUIColor.white
+        ma5DataSet!.setColor(NSUIColor.green)
         
         ma20DataSet = LineChartDataSet (values: createEMA20DataEntries(), label: "EMA20")
         ma20DataSet!.circleRadius = 0
         ma20DataSet?.axisDependency = combinedChartView.rightAxis.axisDependency
-        ma20DataSet?.valueTextColor = NSUIColor.white
-        ma20DataSet?.highlightColor = NSUIColor.white
+        //ma20DataSet?.valueTextColor = NSUIColor.white
+        //ma20DataSet?.highlightColor = NSUIColor.white
         ma20DataSet!.setColor(NSUIColor.cyan)
         
         ma80DataSet = LineChartDataSet (values: createEMA80DataEntries(), label: "EMA80")
         ma80DataSet!.circleRadius = 0
         ma80DataSet?.axisDependency = combinedChartView.rightAxis.axisDependency
-        ma80DataSet?.valueTextColor = NSUIColor.white
-        ma80DataSet?.highlightColor = NSUIColor.white
-        ma80DataSet!.setColor(NSUIColor.lightGray)
+        //ma80DataSet?.valueTextColor = NSUIColor.white
+        //ma80DataSet?.highlightColor = NSUIColor.white
+        ma80DataSet!.setColor(NSUIColor.orange)
         
         let lineData = LineChartData()
         //lineData.addDataSet(closeDataSet)
@@ -126,20 +131,20 @@ class ChartViewController : UIViewController {
         
         candleDataSet = CandleChartDataSet (values: createHiLoDataEntries(), label: "Candle")
         candleDataSet?.axisDependency = combinedChartView.rightAxis.axisDependency
-        candleDataSet?.valueTextColor = NSUIColor.white
-        candleDataSet?.highlightColor = NSUIColor.white
+        //candleDataSet?.valueTextColor = NSUIColor.white
+        //candleDataSet?.highlightColor = NSUIColor.white
         candleDataSet?.increasingFilled = true
-        candleDataSet?.setColor(NSUIColor.white)
-        candleDataSet?.increasingColor = NSUIColor.green
-        candleDataSet?.decreasingColor = NSUIColor.red
+        candleDataSet?.setColor(UIColor(netHex:0xb4ecb4))
+        candleDataSet?.increasingColor = UIColor(netHex:0xb4ecb4)
+        candleDataSet?.decreasingColor = UIColor(netHex:0xffb2ae)
         
         let candleData = CandleChartData()
         candleData.addDataSet(candleDataSet)
         
         volumeDataSet = BarChartDataSet (values: createVolumeDataEntries(), label: "Volume")
-        volumeDataSet?.valueTextColor = NSUIColor.white
-        volumeDataSet?.highlightColor = NSUIColor.white
-        volumeDataSet?.setColor(NSUIColor.darkGray)
+        //volumeDataSet?.valueTextColor = NSUIColor.white
+        //volumeDataSet?.highlightColor = NSUIColor.white
+        volumeDataSet?.setColor(UIColor(netHex:0xf2f2ef))
         volumeDataSet?.axisDependency = combinedChartView.leftAxis.axisDependency
         
         let barData = BarChartData()
@@ -160,7 +165,7 @@ class ChartViewController : UIViewController {
         combinedChartView.leftAxis.axisMinimum = (volumeDataSet?.yMin)!
         combinedChartView.leftAxis.axisMaximum = (volumeDataSet?.yMax)! * 3
         combinedChartView.leftAxis.spaceTop = 20
-        combinedChartView.leftAxis.enabled = false
+        //combinedChartView.leftAxis.enabled = false
         
         combinedChartView.rightAxis.axisMinimum = (closeDataSet?.yMin)! * 0.95
         combinedChartView.rightAxis.axisMaximum = (closeDataSet?.yMax)! * 1.05
@@ -264,7 +269,16 @@ class ChartViewController : UIViewController {
     
     
     func createDates () -> [String] {
+        
         var limit = DAYS[daysIndex]
+        
+        if (daysIndex<2) {
+            dateFormatter.dateFormat = "MMM dd"
+        } else {
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+        }
+        
+        
         var dates = [String]()
         var i = 0
         let histories = yahoo?.histories
@@ -272,7 +286,7 @@ class ChartViewController : UIViewController {
             limit = histories!.count
         }
         for j in histories!.count-limit..<histories!.count {
-            dates.append(histories![j].date)
+            dates.append(dateFormatter.string(from: histories![j].date))
             i += 1
         }
         //dates.append("Next Day")
@@ -287,5 +301,6 @@ class ChartViewController : UIViewController {
             i += 1
         }
         return predictDataEntries
-    }    
+    }
+    
 }
