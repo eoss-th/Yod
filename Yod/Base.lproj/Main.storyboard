@@ -1,11 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="8G8-zi-auH">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="8G8-zi-auH">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -45,7 +46,7 @@
                                 <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bC5-cN-JBo" id="hg8-aP-hOD">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -91,7 +92,7 @@
                                 <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5Zr-16-pgm" id="RzF-uH-qG7">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IEe-qB-D9s">
@@ -205,7 +206,7 @@
                                 <rect key="frame" x="0.0" y="72" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QwX-h2-0rL" id="6lv-om-icO">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EdS-ZE-X13">
@@ -298,7 +299,7 @@
         <!--Candle-->
         <scene sceneID="hW4-OJ-Ng0">
             <objects>
-                <viewController id="7N8-UP-tuE" customClass="ChartViewController" customModule="Yod" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="candle" useStoryboardIdentifierAsRestorationIdentifier="YES" id="7N8-UP-tuE" customClass="ChartViewController" customModule="Yod" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="42o-aM-isA"/>
                         <viewControllerLayoutGuide type="bottom" id="2gw-En-4ud"/>
@@ -311,40 +312,66 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="G3Y-gR-cDL"/>
+                                    <constraint firstAttribute="height" constant="50" id="B8d-wY-myH"/>
                                 </constraints>
                                 <items>
-                                    <barButtonItem title="Item" id="FkN-Ab-ZVv"/>
-                                    <barButtonItem title="Item" id="gTV-yQ-sFl"/>
-                                    <barButtonItem title="Item" id="6zc-pP-5ag"/>
-                                    <barButtonItem title="Item" id="EQ5-0J-3Uu"/>
-                                    <barButtonItem title="Item" id="XHw-Yb-EMi"/>
+                                    <barButtonItem title="Week" id="FkN-Ab-ZVv">
+                                        <connections>
+                                            <action selector="loadWeek:" destination="7N8-UP-tuE" id="9cs-K0-gMs"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Month" id="gTV-yQ-sFl">
+                                        <connections>
+                                            <action selector="loadMonth:" destination="7N8-UP-tuE" id="N1n-Qz-qLu"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="3 Months" id="6zc-pP-5ag">
+                                        <connections>
+                                            <action selector="load3Months:" destination="7N8-UP-tuE" id="Iof-ZB-Aug"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="6 Months" id="EQ5-0J-3Uu">
+                                        <connections>
+                                            <action selector="load6Months:" destination="7N8-UP-tuE" id="35e-u4-RnH"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Year" id="XHw-Yb-EMi">
+                                        <connections>
+                                            <action selector="loadYear:" destination="7N8-UP-tuE" id="zGS-Xa-HyW"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="3 Years" id="K94-pj-u0H">
+                                        <connections>
+                                            <action selector="load3Years:" destination="7N8-UP-tuE" id="FpF-sf-Ilo"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="6 Years" id="raR-B9-TY9">
+                                        <connections>
+                                            <action selector="load6Years:" destination="7N8-UP-tuE" id="f6U-Ts-Nf1"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="07Z-CI-OIu" customClass="CombinedChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="50" width="320" height="468"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NgD-rW-DfS">
-                                <rect key="frame" x="0.0" y="518" width="320" height="50"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="07Z-CI-OIu">
+                                <rect key="frame" x="0.0" y="50" width="320" height="518"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="ZTl-WP-sPt"/>
+                                    <constraint firstAttribute="width" secondItem="07Z-CI-OIu" secondAttribute="height" multiplier="160:259" id="YuL-jr-kQz"/>
+                                    <constraint firstAttribute="width" constant="320" id="cT9-FS-qcZ"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="07Z-CI-OIu" firstAttribute="centerY" secondItem="4U9-0e-CVd" secondAttribute="centerY" id="LCU-dv-TGz"/>
-                            <constraint firstItem="07Z-CI-OIu" firstAttribute="centerX" secondItem="4U9-0e-CVd" secondAttribute="centerX" id="RLb-sN-vvA"/>
-                            <constraint firstItem="NgD-rW-DfS" firstAttribute="centerX" secondItem="4U9-0e-CVd" secondAttribute="centerX" id="nAE-mu-6Uy"/>
+                            <constraint firstItem="07Z-CI-OIu" firstAttribute="centerX" secondItem="4U9-0e-CVd" secondAttribute="centerX" id="fwm-GJ-Kol"/>
+                            <constraint firstItem="07Z-CI-OIu" firstAttribute="centerX" secondItem="4U9-0e-CVd" secondAttribute="centerX" id="qTm-x5-bDr"/>
                         </constraints>
                     </stackView>
                     <tabBarItem key="tabBarItem" title="Candle" id="b8Q-Od-9ZO">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-15"/>
                     </tabBarItem>
                     <connections>
-                        <outlet property="combinedChartView" destination="07Z-CI-OIu" id="OJ0-88-rJI"/>
+                        <outlet property="containerView" destination="07Z-CI-OIu" id="lbb-Qd-JQH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RVi-zx-Ixr" userLabel="First Responder" sceneMemberID="firstResponder"/>

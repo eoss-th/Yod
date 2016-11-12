@@ -13,11 +13,11 @@ class ChartViewController : UIViewController {
     
     let dateFormatter = DateFormatter()
     
-    let DAYS = [7, 30, 180, 365, 365*2, 365*3, 365*4]
+    let DAYS = [7, 30, 90, 180, 365, 365*3, 365*6]
     
     var daysIndex = 0
     
-    @IBOutlet weak var combinedChartView: CombinedChartView!
+    @IBOutlet weak var containerView: UIView!
     
     var yahoo:Yahoo?
     
@@ -38,59 +38,103 @@ class ChartViewController : UIViewController {
     override func viewDidLoad() {
         
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        
+        let combinedChartView = CombinedChartView()
+        
+        combinedChartView.noDataText = "Please select a symbol"
+        
+        combinedChartView.frame = containerView.bounds
+        containerView.addSubview(combinedChartView)
+    }
+    
+    @IBAction func loadWeek(_ sender: UIBarButtonItem) {
+        if let yahoo = self.yahoo {
+            daysIndex = 0
+            chartLoadSymbol(description: yahoo.symbol, yahoo: yahoo)
+        }
+    }
+    @IBAction func loadMonth(_ sender: UIBarButtonItem) {
+        if let yahoo = self.yahoo {
+            daysIndex = 1
+            DispatchQueue.global().async {
+                self.chartLoadSymbol(description: yahoo.symbol, yahoo: yahoo)
+                DispatchQueue.main.async {
+                    self.containerView.setNeedsDisplay()
+                }
+            }
+        }
+    }
+    @IBAction func load3Months(_ sender: UIBarButtonItem) {
+        if let yahoo = self.yahoo {
+            daysIndex = 2
+            chartLoadSymbol(description: yahoo.symbol, yahoo: yahoo)
+        }
+    }
+    @IBAction func load6Months(_ sender: UIBarButtonItem) {
+        if let yahoo = self.yahoo {
+            daysIndex = 3
+            chartLoadSymbol(description: yahoo.symbol, yahoo: yahoo)
+        }
+    }
+    @IBAction func loadYear(_ sender: UIBarButtonItem) {
+        if let yahoo = self.yahoo {
+            daysIndex = 4
+            chartLoadSymbol(description: yahoo.symbol, yahoo: yahoo)
+        }
+    }
+    @IBAction func load3Years(_ sender: UIBarButtonItem) {
+        if let yahoo = self.yahoo {
+            daysIndex = 5
+            chartLoadSymbol(description: yahoo.symbol, yahoo: yahoo)
+        }
+    }
+    @IBAction func load6Years(_ sender: UIBarButtonItem) {
+        if let yahoo = self.yahoo {
+            daysIndex = 6
+            chartLoadSymbol(description: yahoo.symbol, yahoo: yahoo)
+        }
+    }
+    
+    internal func chartLoadSymbol(description:String, yahoo:Yahoo, daysIndex:Int=0) {
+        
+        for v in containerView.subviews {
+            v.removeFromSuperview()
+        }
+        
+        containerView.setNeedsDisplay()
+        
+        let combinedChartView = CombinedChartView()
+        combinedChartView.frame = containerView.bounds
+        
         combinedChartView.noDataText = "Please select a symbol"
         
         /*
-        combinedChartView.backgroundColor = UIColor.black
-        combinedChartView.noDataTextColor = UIColor.white
-        combinedChartView.tintColor = UIColor.white
-        combinedChartView.borderColor = UIColor.white
-        combinedChartView.gridBackgroundColor = UIColor.white
-        combinedChartView.legend.textColor = UIColor.white
-        combinedChartView.chartDescription?.textColor = UIColor.white
-        
-        combinedChartView.rightAxis.zeroLineColor = UIColor.white
-        combinedChartView.rightAxis.gridColor = UIColor.white
-        combinedChartView.rightAxis.axisLineColor = UIColor.white
-        combinedChartView.rightAxis.labelTextColor = UIColor.white
-        
-        combinedChartView.leftAxis.zeroLineColor = UIColor.white
-        combinedChartView.leftAxis.gridColor = UIColor.white
-        combinedChartView.leftAxis.axisLineColor = UIColor.white
-        combinedChartView.leftAxis.labelTextColor = UIColor.white
-        
-        combinedChartView.xAxis.gridColor = UIColor.white
-        combinedChartView.xAxis.labelTextColor = UIColor.white
-        combinedChartView.xAxis.axisLineColor = UIColor.white
-        combinedChartView.xAxis.labelPosition = XAxis.LabelPosition.bottom
+         combinedChartView.backgroundColor = UIColor.black
+         combinedChartView.noDataTextColor = UIColor.white
+         combinedChartView.tintColor = UIColor.white
+         combinedChartView.borderColor = UIColor.white
+         combinedChartView.gridBackgroundColor = UIColor.white
+         combinedChartView.legend.textColor = UIColor.white
+         combinedChartView.chartDescription?.textColor = UIColor.white
+         
+         combinedChartView.rightAxis.zeroLineColor = UIColor.white
+         combinedChartView.rightAxis.gridColor = UIColor.white
+         combinedChartView.rightAxis.axisLineColor = UIColor.white
+         combinedChartView.rightAxis.labelTextColor = UIColor.white
+         
+         combinedChartView.leftAxis.zeroLineColor = UIColor.white
+         combinedChartView.leftAxis.gridColor = UIColor.white
+         combinedChartView.leftAxis.axisLineColor = UIColor.white
+         combinedChartView.leftAxis.labelTextColor = UIColor.white
+         
+         combinedChartView.xAxis.gridColor = UIColor.white
+         combinedChartView.xAxis.labelT
+         combinedChartView.xAxis.axisLineColor = UIColor.white
+         combinedChartView.xAxis.labelPosition = XAxis.LabelPosition.bottom
          */
         combinedChartView.xAxis.drawGridLinesEnabled = false
         combinedChartView.rightAxis.drawGridLinesEnabled = false
         combinedChartView.leftAxis.drawGridLinesEnabled = false
-    }
-    
-    @IBAction func loadWeek(sender: UIButton) {
-        daysIndex = 0
-    }
-    @IBAction func loadMonth(sender: UIButton) {
-        daysIndex = 1
-    }
-    @IBAction func load6Months(sender: UIButton) {
-        daysIndex = 2
-    }
-    @IBAction func loadYear(sender: UIButton) {
-        daysIndex = 3
-    }
-    @IBAction func load2Years(sender: UIButton) {
-        daysIndex = 4
-    }
-    @IBAction func load3Years(sender: UIButton) {
-        daysIndex = 6
-    }
-    @IBAction func load4Years(sender: UIButton) {
-        daysIndex = 5
-    }
-    internal func chartLoadSymbol(description:String, yahoo:Yahoo, daysIndex:Int=0) {
         
         self.yahoo = yahoo
         self.daysIndex = daysIndex
@@ -172,7 +216,10 @@ class ChartViewController : UIViewController {
         combinedChartView.rightAxis.spaceTop = 20
         
         combinedChartView.moveViewToX(Double(lineData.dataSets.count - 1))
+        
+        containerView.addSubview(combinedChartView)
     }
+    
     func createCloseDataEntries () -> [ChartDataEntry] {
         var limit = DAYS[daysIndex]
         var closeDataEntries = [ChartDataEntry]()
