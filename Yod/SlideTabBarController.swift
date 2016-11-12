@@ -25,14 +25,13 @@ class SlideTabBarController: UITabBarController {
         // Dispose of any resources that can be recreated.
     }
     
-    func reloadData() {
+    func rotated () {
         
         let assetTableViewController = self.viewControllers![0] as! AssetTableViewController
         assetTableViewController.tableView.reloadData()
         
+        let chartViewController = self.viewControllers![1] as! ChartViewController
+        chartViewController.rotated()
     }
     
-    func rotated () {
-        reloadData()
-    }
 }

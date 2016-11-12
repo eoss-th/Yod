@@ -12,10 +12,10 @@ class UIStackTableViewCell: UITableViewCell {
 
     @IBOutlet weak var symbolLabel: UILabel!
     @IBOutlet weak var stackView: StackView!
-    @IBOutlet weak var netGrowthLabel: UILabel!
     @IBOutlet weak var peLabel: UILabel!
     @IBOutlet weak var lastLabel: UILabel!
     @IBOutlet weak var predictLabel: UILabel!
+    @IBOutlet weak var predictChgLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

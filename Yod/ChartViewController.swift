@@ -17,9 +17,11 @@ class ChartViewController : UIViewController {
     
     var daysIndex = 0
     
-    @IBOutlet weak var containerView: UIView!
-    
     var yahoo:Yahoo?
+    
+    @IBOutlet weak var combinedChartView: CombinedChartView!
+    
+    @IBOutlet weak var toolBar: UIToolbar!
     
     var candleDataSet:CandleChartDataSet?
     
@@ -39,75 +41,7 @@ class ChartViewController : UIViewController {
         
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         
-        let combinedChartView = CombinedChartView()
-        
         combinedChartView.noDataText = "Please select a symbol"
-        
-        combinedChartView.frame = containerView.bounds
-        containerView.addSubview(combinedChartView)
-    }
-    
-    @IBAction func loadWeek(_ sender: UIBarButtonItem) {
-        if let yahoo = self.yahoo {
-            daysIndex = 0
-            chartLoadSymbol(description: yahoo.symbol, yahoo: yahoo)
-        }
-    }
-    @IBAction func loadMonth(_ sender: UIBarButtonItem) {
-        if let yahoo = self.yahoo {
-            daysIndex = 1
-            DispatchQueue.global().async {
-                self.chartLoadSymbol(description: yahoo.symbol, yahoo: yahoo)
-                DispatchQueue.main.async {
-                    self.containerView.setNeedsDisplay()
-                }
-            }
-        }
-    }
-    @IBAction func load3Months(_ sender: UIBarButtonItem) {
-        if let yahoo = self.yahoo {
-            daysIndex = 2
-            chartLoadSymbol(description: yahoo.symbol, yahoo: yahoo)
-        }
-    }
-    @IBAction func load6Months(_ sender: UIBarButtonItem) {
-        if let yahoo = self.yahoo {
-            daysIndex = 3
-            chartLoadSymbol(description: yahoo.symbol, yahoo: yahoo)
-        }
-    }
-    @IBAction func loadYear(_ sender: UIBarButtonItem) {
-        if let yahoo = self.yahoo {
-            daysIndex = 4
-            chartLoadSymbol(description: yahoo.symbol, yahoo: yahoo)
-        }
-    }
-    @IBAction func load3Years(_ sender: UIBarButtonItem) {
-        if let yahoo = self.yahoo {
-            daysIndex = 5
-            chartLoadSymbol(description: yahoo.symbol, yahoo: yahoo)
-        }
-    }
-    @IBAction func load6Years(_ sender: UIBarButtonItem) {
-        if let yahoo = self.yahoo {
-            daysIndex = 6
-            chartLoadSymbol(description: yahoo.symbol, yahoo: yahoo)
-        }
-    }
-    
-    internal func chartLoadSymbol(description:String, yahoo:Yahoo, daysIndex:Int=0) {
-        
-        for v in containerView.subviews {
-            v.removeFromSuperview()
-        }
-        
-        containerView.setNeedsDisplay()
-        
-        let combinedChartView = CombinedChartView()
-        combinedChartView.frame = containerView.bounds
-        
-        combinedChartView.noDataText = "Please select a symbol"
-        
         /*
          combinedChartView.backgroundColor = UIColor.black
          combinedChartView.noDataTextColor = UIColor.white
@@ -135,6 +69,53 @@ class ChartViewController : UIViewController {
         combinedChartView.xAxis.drawGridLinesEnabled = false
         combinedChartView.rightAxis.drawGridLinesEnabled = false
         combinedChartView.leftAxis.drawGridLinesEnabled = false
+        
+        rotated()
+    }
+    
+    func waiting() {        
+        combinedChartView.data = nil
+        combinedChartView.noDataText = "Loading..."
+        combinedChartView.setNeedsDisplay()
+    }
+    
+    @IBAction func loadWeek(_ sender: UIBarButtonItem) {
+        if let yahoo = self.yahoo {
+            chartLoadSymbol(description: yahoo.symbol, yahoo: yahoo, daysIndex: 0)
+        }
+    }
+    @IBAction func loadMonth(_ sender: UIBarButtonItem) {
+        if let yahoo = self.yahoo {
+            chartLoadSymbol(description: yahoo.symbol, yahoo: yahoo, daysIndex: 1)
+        }
+    }
+    @IBAction func load3Months(_ sender: UIBarButtonItem) {
+        if let yahoo = self.yahoo {
+            chartLoadSymbol(description: yahoo.symbol, yahoo: yahoo, daysIndex: 2)
+        }
+    }
+    @IBAction func load6Months(_ sender: UIBarButtonItem) {
+        if let yahoo = self.yahoo {
+            chartLoadSymbol(description: yahoo.symbol, yahoo: yahoo, daysIndex: 3)
+        }
+    }
+    @IBAction func loadYear(_ sender: UIBarButtonItem) {
+        if let yahoo = self.yahoo {
+            chartLoadSymbol(description: yahoo.symbol, yahoo: yahoo, daysIndex: 4)
+        }
+    }
+    @IBAction func load3Years(_ sender: UIBarButtonItem) {
+        if let yahoo = self.yahoo {
+            chartLoadSymbol(description: yahoo.symbol, yahoo: yahoo, daysIndex: 5)
+        }
+    }
+    @IBAction func load6Years(_ sender: UIBarButtonItem) {
+        if let yahoo = self.yahoo {
+            chartLoadSymbol(description: yahoo.symbol, yahoo: yahoo, daysIndex: 6)
+        }
+    }
+    
+    internal func chartLoadSymbol(description:String, yahoo:Yahoo, daysIndex:Int=0) {
         
         self.yahoo = yahoo
         self.daysIndex = daysIndex
@@ -217,7 +198,29 @@ class ChartViewController : UIViewController {
         
         combinedChartView.moveViewToX(Double(lineData.dataSets.count - 1))
         
-        containerView.addSubview(combinedChartView)
+        combinedChartView.setNeedsDisplay()
+    }
+    
+    func rotated() {
+        
+        if toolBar != nil {
+            if(UIDeviceOrientationIsLandscape(UIDevice.current.orientation))
+            {
+                toolBar.isHidden = false
+            }
+            
+            if(UIDeviceOrientationIsPortrait(UIDevice.current.orientation))
+            {
+                if daysIndex != 0 {
+                    if let yahoo = self.yahoo {
+                        chartLoadSymbol(description: yahoo.symbol, yahoo: yahoo, daysIndex: 0)
+                    }
+                }
+                toolBar.isHidden = true
+            }
+            
+        }
+        
     }
     
     func createCloseDataEntries () -> [ChartDataEntry] {
@@ -319,7 +322,7 @@ class ChartViewController : UIViewController {
         
         var limit = DAYS[daysIndex]
         
-        if (daysIndex<2) {
+        if (daysIndex<=2) {
             dateFormatter.dateFormat = "MMM dd"
         } else {
             dateFormatter.dateFormat = "yyyy-MM-dd"

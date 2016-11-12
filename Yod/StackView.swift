@@ -12,7 +12,7 @@ class StackView: UIView {
     
     var stacks = [StackView]()
     
-    func add(value:CGFloat, percentChg:Float, color:UIColor) -> StackView {
+    func add(value:CGFloat, color:UIColor) -> StackView {
         
         let width = value * self.frame.width
         

@@ -27,10 +27,6 @@ class AssetTableViewController: UITableViewController {
         SET.toggleSort("E/A")
         self.tableView.reloadData()
     }
-    @IBAction func toggleAsset(_ sender: UIButton) {
-        SET.toggleSort("Estimated Asset")
-        self.tableView.reloadData()
-    }
     @IBAction func toggleGrowth(_ sender: UIButton) {
         SET.toggleSort("E/A Growth %")
         self.tableView.reloadData()
@@ -44,6 +40,10 @@ class AssetTableViewController: UITableViewController {
         self.tableView.reloadData()
     }
     @IBAction func togglePredict(_ sender: UIButton) {
+        SET.toggleSort("Predict MA")
+        self.tableView.reloadData()
+    }
+    @IBAction func togglePredictChg(_ sender: UIButton) {
         SET.toggleSort("Predict Chg %")
         self.tableView.reloadData()
     }
@@ -64,25 +64,25 @@ class AssetTableViewController: UITableViewController {
         
         if(UIDeviceOrientationIsLandscape(UIDevice.current.orientation))
         {
-            cell.growthButton.isHidden = false
-            cell.peButton.isHidden = false
+            cell.pebutton.isHidden = false
             cell.lastButton.isHidden = false
             cell.predictButton.isHidden = false
+            cell.predictChgButton.isHidden = false
         }
         
         if(UIDeviceOrientationIsPortrait(UIDevice.current.orientation))
         {
-            cell.growthButton.isHidden = true
-            cell.peButton.isHidden = true
+            cell.pebutton.isHidden = true
             cell.lastButton.isHidden = true
             cell.predictButton.isHidden = true
+            cell.predictChgButton.isHidden = true
         }
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 49.0
+        return 50.0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -96,49 +96,67 @@ class AssetTableViewController: UITableViewController {
             
             cell.symbolLabel.text = set.symbol
             cell.stackView.clear()
-            //cell.stackView.backgroundColor = UIColor(netHex:0xfbfbfa)
+            cell.stackView.backgroundColor = UIColor(netHex:0xe1e1da)
             
             let greenColor = UIColor(netHex:0x196319)
             let redColor = UIColor(netHex:0x880700)
-            
-            if let growth = set.values["E/A Growth %"] {
-                cell.netGrowthLabel.text = String(growth)
-                cell.netGrowthLabel.textColor = (growth >= 0) ? greenColor : redColor
-            }
             
             if let pe = set.values["P/E"] {
                 cell.peLabel.text = String(pe)
                 cell.peLabel.textColor = (pe >= 0) ? greenColor : redColor
             }
             
+            let lastPrice:Float
+            
             if let last = set.values["Last"] {
                 cell.lastLabel.text = String(last)
                 cell.lastLabel.textColor = (last >= 0) ? greenColor : redColor
+                lastPrice = last
+            } else {
+                lastPrice = 0
             }
             
-            if let predict = set.values["Predict Chg %"] {
+            if let predict = set.values["Predict MA"] {
                 cell.predictLabel.text = String(predict)
-                cell.predictLabel.textColor = (predict >= 0) ? greenColor : redColor
+                cell.predictLabel.textColor = (predict >= lastPrice) ? greenColor : redColor
+            }
+            
+            if let predictChg = set.values["Predict Chg %"] {
+                cell.predictChgLabel.text = String(predictChg)
+                cell.predictChgLabel.textColor = (predictChg >= 0) ? greenColor : redColor
             }
             
             if(UIDeviceOrientationIsLandscape(UIDevice.current.orientation))
             {
-                cell.netGrowthLabel.isHidden = false
                 cell.peLabel.isHidden = false
                 cell.lastLabel.isHidden = false
                 cell.predictLabel.isHidden = false
+                cell.predictChgLabel.isHidden = false
             }
             
             if(UIDeviceOrientationIsPortrait(UIDevice.current.orientation))
             {
-                cell.netGrowthLabel.isHidden = true
                 cell.peLabel.isHidden = true
                 cell.lastLabel.isHidden = true
                 cell.predictLabel.isHidden = true
+                cell.predictChgLabel.isHidden = true
             }
             
-            var ea = set.values["E/A"]!
+            let ga = set.values["G/A"]!
+            var ea = set.values["E/G"]!
             var ne = set.values["N/E"]!
+            
+            let gaColor:UIColor
+            
+            if let growth = set.values["E/A Growth %"] {
+                if growth > 0 {
+                    gaColor = UIColor(netHex:0xfbfbfa)
+                } else {
+                    gaColor = UIColor(netHex:0xe9e9e4)
+                }
+            } else {
+                gaColor = UIColor.white
+            }
             
             let eaColor:UIColor
             if ea > 0 {
@@ -158,40 +176,14 @@ class AssetTableViewController: UITableViewController {
             
             if ne == 1 && ea == 1 {
                 let _ = cell.stackView
-                    .add(value: CGFloat(ea), percentChg: 0, color: eaColor)
+                    .add(value: CGFloat(ea), color: eaColor)
                 
             } else {
                 
-                let eaView:StackView
-                
-                if var eaGrowth = set.values["E/A Growth %"] {
-                    
-                    if eaGrowth > 100 {
-                        eaGrowth = 100
-                    }
-                    
-                    eaView = cell.stackView.add(value: CGFloat(ea), percentChg: eaGrowth, color: eaColor)
-                    
-                } else {
-                    
-                    eaView = cell.stackView.add(value: CGFloat(ea), percentChg: 0, color: eaColor)
-                    
-                }
-                
-                
-                if var netGrowth = set.values["Net Growth %"] {
-                    
-                    if netGrowth > 100 {
-                        netGrowth = 100
-                    }
-                    
-                    let _ = eaView.add(value: CGFloat(ne), percentChg: netGrowth, color: neColor)
-                    
-                } else {
-                    
-                    let _ = eaView.add(value: CGFloat(ne), percentChg: 0, color: neColor)
-                    
-                }
+                let _ = cell.stackView
+                        .add(value: CGFloat(ga), color: gaColor)
+                        .add(value: CGFloat(ea), color: eaColor)
+                        .add(value: CGFloat(ne), color: neColor)
             }
         }
 
@@ -207,16 +199,17 @@ class AssetTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if indexPath.row < SET.filters.count {
+            
+            self.tabBarController?.selectedIndex = 1
+            let chartViewController = self.tabBarController?.viewControllers?[1] as! ChartViewController
+            chartViewController.waiting()
+            
             DispatchQueue.global().async {
+                
                 let yahoo = Yahoo(symbol: SET.filters[indexPath.row].symbol!)
+                
                 DispatchQueue.main.async {
-                    
-                    self.tabBarController?.selectedIndex = 1
-                    
-                    let chartViewController = self.tabBarController?.viewControllers?[1] as! ChartViewController
-                    
-                    
-                    chartViewController.chartLoadSymbol(description: "", yahoo: yahoo)
+                    chartViewController.chartLoadSymbol(description: yahoo.symbol, yahoo: yahoo)
                 }
             }
         }

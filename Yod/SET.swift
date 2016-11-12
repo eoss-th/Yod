@@ -75,9 +75,25 @@ class SET {
             net = n
         }
         
+        var equityGrowth:Float=0
+        if let g = values["E/A Growth %"] {
+            
+            var growthRate = g/100.0
+            if growthRate < 0 {
+                growthRate = growthRate * -1
+            }
+            equityGrowth = equity * ( 1 + growthRate )
+        }
+        
         values["E/A"] = equity / asset
         values["N/E"] = net / equity
+        values["G/A"] = equityGrowth / asset
         
+        if equityGrowth != 0 {
+            values["E/G"] = equity / equityGrowth
+        } else {
+            values["E/G"] = values["E/A"]
+        }
     }
     
     class func create() -> Bool {
