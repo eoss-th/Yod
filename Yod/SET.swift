@@ -80,20 +80,38 @@ class SET {
             
             var growthRate = g/100.0
             if growthRate < 0 {
-                growthRate = growthRate * -1
+                growthRate *= -1
             }
-            equityGrowth = equity * ( 1 + growthRate )
+            equityGrowth = equity + equity * growthRate
         }
         
-        values["E/A"] = equity / asset
+        if symbol == "SSI" {
+            print (net)
+            print (equity)
+            print (equityGrowth)
+            print (asset)
+        }
+        
         values["N/E"] = net / equity
-        values["G/A"] = equityGrowth / asset
+        
+        if let ne = values["N/E"] {
+            if (Swift.abs(ne)>1) {
+                values["N/E"] = ne/Swift.abs(ne)
+            }
+        }
         
         if equityGrowth != 0 {
             values["E/G"] = equity / equityGrowth
         } else {
-            values["E/G"] = values["E/A"]
+            values["E/G"] = 1
         }
+        
+        if equityGrowth > asset {
+            equityGrowth = asset
+        }
+        
+        values["G/A"] = equityGrowth / asset
+        
     }
     
     class func create() -> Bool {

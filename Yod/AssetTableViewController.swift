@@ -143,7 +143,7 @@ class AssetTableViewController: UITableViewController {
             }
             
             let ga = set.values["G/A"]!
-            var ea = set.values["E/G"]!
+            var eg = set.values["E/G"]!
             var ne = set.values["N/E"]!
             
             let gaColor:UIColor
@@ -158,12 +158,12 @@ class AssetTableViewController: UITableViewController {
                 gaColor = UIColor.white
             }
             
-            let eaColor:UIColor
-            if ea > 0 {
-                eaColor = UIColor(netHex:0xf2f2ef)
+            let egColor:UIColor
+            if eg > 0 {
+                egColor = UIColor(netHex:0xf2f2ef)
             } else {
-                eaColor = UIColor(netHex:0xffebea)
-                ea = ea * -1
+                egColor = UIColor(netHex:0xffebea)
+                eg = eg * -1
             }
             
             let neColor:UIColor
@@ -174,15 +174,15 @@ class AssetTableViewController: UITableViewController {
                 ne = ne * -1
             }
             
-            if ne == 1 && ea == 1 {
+            if ne == 1 && eg == 1 {
                 let _ = cell.stackView
-                    .add(value: CGFloat(ea), color: eaColor)
+                    .add(value: CGFloat(eg), color: egColor)
                 
             } else {
                 
                 let _ = cell.stackView
                         .add(value: CGFloat(ga), color: gaColor)
-                        .add(value: CGFloat(ea), color: eaColor)
+                        .add(value: CGFloat(eg), color: egColor)
                         .add(value: CGFloat(ne), color: neColor)
             }
         }
