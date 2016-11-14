@@ -15,6 +15,10 @@ class SET {
     static var filters = [SET]()
     static var toggles = [String:Bool]()
     
+    static var neMean = Float(0)
+    static var growthMean = Float(0)
+    static var peMean = Float(0)
+    
     var industry:String?
     var sector:String?
     var symbol:String?
@@ -23,6 +27,7 @@ class SET {
     var dvd:String?
     
     var values = [String:Float]()
+    
     
     init(line:String) {
         let tokens = line.components(separatedBy: ",")
@@ -125,6 +130,9 @@ class SET {
                 }
                 filters = cache
             }
+            
+            updateMeans()
+            
             return true
         }
         
@@ -183,6 +191,7 @@ class SET {
     
     class func removeFilter () {
         filters = cache
+        updateMeans()
     }
     
     class func applyFilter (industry:String, sector:String) {
@@ -193,6 +202,42 @@ class SET {
                 filters.append(set)
             }
         }
+        updateMeans()
+    }
+    
+    class func applyFilter (field:String, operand:(Float, Float)->Bool, value:Float) {
+        
+        var newFilter = [SET]()
+        for set in filters {
+            if let val = set.values[field] {
+                if operand(val, value) {
+                    newFilter.append(set)
+                }
+            }
+        }
+        
+        filters = newFilter
+    }
+    
+    class func updateMeans () {
+        neMean = mean("N/E")
+        growthMean = mean("E/A Growth %")
+        peMean = mean("P/E")
+    }
+    
+    class func mean(_ field:String) -> Float {
+        
+        var total:Float = 0
+        let count = Float(filters.count)
+        
+        for set in filters {
+            if let val = set.values[field] {
+                total += val
+            }
+        }
+        
+        return total / count
     }
     
 }
+

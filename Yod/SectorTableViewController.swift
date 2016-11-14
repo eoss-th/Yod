@@ -12,19 +12,17 @@ class SectorTableViewController: UITableViewController {
     
     let stringURL = "http://eoss-setfin.appspot.com/SETIndexServlet"
     
+    var filters = ["ROE > Avg", "Growth > Avg", "P/E < Avg"]
     var industries = [String]()
     var sections = [String:[String]]()
-    var selectedPath:IndexPath?
+    
+    var selectedFilters = [Int]()
+    var selectedIndustry:IndexPath?
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
         DispatchQueue.global().async {
             
             if let url = URL(string: self.stringURL) {
@@ -62,34 +60,56 @@ class SectorTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return industries.count
+        return industries.count + 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return sections[industries[section]]!.count
+        if section == 0 {
+            return filters.count
+        }
+        return sections[industries[section-1]]!.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "section", for: indexPath)
-
-        cell.textLabel?.text = sections[industries[indexPath.section]]?[indexPath.row]
         
-        if (selectedPath==indexPath) {
-            cell.backgroundColor = UIColor(netHex: 0xd3e0e5)
-            cell.textLabel?.backgroundColor = UIColor(netHex: 0xd3e0e5)
+        if indexPath.section == 0 {
+            
+            cell.textLabel?.text = filters [indexPath.row]
+            
+            if selectedFilters.contains(indexPath.row) {
+                cell.backgroundColor = UIColor(netHex: 0xd3e0e5)
+                cell.textLabel?.backgroundColor = UIColor(netHex: 0xd3e0e5)
+            } else {
+                cell.backgroundColor = UIColor.white
+                cell.textLabel?.backgroundColor = UIColor.white
+            }
+            
         } else {
-            cell.backgroundColor = UIColor.white
-            cell.textLabel?.backgroundColor = UIColor.white
+            
+            cell.textLabel?.text = sections[industries[indexPath.section-1]]?[indexPath.row]
+            
+            if (selectedIndustry==indexPath) {
+                cell.backgroundColor = UIColor(netHex: 0xd3e0e5)
+                cell.textLabel?.backgroundColor = UIColor(netHex: 0xd3e0e5)
+            } else {
+                cell.backgroundColor = UIColor.white
+                cell.textLabel?.backgroundColor = UIColor.white
+            }
+            
         }
+
         
         return cell
     }
     
     override public func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
     // fixed font style. use custom view (UILabel) if you want something different
-        return industries[section]
+        if section == 0 {
+            return "Filters"
+        }
+        return industries[section-1]
     }
 
     /*
@@ -139,18 +159,46 @@ class SectorTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if selectedPath != nil && selectedPath?.section == indexPath.section && selectedPath?.row == indexPath.row {
+        if indexPath.section == 0 {
             
-            SET.removeFilter()
-            selectedPath = nil
+            if selectedFilters.contains(indexPath.row) {
+                
+                selectedFilters.remove(at: selectedFilters.index(of: indexPath.row)!)
+                
+            } else {
+                
+                selectedFilters.append(indexPath.row)
+                
+            }
+            
+        } else if selectedIndustry == indexPath {
+            
+            selectedIndustry = nil
             
         } else {
-            let industry = industries[indexPath.section]
-            let sector = sections[industry]?[indexPath.row]
             
+            selectedIndustry = indexPath
+            
+        }
+        
+        SET.removeFilter()
+        
+        if selectedIndustry != nil {
+            let industry = industries[selectedIndustry!.section-1]
+            let sector = sections[industry]?[selectedIndustry!.row]
             SET.applyFilter(industry: industry, sector: sector!)
-            selectedPath = indexPath
-            
+        }
+        
+        if selectedFilters.contains(0) {
+            SET.applyFilter(field: "N/E", operand: >, value: SET.neMean)
+        }
+        
+        if selectedFilters.contains(1) {
+            SET.applyFilter(field: "E/A Growth %", operand: >, value: SET.growthMean)
+        }
+        
+        if selectedFilters.contains(2) {
+            SET.applyFilter(field: "P/E", operand: <, value: SET.peMean)
         }
         
         self.tableView.reloadData()
