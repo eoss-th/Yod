@@ -24,7 +24,7 @@ class AssetTableViewController: UITableViewController {
         self.tableView.reloadData()
     }
     @IBAction func toggleEquity(_ sender: UIButton) {
-        SET.toggleSort("E/A")
+        SET.toggleSort("E/G")
         self.tableView.reloadData()
     }
     @IBAction func toggleGrowth(_ sender: UIButton) {
@@ -57,7 +57,7 @@ class AssetTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return SET.filters.count
     }
-
+    
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let  cell = tableView.dequeueReusableCell(withIdentifier: "headerAsset") as! UIHeaderTableViewCell

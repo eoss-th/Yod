@@ -27,11 +27,15 @@ class SlideTabBarController: UITabBarController {
     
     func rotated () {
         
-        let assetTableViewController = self.viewControllers![0] as! AssetTableViewController
-        assetTableViewController.tableView.reloadData()
+        reload()
         
         let chartViewController = self.viewControllers![1] as! ChartViewController
         chartViewController.rotated()
+    }
+    
+    func reload () {
+        let assetTableViewController = self.viewControllers![0] as! AssetTableViewController
+        assetTableViewController.tableView.reloadData()
     }
     
 }

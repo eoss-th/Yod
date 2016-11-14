@@ -85,13 +85,6 @@ class SET {
             equityGrowth = equity + equity * growthRate
         }
         
-        if symbol == "SSI" {
-            print (net)
-            print (equity)
-            print (equityGrowth)
-            print (asset)
-        }
-        
         values["N/E"] = net / equity
         
         if let ne = values["N/E"] {
@@ -121,11 +114,15 @@ class SET {
             let text = try! String(contentsOf: url)
             var lines = text.components(separatedBy: "\n")
             lines.remove(at: 0)
+            var set:SET
             for line in lines {
                 if line.isEmpty {
                     continue
                 }
-                cache.append(SET(line: line))
+                set = SET(line: line)
+                if set.industry != "-" {
+                    cache.append(set)
+                }
                 filters = cache
             }
             return true
@@ -184,5 +181,18 @@ class SET {
         }
     }
     
+    class func removeFilter () {
+        filters = cache
+    }
+    
+    class func applyFilter (industry:String, sector:String) {
+        filters.removeAll()
+        
+        for set in cache {
+            if set.industry == industry && set.sector == sector {
+                filters.append(set)
+            }
+        }
+    }
     
 }

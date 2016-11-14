@@ -211,16 +211,13 @@ class ChartViewController : UIViewController {
             
             if(UIDeviceOrientationIsPortrait(UIDevice.current.orientation))
             {
-                if daysIndex != 0 {
-                    if let yahoo = self.yahoo {
-                        chartLoadSymbol(description: yahoo.symbol, yahoo: yahoo, daysIndex: 0)
-                    }
-                }
                 toolBar.isHidden = true
             }
-            
         }
         
+        if let yahoo = self.yahoo {
+            chartLoadSymbol(description: yahoo.symbol, yahoo: yahoo, daysIndex: 0)
+        }
     }
     
     func createCloseDataEntries () -> [ChartDataEntry] {
@@ -322,8 +319,18 @@ class ChartViewController : UIViewController {
         
         var limit = DAYS[daysIndex]
         
-        if (daysIndex<=2) {
+        if (daysIndex==0) {
+            
+            if(UIDeviceOrientationIsPortrait(UIDevice.current.orientation)) {
+                dateFormatter.dateFormat = "dd"
+            } else {
+                dateFormatter.dateFormat = "EEEE dd"
+            }
+            
+        } else if (daysIndex<3) {
+            
             dateFormatter.dateFormat = "MMM dd"
+
         } else {
             dateFormatter.dateFormat = "yyyy-MM-dd"
         }

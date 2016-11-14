@@ -14,6 +14,7 @@ class SectorTableViewController: UITableViewController {
     
     var industries = [String]()
     var sections = [String:[String]]()
+    var selectedPath:IndexPath?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +43,8 @@ class SectorTableViewController: UITableViewController {
                 self.industries = self.sections.keys.sorted()
                 
             }
+            
+            self.industries.remove(at: 0)
             
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -72,8 +75,15 @@ class SectorTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "section", for: indexPath)
 
         cell.textLabel?.text = sections[industries[indexPath.section]]?[indexPath.row]
-        // Configure the cell...
-
+        
+        if (selectedPath==indexPath) {
+            cell.backgroundColor = UIColor(netHex: 0xd3e0e5)
+            cell.textLabel?.backgroundColor = UIColor(netHex: 0xd3e0e5)
+        } else {
+            cell.backgroundColor = UIColor.white
+            cell.textLabel?.backgroundColor = UIColor.white
+        }
+        
         return cell
     }
     
@@ -126,5 +136,30 @@ class SectorTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if selectedPath != nil && selectedPath?.section == indexPath.section && selectedPath?.row == indexPath.row {
+            
+            SET.removeFilter()
+            selectedPath = nil
+            
+        } else {
+            let industry = industries[indexPath.section]
+            let sector = sections[industry]?[indexPath.row]
+            
+            SET.applyFilter(industry: industry, sector: sector!)
+            selectedPath = indexPath
+            
+        }
+        
+        self.tableView.reloadData()
+        
+        let slideTabBarController = self.revealViewController().frontViewController as! SlideTabBarController
+        slideTabBarController.reload()
+        
+        self.revealViewController().revealToggle(nil)
+    }
+    
 
 }
