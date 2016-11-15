@@ -15,7 +15,8 @@ class SET {
     static var filters = [SET]()
     static var toggles = [String:Bool]()
     
-    static var neMean = Float(0)
+    static var roeMean = Float(0)
+    static var netGrowthMean = Float(0)
     static var growthMean = Float(0)
     static var peMean = Float(0)
     
@@ -90,11 +91,26 @@ class SET {
             equityGrowth = equity + equity * growthRate
         }
         
-        values["N/E"] = net / equity
+        var netGrowth:Float=0
+        if let g = values["Net Growth %"] {
+            if net < 0 && g < 0 {
+                netGrowth = net - net * g/100.0
+            } else {
+                netGrowth = net + net * g/100.0
+            }
+        }
         
-        if let ne = values["N/E"] {
-            if (Swift.abs(ne)>1) {
-                values["N/E"] = ne/Swift.abs(ne)
+        if netGrowth != 0 {
+            values["N/NG"] = net / netGrowth
+        } else {
+            values["N/NG"] = 1
+        }
+        
+        //Trim
+        values["NG/E"] = netGrowth / equity
+        if let nge = values["NG/E"] {
+            if (Swift.abs(nge)>1) {
+                values["NG/E"] = nge/Swift.abs(nge)
             }
         }
         
@@ -220,7 +236,8 @@ class SET {
     }
     
     class func updateMeans () {
-        neMean = mean("N/E")
+        roeMean = mean("ROE")
+        netGrowthMean = mean("Net Growth %")
         growthMean = mean("E/A Growth %")
         peMean = mean("P/E")
     }
@@ -228,11 +245,12 @@ class SET {
     class func mean(_ field:String) -> Float {
         
         var total:Float = 0
-        let count = Float(filters.count)
+        var count:Float = 0
         
         for set in filters {
             if let val = set.values[field] {
                 total += val
+                count += 1
             }
         }
         

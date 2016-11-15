@@ -12,7 +12,7 @@ class SectorTableViewController: UITableViewController {
     
     let stringURL = "http://eoss-setfin.appspot.com/SETIndexServlet"
     
-    var filters = ["ROE > Avg", "Growth > Avg", "P/E < Avg"]
+    var filters = ["ROE > Avg", "Net Growth > Avg", "Equity Growth > Avg", "P/E < Avg"]
     var industries = [String]()
     var sections = [String:[String]]()
     
@@ -23,31 +23,33 @@ class SectorTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        DispatchQueue.global().async {
-            
-            if let url = URL(string: self.stringURL) {
-                let text = try! String(contentsOf: url)
-                let lines = text.components(separatedBy: "\n")
-                for line in lines {
-                    if line.isEmpty {
-                        continue
+        if industries.isEmpty {
+            DispatchQueue.global().async {
+                
+                if let url = URL(string: self.stringURL) {
+                    let text = try! String(contentsOf: url)
+                    let lines = text.components(separatedBy: "\n")
+                    for line in lines {
+                        if line.isEmpty {
+                            continue
+                        }
+                        var names = line.components(separatedBy: ",")
+                        let sector = names[0]
+                        names.remove(at: 0)
+                        self.sections[sector] = names.sorted()
                     }
-                    var names = line.components(separatedBy: ",")
-                    let sector = names[0]
-                    names.remove(at: 0)
-                    self.sections[sector] = names.sorted()
+                    
+                    self.industries = self.sections.keys.sorted()
+                    
                 }
                 
-                self.industries = self.sections.keys.sorted()
+                self.industries.remove(at: 0)
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
                 
             }
-            
-            self.industries.remove(at: 0)
-            
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-            
         }
     }
 
@@ -190,14 +192,18 @@ class SectorTableViewController: UITableViewController {
         }
         
         if selectedFilters.contains(0) {
-            SET.applyFilter(field: "N/E", operand: >, value: SET.neMean)
+            SET.applyFilter(field: "ROE", operand: >, value: SET.roeMean)
         }
         
         if selectedFilters.contains(1) {
-            SET.applyFilter(field: "E/A Growth %", operand: >, value: SET.growthMean)
+            SET.applyFilter(field: "Net Growth %", operand: >, value: SET.netGrowthMean)
         }
         
         if selectedFilters.contains(2) {
+            SET.applyFilter(field: "E/A Growth %", operand: >, value: SET.growthMean)
+        }
+        
+        if selectedFilters.contains(3) {
             SET.applyFilter(field: "P/E", operand: <, value: SET.peMean)
         }
         
