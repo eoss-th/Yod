@@ -39,6 +39,11 @@
 		C722C2251DD5AC36005C798A /* Yahoo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C722C2241DD5AC36005C798A /* Yahoo.swift */; };
 		C722C2271DD5ADDF005C798A /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C722C2261DD5ADDF005C798A /* ChartViewController.swift */; };
 		C722C2491DD5B164005C798A /* XValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C722C2481DD5B164005C798A /* XValueFormatter.swift */; };
+		C76F98A41DDC048200B816F7 /* searchButton.png in Resources */ = {isa = PBXBuildFile; fileRef = C76F98A31DDC048200B816F7 /* searchButton.png */; };
+		C76F98B51DDC0E0400B816F7 /* assetButton.png in Resources */ = {isa = PBXBuildFile; fileRef = C76F98B31DDC0E0400B816F7 /* assetButton.png */; };
+		C76F98B61DDC0E0400B816F7 /* assetButtonSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = C76F98B41DDC0E0400B816F7 /* assetButtonSelected.png */; };
+		C76F98B91DDC138C00B816F7 /* candleButton.png in Resources */ = {isa = PBXBuildFile; fileRef = C76F98B71DDC138C00B816F7 /* candleButton.png */; };
+		C76F98BA1DDC138C00B816F7 /* candleButtonSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = C76F98B81DDC138C00B816F7 /* candleButtonSelected.png */; };
 		C7F5555A1DD411C200339377 /* SlideTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F555591DD411C200339377 /* SlideTabBarController.swift */; };
 /* End PBXBuildFile section */
 
@@ -143,6 +148,11 @@
 		C722C2241DD5AC36005C798A /* Yahoo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Yahoo.swift; sourceTree = "<group>"; };
 		C722C2261DD5ADDF005C798A /* ChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
 		C722C2481DD5B164005C798A /* XValueFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XValueFormatter.swift; sourceTree = "<group>"; };
+		C76F98A31DDC048200B816F7 /* searchButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchButton.png; sourceTree = "<group>"; };
+		C76F98B31DDC0E0400B816F7 /* assetButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = assetButton.png; sourceTree = "<group>"; };
+		C76F98B41DDC0E0400B816F7 /* assetButtonSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = assetButtonSelected.png; sourceTree = "<group>"; };
+		C76F98B71DDC138C00B816F7 /* candleButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = candleButton.png; sourceTree = "<group>"; };
+		C76F98B81DDC138C00B816F7 /* candleButtonSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = candleButtonSelected.png; sourceTree = "<group>"; };
 		C7F555591DD411C200339377 /* SlideTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideTabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -206,6 +216,11 @@
 				C7F555591DD411C200339377 /* SlideTabBarController.swift */,
 				BBE513A61DD1FE22005E2183 /* AssetTableViewController.swift */,
 				BBE513A81DD1FE83005E2183 /* StackView.swift */,
+				C76F98B31DDC0E0400B816F7 /* assetButton.png */,
+				C76F98B41DDC0E0400B816F7 /* assetButtonSelected.png */,
+				C76F98B71DDC138C00B816F7 /* candleButton.png */,
+				C76F98B81DDC138C00B816F7 /* candleButtonSelected.png */,
+				C76F98A31DDC048200B816F7 /* searchButton.png */,
 				BBC11B101DD55C8E00F854C3 /* Yod.png */,
 				BBC11B121DD562A700F854C3 /* Yod20.png */,
 				BBC11B131DD562A700F854C3 /* Yod29.png */,
@@ -422,17 +437,22 @@
 				BB7E33F31DD1604900321813 /* LaunchScreen.storyboard in Resources */,
 				BBC11B291DD562A700F854C3 /* Yod180.png in Resources */,
 				BBC11B1F1DD562A700F854C3 /* Yod29.png in Resources */,
+				C76F98A41DDC048200B816F7 /* searchButton.png in Resources */,
+				C76F98B61DDC0E0400B816F7 /* assetButtonSelected.png in Resources */,
 				BBC11B271DD562A700F854C3 /* Yod152.png in Resources */,
 				BBC11B1E1DD562A700F854C3 /* Yod20.png in Resources */,
 				BBC11B261DD562A700F854C3 /* Yod120.png in Resources */,
 				BB7E33F01DD1604900321813 /* Assets.xcassets in Resources */,
+				C76F98B91DDC138C00B816F7 /* candleButton.png in Resources */,
 				BBC11B211DD562A700F854C3 /* Yod58.png in Resources */,
 				BBC11B281DD562A700F854C3 /* Yod167.png in Resources */,
 				BBC11B111DD55C8E00F854C3 /* Yod.png in Resources */,
+				C76F98BA1DDC138C00B816F7 /* candleButtonSelected.png in Resources */,
 				BBC11B251DD562A700F854C3 /* Yod87.png in Resources */,
 				BBC11B241DD562A700F854C3 /* Yod80.png in Resources */,
 				BBC11B221DD562A700F854C3 /* Yod60.png in Resources */,
 				BB7E33EE1DD1604900321813 /* Main.storyboard in Resources */,
+				C76F98B51DDC0E0400B816F7 /* assetButton.png in Resources */,
 				BBC11B231DD562A700F854C3 /* Yod76.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

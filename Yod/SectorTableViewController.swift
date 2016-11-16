@@ -205,7 +205,9 @@ class SectorTableViewController: UITableViewController, UISearchBarDelegate {
             SET.applyFilter(field: "P/E", operand: <, value: SET.peMean)
         }
         
-        SET.applyFilter(symbols: self.symbolFilters)
+        if !self.symbolFilters.isEmpty {
+            SET.applyFilter(symbols: self.symbolFilters)
+        }
         
     }
     
