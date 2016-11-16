@@ -23,11 +23,7 @@ class AssetTableViewController: UITableViewController {
         self.revealViewController().revealToggle(nil)
     }
     @IBAction func toggleNet(_ sender: UIButton) {
-        SET.toggleSort("N/E")
-        self.tableView.reloadData()
-    }
-    @IBAction func toggleEquity(_ sender: UIButton) {
-        SET.toggleSort("E/G")
+        SET.toggleSort("Net Growth %")
         self.tableView.reloadData()
     }
     @IBAction func toggleGrowth(_ sender: UIButton) {
