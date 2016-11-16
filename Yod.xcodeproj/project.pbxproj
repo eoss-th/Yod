@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		BB5B9E661DDBE5C700A5CB8D /* SearchBarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5B9E651DDBE5C700A5CB8D /* SearchBarTableViewCell.swift */; };
+		BB7015D41DDC2EA5003405E3 /* assetButton.png in Resources */ = {isa = PBXBuildFile; fileRef = BB7015D21DDC2EA5003405E3 /* assetButton.png */; };
+		BB7015D51DDC2EA5003405E3 /* assetButtonSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = BB7015D31DDC2EA5003405E3 /* assetButtonSelected.png */; };
 		BB753DD81DD2B33F001428ED /* SET.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB753DD71DD2B33F001428ED /* SET.swift */; };
 		BB7D0B341DD4870D002B4BD9 /* UIHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7D0B331DD4870D002B4BD9 /* UIHeaderTableViewCell.swift */; };
 		BB7E33E51DD1604900321813 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E33E41DD1604900321813 /* AppDelegate.swift */; };
@@ -18,6 +20,7 @@
 		BB7E34091DD1604900321813 /* YodUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E34081DD1604900321813 /* YodUITests.swift */; };
 		BB7E34301DD16B3E00321813 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7E342F1DD16B3E00321813 /* SWRevealViewController.m */; };
 		BB7E34321DD16F3500321813 /* SectorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E34311DD16F3500321813 /* SectorTableViewController.swift */; };
+		BBAB85A01DDC5DFA002C74A3 /* searchButton.png in Resources */ = {isa = PBXBuildFile; fileRef = BBAB859F1DDC5DFA002C74A3 /* searchButton.png */; };
 		BBC11B111DD55C8E00F854C3 /* Yod.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC11B101DD55C8E00F854C3 /* Yod.png */; };
 		BBC11B1E1DD562A700F854C3 /* Yod20.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC11B121DD562A700F854C3 /* Yod20.png */; };
 		BBC11B1F1DD562A700F854C3 /* Yod29.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC11B131DD562A700F854C3 /* Yod29.png */; };
@@ -39,9 +42,6 @@
 		C722C2251DD5AC36005C798A /* Yahoo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C722C2241DD5AC36005C798A /* Yahoo.swift */; };
 		C722C2271DD5ADDF005C798A /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C722C2261DD5ADDF005C798A /* ChartViewController.swift */; };
 		C722C2491DD5B164005C798A /* XValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C722C2481DD5B164005C798A /* XValueFormatter.swift */; };
-		C76F98A41DDC048200B816F7 /* searchButton.png in Resources */ = {isa = PBXBuildFile; fileRef = C76F98A31DDC048200B816F7 /* searchButton.png */; };
-		C76F98B51DDC0E0400B816F7 /* assetButton.png in Resources */ = {isa = PBXBuildFile; fileRef = C76F98B31DDC0E0400B816F7 /* assetButton.png */; };
-		C76F98B61DDC0E0400B816F7 /* assetButtonSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = C76F98B41DDC0E0400B816F7 /* assetButtonSelected.png */; };
 		C76F98B91DDC138C00B816F7 /* candleButton.png in Resources */ = {isa = PBXBuildFile; fileRef = C76F98B71DDC138C00B816F7 /* candleButton.png */; };
 		C76F98BA1DDC138C00B816F7 /* candleButtonSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = C76F98B81DDC138C00B816F7 /* candleButtonSelected.png */; };
 		C7F5555A1DD411C200339377 /* SlideTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F555591DD411C200339377 /* SlideTabBarController.swift */; };
@@ -108,6 +108,8 @@
 
 /* Begin PBXFileReference section */
 		BB5B9E651DDBE5C700A5CB8D /* SearchBarTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarTableViewCell.swift; sourceTree = "<group>"; };
+		BB7015D21DDC2EA5003405E3 /* assetButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = assetButton.png; path = ../../assetButton.png; sourceTree = "<group>"; };
+		BB7015D31DDC2EA5003405E3 /* assetButtonSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = assetButtonSelected.png; path = ../../assetButtonSelected.png; sourceTree = "<group>"; };
 		BB753DD71DD2B33F001428ED /* SET.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SET.swift; sourceTree = "<group>"; };
 		BB7D0B331DD4870D002B4BD9 /* UIHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		BB7E33E11DD1604900321813 /* Yod.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yod.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,6 +129,7 @@
 		BB7E342F1DD16B3E00321813 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		BB7E34311DD16F3500321813 /* SectorTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectorTableViewController.swift; sourceTree = "<group>"; };
 		BB7E34331DD17CC000321813 /* Yod.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Yod.entitlements; sourceTree = "<group>"; };
+		BBAB859F1DDC5DFA002C74A3 /* searchButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchButton.png; sourceTree = "<group>"; };
 		BBC11B101DD55C8E00F854C3 /* Yod.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Yod.png; sourceTree = "<group>"; };
 		BBC11B121DD562A700F854C3 /* Yod20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Yod20.png; sourceTree = "<group>"; };
 		BBC11B131DD562A700F854C3 /* Yod29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Yod29.png; sourceTree = "<group>"; };
@@ -148,9 +151,6 @@
 		C722C2241DD5AC36005C798A /* Yahoo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Yahoo.swift; sourceTree = "<group>"; };
 		C722C2261DD5ADDF005C798A /* ChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
 		C722C2481DD5B164005C798A /* XValueFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XValueFormatter.swift; sourceTree = "<group>"; };
-		C76F98A31DDC048200B816F7 /* searchButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchButton.png; sourceTree = "<group>"; };
-		C76F98B31DDC0E0400B816F7 /* assetButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = assetButton.png; sourceTree = "<group>"; };
-		C76F98B41DDC0E0400B816F7 /* assetButtonSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = assetButtonSelected.png; sourceTree = "<group>"; };
 		C76F98B71DDC138C00B816F7 /* candleButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = candleButton.png; sourceTree = "<group>"; };
 		C76F98B81DDC138C00B816F7 /* candleButtonSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = candleButtonSelected.png; sourceTree = "<group>"; };
 		C7F555591DD411C200339377 /* SlideTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideTabBarController.swift; sourceTree = "<group>"; };
@@ -216,11 +216,11 @@
 				C7F555591DD411C200339377 /* SlideTabBarController.swift */,
 				BBE513A61DD1FE22005E2183 /* AssetTableViewController.swift */,
 				BBE513A81DD1FE83005E2183 /* StackView.swift */,
-				C76F98B31DDC0E0400B816F7 /* assetButton.png */,
-				C76F98B41DDC0E0400B816F7 /* assetButtonSelected.png */,
+				BB7015D21DDC2EA5003405E3 /* assetButton.png */,
+				BB7015D31DDC2EA5003405E3 /* assetButtonSelected.png */,
 				C76F98B71DDC138C00B816F7 /* candleButton.png */,
 				C76F98B81DDC138C00B816F7 /* candleButtonSelected.png */,
-				C76F98A31DDC048200B816F7 /* searchButton.png */,
+				BBAB859F1DDC5DFA002C74A3 /* searchButton.png */,
 				BBC11B101DD55C8E00F854C3 /* Yod.png */,
 				BBC11B121DD562A700F854C3 /* Yod20.png */,
 				BBC11B131DD562A700F854C3 /* Yod29.png */,
@@ -435,13 +435,13 @@
 			files = (
 				BBC11B201DD562A700F854C3 /* Yod40.png in Resources */,
 				BB7E33F31DD1604900321813 /* LaunchScreen.storyboard in Resources */,
+				BBAB85A01DDC5DFA002C74A3 /* searchButton.png in Resources */,
 				BBC11B291DD562A700F854C3 /* Yod180.png in Resources */,
 				BBC11B1F1DD562A700F854C3 /* Yod29.png in Resources */,
-				C76F98A41DDC048200B816F7 /* searchButton.png in Resources */,
-				C76F98B61DDC0E0400B816F7 /* assetButtonSelected.png in Resources */,
 				BBC11B271DD562A700F854C3 /* Yod152.png in Resources */,
 				BBC11B1E1DD562A700F854C3 /* Yod20.png in Resources */,
 				BBC11B261DD562A700F854C3 /* Yod120.png in Resources */,
+				BB7015D51DDC2EA5003405E3 /* assetButtonSelected.png in Resources */,
 				BB7E33F01DD1604900321813 /* Assets.xcassets in Resources */,
 				C76F98B91DDC138C00B816F7 /* candleButton.png in Resources */,
 				BBC11B211DD562A700F854C3 /* Yod58.png in Resources */,
@@ -452,7 +452,7 @@
 				BBC11B241DD562A700F854C3 /* Yod80.png in Resources */,
 				BBC11B221DD562A700F854C3 /* Yod60.png in Resources */,
 				BB7E33EE1DD1604900321813 /* Main.storyboard in Resources */,
-				C76F98B51DDC0E0400B816F7 /* assetButton.png in Resources */,
+				BB7015D41DDC2EA5003405E3 /* assetButton.png in Resources */,
 				BBC11B231DD562A700F854C3 /* Yod76.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

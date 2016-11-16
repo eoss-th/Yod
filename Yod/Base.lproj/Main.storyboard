@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="8G8-zi-auH">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="8G8-zi-auH">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -45,7 +45,7 @@
                                 <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DOC-wB-WLh" id="sDd-iZ-A3E">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <searchBar contentMode="redraw" placeholder="Symbols" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="afj-09-iYs">
@@ -73,7 +73,7 @@
                                 <rect key="frame" x="0.0" y="72" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bC5-cN-JBo" id="hg8-aP-hOD">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -119,22 +119,29 @@
                                 <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5Zr-16-pgm" id="RzF-uH-qG7">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g6c-4z-H16">
-                                            <rect key="frame" x="8" y="-4" width="510" height="50"/>
+                                            <rect key="frame" x="8" y="8" width="510" height="50"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Pt-HB-LNb">
-                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="50"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="60" id="Tyc-MX-WCA"/>
+                                                        <constraint firstAttribute="width" constant="50" id="Tyc-MX-WCA"/>
                                                     </constraints>
-                                                    <state key="normal" backgroundImage="searchButton.png"/>
+                                                    <state key="normal" backgroundImage="searchButton"/>
                                                     <connections>
                                                         <action selector="toggleSlide:" destination="dC6-Pc-dTz" eventType="touchUpInside" id="vr7-ep-DZm"/>
                                                     </connections>
                                                 </button>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1HQ-TH-3a2">
+                                                    <rect key="frame" x="50" y="0.0" width="10" height="50"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="10" id="u7X-Yf-gZl"/>
+                                                    </constraints>
+                                                </view>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RvA-Dx-NHZ">
                                                     <rect key="frame" x="60" y="0.0" width="70" height="50"/>
                                                     <constraints>
@@ -220,8 +227,8 @@
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstItem="g6c-4z-H16" firstAttribute="centerY" secondItem="RzF-uH-qG7" secondAttribute="centerY" id="44f-jI-HBx"/>
                                         <constraint firstItem="g6c-4z-H16" firstAttribute="leading" secondItem="RzF-uH-qG7" secondAttribute="leadingMargin" id="Th6-zG-QOs"/>
+                                        <constraint firstItem="g6c-4z-H16" firstAttribute="top" secondItem="RzF-uH-qG7" secondAttribute="topMargin" id="YTK-S4-7iF"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -238,7 +245,7 @@
                                 <rect key="frame" x="0.0" y="72" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QwX-h2-0rL" id="6lv-om-icO">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EdS-ZE-X13">
@@ -322,7 +329,7 @@
                             <outlet property="delegate" destination="dC6-Pc-dTz" id="Z8c-3l-3wS"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="" image="assetButton.png" selectedImage="assetButtonSelected.png" id="K4f-1t-Rsf"/>
+                    <tabBarItem key="tabBarItem" title="" image="assetButton" selectedImage="assetButtonSelected" id="K4f-1t-Rsf"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jIQ-U5-miz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -400,7 +407,7 @@
                             <constraint firstItem="X8J-2s-alC" firstAttribute="top" secondItem="Arf-W2-6TH" secondAttribute="bottom" id="xQz-UW-68e"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="candleButton.png" selectedImage="candleButtonSelected.png" id="q3a-Ph-mzM"/>
+                    <tabBarItem key="tabBarItem" title="" image="candleButton" selectedImage="candleButtonSelected" id="q3a-Ph-mzM"/>
                     <connections>
                         <outlet property="combinedChartView" destination="X8J-2s-alC" id="Xmj-3f-e00"/>
                         <outlet property="toolBar" destination="dCG-yw-0Jl" id="zyv-WO-OqU"/>
@@ -412,10 +419,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="assetButton.png" width="30" height="30"/>
-        <image name="assetButtonSelected.png" width="30" height="30"/>
-        <image name="candleButton.png" width="30" height="30"/>
-        <image name="candleButtonSelected.png" width="30" height="30"/>
-        <image name="searchButton.png" width="200" height="200"/>
+        <image name="assetButton" width="30" height="30"/>
+        <image name="assetButtonSelected" width="30" height="30"/>
+        <image name="candleButton" width="30" height="30"/>
+        <image name="candleButtonSelected" width="30" height="30"/>
+        <image name="searchButton" width="200" height="200"/>
     </resources>
 </document>
