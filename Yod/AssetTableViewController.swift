@@ -19,6 +19,9 @@ class AssetTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func toggleSlide(_ sender: UIButton) {
+        self.revealViewController().revealToggle(nil)
+    }
     @IBAction func toggleNet(_ sender: UIButton) {
         SET.toggleSort("N/E")
         self.tableView.reloadData()

@@ -41,8 +41,36 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="section" id="bC5-cN-JBo">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="headerSearch" id="DOC-wB-WLh" customClass="SearchBarTableViewCell" customModule="Yod" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DOC-wB-WLh" id="sDd-iZ-A3E">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <searchBar contentMode="redraw" placeholder="Symbols" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="afj-09-iYs">
+                                            <rect key="frame" x="0.0" y="-1" width="320" height="44"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="44" id="Ey5-EP-ott"/>
+                                            </constraints>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="fwL-dj-2eo" id="lSp-b9-GQM"/>
+                                            </connections>
+                                        </searchBar>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="afj-09-iYs" secondAttribute="bottom" id="Akk-wT-iRr"/>
+                                        <constraint firstAttribute="trailing" secondItem="afj-09-iYs" secondAttribute="trailing" id="dVK-Lz-sQz"/>
+                                        <constraint firstItem="afj-09-iYs" firstAttribute="leading" secondItem="sDd-iZ-A3E" secondAttribute="leading" id="x80-lp-wSx"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="searchBar" destination="afj-09-iYs" id="EZg-6m-utv"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="section" id="bC5-cN-JBo">
+                                <rect key="frame" x="0.0" y="72" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bC5-cN-JBo" id="hg8-aP-hOD">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -58,7 +86,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HtB-co-e7J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-991" y="493"/>
+            <point key="canvasLocation" x="-990" y="565"/>
         </scene>
         <!--Slide Tab Bar Controller-->
         <scene sceneID="QKc-ZZ-fba">
@@ -103,6 +131,9 @@
                                                         <constraint firstAttribute="width" constant="60" id="Tyc-MX-WCA"/>
                                                     </constraints>
                                                     <state key="normal" title="="/>
+                                                    <connections>
+                                                        <action selector="toggleSlide:" destination="dC6-Pc-dTz" eventType="touchUpInside" id="vr7-ep-DZm"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RvA-Dx-NHZ">
                                                     <rect key="frame" x="60" y="0.0" width="70" height="50.5"/>

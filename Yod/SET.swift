@@ -10,10 +10,14 @@ import Foundation
 
 class SET {
     
-    static let stringURL = "http://eoss-setfin.appspot.com/csv?"
+    static let csvURL = "http://eoss-setfin.appspot.com/csv?"
+    static let indexURL = "http://eoss-setfin.appspot.com/SETIndexServlet"
+    
     static var cache = [SET]()
     static var filters = [SET]()
     static var toggles = [String:Bool]()
+    static var industries = [String]()
+    static var sections = [String:[String]]()
     
     static var roeMean = Float(0)
     static var netGrowthMean = Float(0)
@@ -129,7 +133,7 @@ class SET {
     }
     
     class func create() -> Bool {
-        let setURL = stringURL + String(arc4random_uniform(1000))
+        let setURL = csvURL + String(arc4random_uniform(1000))
         
         if let url = URL(string: setURL) {
             let text = try! String(contentsOf: url)
@@ -148,6 +152,26 @@ class SET {
             }
             
             updateMeans()
+            
+            if let url = URL(string: indexURL) {
+                let text = try! String(contentsOf: url)
+                let lines = text.components(separatedBy: "\n")
+                for line in lines {
+                    if line.isEmpty {
+                        continue
+                    }
+                    var names = line.components(separatedBy: ",")
+                    let sector = names[0]
+                    names.remove(at: 0)
+                    sections[sector] = names.sorted()
+                }
+                
+                industries = sections.keys.sorted()
+                
+            }
+            
+            industries.remove(at: 0)
+            
             
             return true
         }
@@ -208,6 +232,20 @@ class SET {
     class func removeFilter () {
         filters = cache
         updateMeans()
+    }
+    
+    class func applyFilter (symbols:[String]) {
+        var newFilter = [SET]()
+        for set in filters {
+            
+            for symbol in symbols {
+                if (set.symbol?.hasPrefix(symbol))! {
+                    newFilter.append(set)
+                }
+            }
+        }
+        
+        filters = newFilter
     }
     
     class func applyFilter (industry:String, sector:String) {

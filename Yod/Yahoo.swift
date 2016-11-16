@@ -67,50 +67,50 @@ class Yahoo {
         s = s.replacingOccurrences(of: " ", with: "%20")
         s += ".BK"
         if let url = URL(string: YAHOO_URL + s) {
-            let data = try! String(contentsOf: url)
-            
-            let lines = data.components(separatedBy: "\n")
-            
-            dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-            dateFormatter.dateFormat = "yyyy-MM-dd"
-            
-            for i in 1..<lines.count {
-                let columns = lines[i].components(separatedBy: ",")
+            if let data = try? String(contentsOf: url) {
+                let lines = data.components(separatedBy: "\n")
                 
-                if columns.count > 5 {
-                    histories.append(Historical(date: dateFormatter.date(from: columns[0])!,
-                                                open:Float(columns[1])!,
-                                                high:Float(columns[2])!,
-                                                low:Float(columns[3])!,
-                                                close:Float(columns[4])!,
-                                                volume:Int(columns[5])!))
+                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                
+                for i in 1..<lines.count {
+                    let columns = lines[i].components(separatedBy: ",")
+                    
+                    if columns.count > 5 {
+                        histories.append(Historical(date: dateFormatter.date(from: columns[0])!,
+                                                    open:Float(columns[1])!,
+                                                    high:Float(columns[2])!,
+                                                    low:Float(columns[3])!,
+                                                    close:Float(columns[4])!,
+                                                    volume:Int(columns[5])!))
+                    }
                 }
-            }
-            
-            histories = histories.reversed()
-            for r in histories {
-                closes.append(r.close)
-            }
-            lastClose = closes[closes.count-1]
-            
-            if closes.count >= 80 {
-                ema5 = ema(closes: closes, days: 5)
-                lastEMA5 = ema5[ema5.count-1]
                 
-                ema20 = ema(closes: closes, days: 20)
-                lastEMA20 = ema20[ema20.count-1]
+                histories = histories.reversed()
+                for r in histories {
+                    closes.append(r.close)
+                }
+                lastClose = closes[closes.count-1]
                 
-                ema80 = ema(closes: closes, days: 80)
-                lastEMA80 = ema80[ema80.count-1]
-                
-                deltaEMA5_80 = (lastEMA5 - lastEMA80)/lastEMA80
-                
-                deltaEMA20_80 = (lastEMA20-lastEMA80)/lastEMA80
-                
-                if deltaEMA20_80 > 0 {
-                    trend = (deltaEMA5_80 - deltaEMA20_80)*100
-                } else {
-                    trend = (deltaEMA5_80 + deltaEMA20_80)*100
+                if closes.count >= 80 {
+                    ema5 = ema(closes: closes, days: 5)
+                    lastEMA5 = ema5[ema5.count-1]
+                    
+                    ema20 = ema(closes: closes, days: 20)
+                    lastEMA20 = ema20[ema20.count-1]
+                    
+                    ema80 = ema(closes: closes, days: 80)
+                    lastEMA80 = ema80[ema80.count-1]
+                    
+                    deltaEMA5_80 = (lastEMA5 - lastEMA80)/lastEMA80
+                    
+                    deltaEMA20_80 = (lastEMA20-lastEMA80)/lastEMA80
+                    
+                    if deltaEMA20_80 > 0 {
+                        trend = (deltaEMA5_80 - deltaEMA20_80)*100
+                    } else {
+                        trend = (deltaEMA5_80 + deltaEMA20_80)*100
+                    }
                 }
             }
         }

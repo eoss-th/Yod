@@ -8,49 +8,19 @@
 
 import UIKit
 
-class SectorTableViewController: UITableViewController {
+class SectorTableViewController: UITableViewController, UISearchBarDelegate {
     
-    let stringURL = "http://eoss-setfin.appspot.com/SETIndexServlet"
     
     var filters = ["ROE > Avg", "Net Growth > Avg", "Equity Growth > Avg", "P/E < Avg"]
-    var industries = [String]()
-    var sections = [String:[String]]()
     
     var selectedFilters = [Int]()
+    var searchText = String()
+    var symbolFilters = [String]()
     var selectedIndustry:IndexPath?
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if industries.isEmpty {
-            DispatchQueue.global().async {
-                
-                if let url = URL(string: self.stringURL) {
-                    let text = try! String(contentsOf: url)
-                    let lines = text.components(separatedBy: "\n")
-                    for line in lines {
-                        if line.isEmpty {
-                            continue
-                        }
-                        var names = line.components(separatedBy: ",")
-                        let sector = names[0]
-                        names.remove(at: 0)
-                        self.sections[sector] = names.sorted()
-                    }
-                    
-                    self.industries = self.sections.keys.sorted()
-                    
-                }
-                
-                self.industries.remove(at: 0)
-                
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-                
-            }
-        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -62,17 +32,34 @@ class SectorTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return industries.count + 1
+        return SET.industries.count + 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return filters.count
         }
-        return sections[industries[section-1]]!.count
+        return SET.sections[SET.industries[section-1]]!.count
     }
 
-    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        if section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "headerSearch") as! SearchBarTableViewCell
+            cell.searchBar.text = self.searchText
+            return cell
+        }
+        
+        return super.tableView(tableView, viewForHeaderInSection: section)
+    }
+
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 50.0
+        }
+        return 44.0
+    }
+ 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "section", for: indexPath)
         
@@ -90,7 +77,7 @@ class SectorTableViewController: UITableViewController {
             
         } else {
             
-            cell.textLabel?.text = sections[industries[indexPath.section-1]]?[indexPath.row]
+            cell.textLabel?.text = SET.sections[SET.industries[indexPath.section-1]]?[indexPath.row]
             
             if (selectedIndustry==indexPath) {
                 cell.backgroundColor = UIColor(netHex: 0xd3e0e5)
@@ -109,9 +96,9 @@ class SectorTableViewController: UITableViewController {
     override public func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
     // fixed font style. use custom view (UILabel) if you want something different
         if section == 0 {
-            return "Filters"
+            return nil
         }
-        return industries[section-1]
+        return SET.industries[section-1]
     }
 
     /*
@@ -183,11 +170,22 @@ class SectorTableViewController: UITableViewController {
             
         }
         
+        self.applyFilters()
+        
+        let slideTabBarController = self.revealViewController().frontViewController as! SlideTabBarController
+        slideTabBarController.reload()
+        
+        self.revealViewController().revealToggle(nil)
+        self.tableView.reloadData()
+    }
+    
+    func applyFilters() {
+        
         SET.removeFilter()
         
         if selectedIndustry != nil {
-            let industry = industries[selectedIndustry!.section-1]
-            let sector = sections[industry]?[selectedIndustry!.row]
+            let industry = SET.industries[selectedIndustry!.section-1]
+            let sector = SET.sections[industry]?[selectedIndustry!.row]
             SET.applyFilter(industry: industry, sector: sector!)
         }
         
@@ -207,13 +205,45 @@ class SectorTableViewController: UITableViewController {
             SET.applyFilter(field: "P/E", operand: <, value: SET.peMean)
         }
         
+        SET.applyFilter(symbols: self.symbolFilters)
+        
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         self.tableView.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.revealViewController().revealToggle(nil)
+        searchBar.endEditing(true)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        self.searchText = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+
+        let symbols = self.searchText.replacingOccurrences(of: " &", with: "-&").replacingOccurrences(of: "& ", with: "&-")
+        self.symbolFilters = symbols.components(separatedBy: " ")
+        
+        if let sAndJIndex = self.symbolFilters.index(of: "S-&") {
+            self.symbolFilters[sAndJIndex] = "S &"
+        }
+        
+        if let sAndJIndex = self.symbolFilters.index(of: "S-&-J") {
+            self.symbolFilters[sAndJIndex] = "S & J"
+        }
+        
+        self.applyFilters()
         
         let slideTabBarController = self.revealViewController().frontViewController as! SlideTabBarController
         slideTabBarController.reload()
-        
-        self.revealViewController().revealToggle(nil)
     }
-    
 
 }

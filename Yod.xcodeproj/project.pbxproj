@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB5B9E661DDBE5C700A5CB8D /* SearchBarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5B9E651DDBE5C700A5CB8D /* SearchBarTableViewCell.swift */; };
 		BB753DD81DD2B33F001428ED /* SET.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB753DD71DD2B33F001428ED /* SET.swift */; };
 		BB7D0B341DD4870D002B4BD9 /* UIHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7D0B331DD4870D002B4BD9 /* UIHeaderTableViewCell.swift */; };
 		BB7E33E51DD1604900321813 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7E33E41DD1604900321813 /* AppDelegate.swift */; };
@@ -101,6 +102,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BB5B9E651DDBE5C700A5CB8D /* SearchBarTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarTableViewCell.swift; sourceTree = "<group>"; };
 		BB753DD71DD2B33F001428ED /* SET.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SET.swift; sourceTree = "<group>"; };
 		BB7D0B331DD4870D002B4BD9 /* UIHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		BB7E33E11DD1604900321813 /* Yod.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yod.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -225,6 +227,7 @@
 				BBE513A51DD1FB73005E2183 /* MyPlayground.playground */,
 				C722C2241DD5AC36005C798A /* Yahoo.swift */,
 				C722C2481DD5B164005C798A /* XValueFormatter.swift */,
+				BB5B9E651DDBE5C700A5CB8D /* SearchBarTableViewCell.swift */,
 			);
 			path = Yod;
 			sourceTree = "<group>";
@@ -460,6 +463,7 @@
 				BB7E34301DD16B3E00321813 /* SWRevealViewController.m in Sources */,
 				BB7E34321DD16F3500321813 /* SectorTableViewController.swift in Sources */,
 				BB7D0B341DD4870D002B4BD9 /* UIHeaderTableViewCell.swift in Sources */,
+				BB5B9E661DDBE5C700A5CB8D /* SearchBarTableViewCell.swift in Sources */,
 				BB753DD81DD2B33F001428ED /* SET.swift in Sources */,
 				C722C2251DD5AC36005C798A /* Yahoo.swift in Sources */,
 				BB7E33E51DD1604900321813 /* AppDelegate.swift in Sources */,
