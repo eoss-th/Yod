@@ -10,8 +10,16 @@ import UIKit
 
 class AssetTableViewController: UITableViewController {
     
+    var buttonFieldMap = [String:String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        buttonFieldMap["Net Growth"] = "Net Growth %"
+        buttonFieldMap["Equity Growth"] = "E/A Growth %"
+        buttonFieldMap["P/E"] = "P/E"
+        buttonFieldMap["Last"] = "Last"
+        buttonFieldMap["Predict"] = "Predict MA"
+        buttonFieldMap["Predict %"] = "Predict Chg %"
     }
 
     override func didReceiveMemoryWarning() {
@@ -19,32 +27,33 @@ class AssetTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func sort (_ button:UIButton) {
+        let buttonText = button.titleLabel?.text
+        let field = buttonFieldMap[buttonText!]!
+        SET.toggleSort(field)
+        self.tableView.reloadData()
+    }
+    
     @IBAction func toggleSlide(_ sender: UIButton) {
         self.revealViewController().revealToggle(nil)
     }
     @IBAction func toggleNet(_ sender: UIButton) {
-        SET.toggleSort("Net Growth %")
-        self.tableView.reloadData()
+        sort(sender)
     }
     @IBAction func toggleGrowth(_ sender: UIButton) {
-        SET.toggleSort("E/A Growth %")
-        self.tableView.reloadData()
+        sort(sender)
     }
     @IBAction func togglePE(_ sender: UIButton) {
-        SET.toggleSort("P/E")
-        self.tableView.reloadData()
+        sort(sender)
     }
     @IBAction func toggleLast(_ sender: UIButton) {
-        SET.toggleSort("Last")
-        self.tableView.reloadData()
+        sort(sender)
     }
     @IBAction func togglePredict(_ sender: UIButton) {
-        SET.toggleSort("Predict MA")
-        self.tableView.reloadData()
+        sort(sender)
     }
     @IBAction func togglePredictChg(_ sender: UIButton) {
-        SET.toggleSort("Predict Chg %")
-        self.tableView.reloadData()
+        sort(sender)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -76,6 +85,8 @@ class AssetTableViewController: UITableViewController {
             cell.predictButton.isHidden = true
             cell.predictChgButton.isHidden = true
         }
+        
+        
         
         return cell
     }

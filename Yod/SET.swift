@@ -130,6 +130,19 @@ class SET {
         
         values["G/A"] = equityGrowth / asset
         
+        //Cleansing Data
+        if let _ = values["P/E"] {
+            
+        } else {
+            values["P/E"] = -0
+        }
+        
+        if let _ = values["Last"] {
+            
+        } else {
+            values["Last"] = 0
+        }
+        
     }
     
     class func create() -> Bool {
@@ -211,19 +224,10 @@ class SET {
         
         filters = filters.sorted {
             
-            let left, right:Float
+            let left, right: Float
             
-            if let l = $0.values[field] {
-                left = l
-            } else {
-                left = 0
-            }
-            
-            if let r = $1.values[field] {
-                right = r
-            } else {
-                right = 0
-            }
+            left = $0.values[field]!
+            right = $1.values[field]!
             
             return operand (left, right)
         }
