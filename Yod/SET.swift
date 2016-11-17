@@ -130,11 +130,14 @@ class SET {
         
         values["G/A"] = equityGrowth / asset
         
-        //Cleansing Data
-        if let _ = values["P/E"] {
+        //Cleansing Data for Sorting
+        if let pe = values["P/E"] {
             
+            if pe == 0 {
+                values["P/E"] = Float.infinity
+            }
         } else {
-            values["P/E"] = -0
+            values["P/E"] = Float.infinity
         }
         
         if let _ = values["Last"] {
@@ -143,6 +146,29 @@ class SET {
             values["Last"] = 0
         }
         
+        if let _ = values["Net Growth %"] {
+            
+        } else {
+            values["Net Growth %"] = 0
+        }
+        
+        if let _ = values["E/A Growth %"] {
+            
+        } else {
+            values["E/A Growth %"] = 0
+        }
+        
+        if let _ = values["Predict MA"] {
+            
+        } else {
+            values["Predict MA"] = 0
+        }
+        
+        if let _ = values["Predict Chg %"] {
+            
+        } else {
+            values["Predict Chg %"] = 0
+        }
     }
     
     class func create() -> Bool {

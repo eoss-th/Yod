@@ -112,8 +112,13 @@ class AssetTableViewController: UITableViewController {
             let redColor = UIColor(netHex:0x880700)
             
             if let pe = set.values["P/E"] {
-                cell.peLabel.text = String(pe)
-                cell.peLabel.textColor = (pe >= 0) ? greenColor : redColor
+                if pe == Float.infinity {
+                    cell.peLabel.text = "-"
+                    cell.peLabel.textColor = UIColor.lightGray
+                } else {
+                    cell.peLabel.text = String(pe)
+                    cell.peLabel.textColor = (pe >= 0) ? greenColor : redColor
+                }
             }
             
             let lastPrice:Float
