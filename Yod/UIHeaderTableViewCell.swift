@@ -11,7 +11,6 @@ import UIKit
 class UIHeaderTableViewCell: UITableViewCell {
 
     @IBOutlet weak var netButton: UIButton!
-    @IBOutlet weak var equityButton: UIButton!
     @IBOutlet weak var growthButton: UIButton!
     @IBOutlet weak var pebutton: UIButton!
     @IBOutlet weak var lastButton: UIButton!

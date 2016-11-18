@@ -11,7 +11,7 @@ import UIKit
 class SectorTableViewController: UITableViewController, UISearchBarDelegate {
     
     
-    var filters = ["ROE > Avg", "Net Growth > Avg", "Equity Growth > Avg", "P/E < Avg"]
+    var filters = ["ROE > Avg", "Net Growth > Avg", "Equity Growth > Avg", "P/E < 20"]
     
     var selectedFilters = [Int]()
     var searchText = String()
@@ -203,6 +203,7 @@ class SectorTableViewController: UITableViewController, UISearchBarDelegate {
         
         if selectedFilters.contains(3) {
             SET.applyFilter(field: "P/E", operand: <, value: SET.peMean)
+            SET.applyFilter(field: "P/E", operand: <, value: 20)
         }
         
         if !self.symbolFilters.isEmpty {

@@ -99,6 +99,8 @@ class SET {
         if let g = values["Net Growth %"] {
             if net < 0 && g < 0 {
                 netGrowth = net - net * g/100.0
+            } else if g > 0 {
+                netGrowth = net + Swift.abs(net) * g/100.0
             } else {
                 netGrowth = net + net * g/100.0
             }
@@ -117,6 +119,15 @@ class SET {
                 values["NG/E"] = nge/Swift.abs(nge)
             }
         }
+        
+        if symbol == "IEC" {
+            print (values["Net Growth %"]!)
+            print (values["NG/E"]!)
+            print (net)
+            print (netGrowth)
+            print (equity)
+        }
+        
         
         if equityGrowth != 0 {
             values["E/G"] = equity / equityGrowth
@@ -169,6 +180,7 @@ class SET {
         } else {
             values["Predict Chg %"] = 0
         }
+        
     }
     
     class func create() -> Bool {
@@ -317,8 +329,10 @@ class SET {
         
         for set in filters {
             if let val = set.values[field] {
-                total += val
-                count += 1
+                if val != Float.infinity {
+                    total += val
+                    count += 1
+                }
             }
         }
         

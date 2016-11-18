@@ -86,7 +86,29 @@ class AssetTableViewController: UITableViewController {
             cell.predictChgButton.isHidden = true
         }
         
-        
+        if let val =  SET.toggles[buttonFieldMap[(cell.netButton.titleLabel?.text)!]!] {
+            
+            if val {
+                cell.netButton.backgroundColor = UIColor(netHex:0xb4ecb4)
+            } else {
+                cell.netButton.backgroundColor = UIColor(netHex:0xffb2ae)
+            }
+            
+        } else {
+            cell.netButton.backgroundColor = UIColor.white
+        }
+
+        if let val =  SET.toggles[buttonFieldMap[(cell.growthButton.titleLabel?.text)!]!] {
+            
+            if val {
+                cell.growthButton.backgroundColor = UIColor(netHex:0xfbfbfa)
+            } else {
+                cell.growthButton.backgroundColor = UIColor(netHex:0xe9e9e4)
+            }
+            
+        } else {
+            cell.growthButton.backgroundColor = UIColor.white
+        }
         
         return cell
     }
@@ -186,8 +208,8 @@ class AssetTableViewController: UITableViewController {
             if nge > 0 {
                 ngeColor = UIColor(netHex:0xb4ecb4)
             } else {
-                ngeColor = UIColor(netHex:0xa5afa5)
-                //ngeColor = UIColor(netHex:0xffb2ae)
+                //ngeColor = UIColor(netHex:0xa5afa5)
+                ngeColor = UIColor(netHex:0xffb2ae)
                 nge = nge * -1
             }
             
