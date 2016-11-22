@@ -101,9 +101,11 @@ class AssetTableViewController: UITableViewController {
         if let val =  SET.toggles[buttonFieldMap[(cell.growthButton.titleLabel?.text)!]!] {
             
             if val {
-                cell.growthButton.backgroundColor = UIColor(netHex:0xfbfbfa)
+//                cell.growthButton.backgroundColor = UIColor(netHex:0xfbfbfa)
+                cell.growthButton.backgroundColor = UIColor(netHex:0xffd394)
             } else {
-                cell.growthButton.backgroundColor = UIColor(netHex:0xe9e9e4)
+//                cell.growthButton.backgroundColor = UIColor(netHex:0xe9e9e4)
+                cell.growthButton.backgroundColor = UIColor(netHex:0xfa9200)
             }
             
         } else {
@@ -128,7 +130,8 @@ class AssetTableViewController: UITableViewController {
             
             cell.symbolLabel.text = set.symbol
             cell.stackView.clear()
-            cell.stackView.backgroundColor = UIColor(netHex:0xe1e1da)
+            //cell.stackView.backgroundColor = UIColor(netHex:0xe1e1da)
+            cell.stackView.backgroundColor = UIColor.white
             
             let greenColor = UIColor(netHex:0x196319)
             let redColor = UIColor(netHex:0x880700)
@@ -188,9 +191,11 @@ class AssetTableViewController: UITableViewController {
             
             if let growth = set.values["E/A Growth %"] {
                 if growth > 0 {
-                    gaColor = UIColor(netHex:0xfbfbfa)
+//                    gaColor = UIColor(netHex:0xfbfbfa)
+                    gaColor = UIColor(netHex:0xffd394)
                 } else {
-                    gaColor = UIColor(netHex:0xe9e9e4)
+//                    gaColor = UIColor(netHex:0xe9e9e4)
+                    gaColor = UIColor(netHex:0xfa9200)
                 }
             } else {
                 gaColor = UIColor.white
@@ -198,7 +203,8 @@ class AssetTableViewController: UITableViewController {
             
             let egColor:UIColor
             if eg > 0 {
-                egColor = UIColor(netHex:0xf2f2ef)
+                //egColor = UIColor(netHex:0xf2f2ef)
+                egColor = UIColor(netHex:0xffb347)
             } else {
                 egColor = UIColor(netHex:0xffebea)
                 eg = eg * -1
