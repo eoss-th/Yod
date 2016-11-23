@@ -19,23 +19,11 @@ class ChartViewController : UIViewController {
     
     var yahoo:Yahoo?
     
+    var set:SET?
+    
     @IBOutlet weak var combinedChartView: CombinedChartView!
     
     @IBOutlet weak var toolBar: UIToolbar!
-    
-    var candleDataSet:CandleChartDataSet?
-    
-    var closeDataSet:LineChartDataSet?
-    
-    var ma5DataSet:LineChartDataSet?
-    
-    var ma20DataSet:LineChartDataSet?
-    
-    var ma80DataSet:LineChartDataSet?
-    
-    var volumeDataSet:BarChartDataSet?
-    
-    var predictDataSet:LineChartDataSet?
     
     override func viewDidLoad() {
         
@@ -81,72 +69,72 @@ class ChartViewController : UIViewController {
     
     @IBAction func loadWeek(_ sender: UIBarButtonItem) {
         if let yahoo = self.yahoo {
-            chartLoadSymbol(description: yahoo.symbol, yahoo: yahoo, daysIndex: 0)
+            load(description: yahoo.symbol, yahoo: yahoo, daysIndex: 0)
         }
     }
     @IBAction func loadMonth(_ sender: UIBarButtonItem) {
         if let yahoo = self.yahoo {
-            chartLoadSymbol(description: yahoo.symbol, yahoo: yahoo, daysIndex: 1)
+            load(description: yahoo.symbol, yahoo: yahoo, daysIndex: 1)
         }
     }
     @IBAction func load3Months(_ sender: UIBarButtonItem) {
         if let yahoo = self.yahoo {
-            chartLoadSymbol(description: yahoo.symbol, yahoo: yahoo, daysIndex: 2)
+            load(description: yahoo.symbol, yahoo: yahoo, daysIndex: 2)
         }
     }
     @IBAction func load6Months(_ sender: UIBarButtonItem) {
         if let yahoo = self.yahoo {
-            chartLoadSymbol(description: yahoo.symbol, yahoo: yahoo, daysIndex: 3)
+            load(description: yahoo.symbol, yahoo: yahoo, daysIndex: 3)
         }
     }
     @IBAction func loadYear(_ sender: UIBarButtonItem) {
         if let yahoo = self.yahoo {
-            chartLoadSymbol(description: yahoo.symbol, yahoo: yahoo, daysIndex: 4)
+            load(description: yahoo.symbol, yahoo: yahoo, daysIndex: 4)
         }
     }
     @IBAction func load3Years(_ sender: UIBarButtonItem) {
         if let yahoo = self.yahoo {
-            chartLoadSymbol(description: yahoo.symbol, yahoo: yahoo, daysIndex: 5)
+            load(description: yahoo.symbol, yahoo: yahoo, daysIndex: 5)
         }
     }
     @IBAction func load6Years(_ sender: UIBarButtonItem) {
         if let yahoo = self.yahoo {
-            chartLoadSymbol(description: yahoo.symbol, yahoo: yahoo, daysIndex: 6)
+            load(description: yahoo.symbol, yahoo: yahoo, daysIndex: 6)
         }
     }
     
-    internal func chartLoadSymbol(description:String, yahoo:Yahoo, daysIndex:Int=0) {
+    internal func load(description:String, yahoo:Yahoo, daysIndex:Int=0) {
         
         self.yahoo = yahoo
         self.daysIndex = daysIndex
         
         combinedChartView.chartDescription?.text = description
         
-        closeDataSet = LineChartDataSet (values: createCloseDataEntries(), label: "Close")
-        closeDataSet!.circleRadius = 0
-        closeDataSet?.axisDependency = combinedChartView.rightAxis.axisDependency
-        closeDataSet!.setColor(NSUIColor.gray)
+        let closeDataSet = LineChartDataSet (values: createCloseDataEntries(), label: "Close")
+        closeDataSet.circleRadius = 0
+        closeDataSet.axisDependency = combinedChartView.rightAxis.axisDependency
+        closeDataSet.setColor(NSUIColor.gray)
         
-        ma5DataSet = LineChartDataSet (values: createEMA5DataEntries(), label: "EMA5")
-        ma5DataSet!.circleRadius = 0
-        ma5DataSet?.axisDependency = combinedChartView.rightAxis.axisDependency
-        //ma5DataSet?.valueTextColor = NSUIColor.white
-        //ma5DataSet?.highlightColor = NSUIColor.white
-        ma5DataSet!.setColor(NSUIColor.green)
+        let ma5DataSet = LineChartDataSet (values: createEMA5DataEntries(), label: "EMA5")
+        ma5DataSet.circleRadius = 0
+        ma5DataSet.axisDependency = combinedChartView.rightAxis.axisDependency
+        //ma5DataSet.valueTextColor = NSUIColor.white
+        //ma5DataSet.highlightColor = NSUIColor.white
+        ma5DataSet.setColor(NSUIColor.green)
         
-        ma20DataSet = LineChartDataSet (values: createEMA20DataEntries(), label: "EMA20")
-        ma20DataSet!.circleRadius = 0
-        ma20DataSet?.axisDependency = combinedChartView.rightAxis.axisDependency
-        //ma20DataSet?.valueTextColor = NSUIColor.white
-        //ma20DataSet?.highlightColor = NSUIColor.white
-        ma20DataSet!.setColor(NSUIColor.cyan)
+        let ma20DataSet = LineChartDataSet (values: createEMA20DataEntries(), label: "EMA20")
+        ma20DataSet.circleRadius = 0
+        ma20DataSet.axisDependency = combinedChartView.rightAxis.axisDependency
+        //ma20DataSet.valueTextColor = NSUIColor.white
+        //ma20DataSet.highlightColor = NSUIColor.white
+        ma20DataSet.setColor(NSUIColor.cyan)
         
-        ma80DataSet = LineChartDataSet (values: createEMA80DataEntries(), label: "EMA80")
-        ma80DataSet!.circleRadius = 0
-        ma80DataSet?.axisDependency = combinedChartView.rightAxis.axisDependency
-        //ma80DataSet?.valueTextColor = NSUIColor.white
-        //ma80DataSet?.highlightColor = NSUIColor.white
-        ma80DataSet!.setColor(NSUIColor.orange)
+        let ma80DataSet = LineChartDataSet (values: createEMA80DataEntries(), label: "EMA80")
+        ma80DataSet.circleRadius = 0
+        ma80DataSet.axisDependency = combinedChartView.rightAxis.axisDependency
+        //ma80DataSet.valueTextColor = NSUIColor.white
+        //ma80DataSet.highlightColor = NSUIColor.white
+        ma80DataSet.setColor(NSUIColor.orange)
         
         let lineData = LineChartData()
         //lineData.addDataSet(closeDataSet)
@@ -154,23 +142,23 @@ class ChartViewController : UIViewController {
         lineData.addDataSet(ma20DataSet)
         lineData.addDataSet(ma80DataSet)
         
-        candleDataSet = CandleChartDataSet (values: createHiLoDataEntries(), label: "Candle")
-        candleDataSet?.axisDependency = combinedChartView.rightAxis.axisDependency
-        //candleDataSet?.valueTextColor = NSUIColor.white
-        //candleDataSet?.highlightColor = NSUIColor.white
-        candleDataSet?.increasingFilled = true
-        candleDataSet?.setColor(UIColor(netHex:0xb4ecb4))
-        candleDataSet?.increasingColor = UIColor(netHex:0xb4ecb4)
-        candleDataSet?.decreasingColor = UIColor(netHex:0xffb2ae)
+        let candleDataSet = CandleChartDataSet (values: createHiLoDataEntries(), label: "Candle")
+        candleDataSet.axisDependency = combinedChartView.rightAxis.axisDependency
+        //candleDataSet.valueTextColor = NSUIColor.white
+        //candleDataSet.highlightColor = NSUIColor.white
+        candleDataSet.increasingFilled = true
+        candleDataSet.setColor(UIColor(netHex:0xb4ecb4))
+        candleDataSet.increasingColor = UIColor(netHex:0xb4ecb4)
+        candleDataSet.decreasingColor = UIColor(netHex:0xffb2ae)
         
         let candleData = CandleChartData()
         candleData.addDataSet(candleDataSet)
         
-        volumeDataSet = BarChartDataSet (values: createVolumeDataEntries(), label: "Volume")
+        let volumeDataSet = BarChartDataSet (values: createVolumeDataEntries(), label: "Volume")
         //volumeDataSet?.valueTextColor = NSUIColor.white
         //volumeDataSet?.highlightColor = NSUIColor.white
-        volumeDataSet?.setColor(UIColor(netHex:0xf2f2ef))
-        volumeDataSet?.axisDependency = combinedChartView.leftAxis.axisDependency
+        volumeDataSet.setColor(UIColor(netHex:0xf2f2ef))
+        volumeDataSet.axisDependency = combinedChartView.leftAxis.axisDependency
         
         let barData = BarChartData()
         barData.addDataSet(volumeDataSet)
@@ -187,17 +175,54 @@ class ChartViewController : UIViewController {
         
         combinedChartView.fitScreen()
         
-        combinedChartView.leftAxis.axisMinimum = (volumeDataSet?.yMin)!
-        combinedChartView.leftAxis.axisMaximum = (volumeDataSet?.yMax)! * 3
+        combinedChartView.leftAxis.axisMinimum = volumeDataSet.yMin
+        combinedChartView.leftAxis.axisMaximum = volumeDataSet.yMax * 3
         combinedChartView.leftAxis.spaceTop = 20
         //combinedChartView.leftAxis.enabled = false
         
-        combinedChartView.rightAxis.axisMinimum = (closeDataSet?.yMin)! * 0.95
-        combinedChartView.rightAxis.axisMaximum = (closeDataSet?.yMax)! * 1.05
+        combinedChartView.rightAxis.axisMinimum = closeDataSet.yMin * 0.95
+        combinedChartView.rightAxis.axisMaximum = closeDataSet.yMax * 1.05
         combinedChartView.rightAxis.spaceTop = 20
         
         combinedChartView.moveViewToX(Double(lineData.dataSets.count - 1))
         
+        combinedChartView.setNeedsDisplay()
+    }
+    
+    internal func load(description:String, set:SET) {
+        
+        self.set = set
+        
+        combinedChartView.chartDescription?.text = description
+        
+        let assetDataSet = BarChartDataSet (values: createAssetDataEntries(), label: "Asset")
+        assetDataSet.setColor(NSUIColor.cyan)
+        
+        let liabilitiesDataSet = BarChartDataSet (values: createLiabilitiesDataEntries(), label: "Liabilities")
+        liabilitiesDataSet.setColor(NSUIColor.lightGray)
+        
+        let equityDataSet = BarChartDataSet (values: createEquityDataEntries(), label: "Equity")
+        equityDataSet.setColor(UIColor.green)
+        
+        let paidUpCapital = BarChartDataSet (values: createPaidUpCapitalDataEntries(), label: "Paidup Capital")
+        paidUpCapital.setColor(UIColor.blue)
+        
+        let barData = BarChartData()
+        barData.addDataSet(assetDataSet)
+        barData.addDataSet(liabilitiesDataSet)
+        barData.addDataSet(equityDataSet)
+        barData.addDataSet(paidUpCapital)
+        
+        combinedChartView.xAxis.valueFormatter = XValueFormatter(values: createFSDates())
+        
+        let data = CombinedChartData()
+        data.barData = barData
+        
+        //Reset View
+        combinedChartView.data = data
+        
+        combinedChartView.fitScreen()
+        combinedChartView.moveViewToX(Double(assetDataSet.entryCount-1))
         combinedChartView.setNeedsDisplay()
     }
     
@@ -216,7 +241,7 @@ class ChartViewController : UIViewController {
         }
         
         if let yahoo = self.yahoo {
-            chartLoadSymbol(description: yahoo.symbol, yahoo: yahoo, daysIndex: 0)
+            load(description: yahoo.symbol, yahoo: yahoo, daysIndex: 0)
         }
     }
     
@@ -311,6 +336,7 @@ class ChartViewController : UIViewController {
             volumeDataEntries.append(BarChartDataEntry(x: Double(i), y: Double(h.volume/1000)))
             i += 1
         }
+        
         return volumeDataEntries
     }
     
@@ -347,6 +373,64 @@ class ChartViewController : UIViewController {
             i += 1
         }
         //dates.append("Next Day")
+        return dates
+    }
+    
+    func createAssetDataEntries () -> [ChartDataEntry] {
+        var dataEntries = [ChartDataEntry]()
+        var i = 0
+        let histories = set?.histories
+        for h in histories! {
+            dataEntries.append(BarChartDataEntry(x: Double(i), y: Double(h.assets)))
+            i += 1
+        }
+        
+        return dataEntries
+    }
+    
+    func createLiabilitiesDataEntries () -> [ChartDataEntry] {
+        var dataEntries = [ChartDataEntry]()
+        var i = 0
+        let histories = set?.histories
+        for h in histories! {
+            dataEntries.append(BarChartDataEntry(x: Double(i), y: Double(h.liabilities)))
+            i += 1
+        }
+        
+        return dataEntries
+    }
+    
+    func createEquityDataEntries () -> [ChartDataEntry] {
+        var dataEntries = [ChartDataEntry]()
+        var i = 0
+        let histories = set?.histories
+        for h in histories! {
+            dataEntries.append(BarChartDataEntry(x: Double(i), y: Double(h.equity)))
+            i += 1
+        }
+        
+        return dataEntries
+    }
+    
+    func createPaidUpCapitalDataEntries () -> [ChartDataEntry] {
+        var dataEntries = [ChartDataEntry]()
+        var i = 0
+        let histories = set?.histories
+        for h in histories! {
+            dataEntries.append(BarChartDataEntry(x: Double(i), y: Double(h.paidUpCapital)))
+            i += 1
+        }
+        
+        return dataEntries
+    }
+    
+    
+    func createFSDates () -> [String] {
+        var dates = [String]()
+        let histories = set?.histories
+        for h in histories! {
+            dates.append(h.asOfDate)
+        }
         return dates
     }
     

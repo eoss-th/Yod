@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Historical {
+struct YahooHistorical {
     
     let date:Date
     let open:Float
@@ -35,7 +35,7 @@ class Yahoo {
     
     let symbol:String
     
-    var histories=[Historical]()
+    var histories=[YahooHistorical]()
     
     var closes=[Float]()
     
@@ -77,7 +77,7 @@ class Yahoo {
                     let columns = lines[i].components(separatedBy: ",")
                     
                     if columns.count > 5 {
-                        histories.append(Historical(date: dateFormatter.date(from: columns[0])!,
+                        histories.append(YahooHistorical(date: dateFormatter.date(from: columns[0])!,
                                                     open:Float(columns[1])!,
                                                     high:Float(columns[2])!,
                                                     low:Float(columns[3])!,

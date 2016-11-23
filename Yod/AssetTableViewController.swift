@@ -260,11 +260,20 @@ class AssetTableViewController: UITableViewController {
             
             DispatchQueue.global().async {
                 
+                /*
                 let yahoo = Yahoo(symbol: SET.filters[indexPath.row].symbol!)
                 
                 DispatchQueue.main.async {
-                    chartViewController.chartLoadSymbol(description: yahoo.symbol, yahoo: yahoo)
+                    chartViewController.load(description: yahoo.symbol, yahoo: yahoo)
                 }
+                 */
+                let set = SET.filters[indexPath.row]
+                set.loadHistoricals()
+                
+                DispatchQueue.main.async {
+                    chartViewController.load(description: set.symbol!, set: set)
+                }
+                
             }
         }
     }

@@ -8,10 +8,41 @@
 
 import Foundation
 
+struct SETHistorical {
+    let asOfDate:String
+    let assets:Float
+    let liabilities:Float
+    let equity:Float
+    let paidUpCapital:Float
+    let revenue:Float
+    let netProfit:Float
+    let eps:Float
+    let roa:Float
+    let roe:Float
+    let netProfitMargin:Float
+    let dvdYield:Float
+    
+    init (_ asOfDate:String, assets:Float, liabilities:Float, equity:Float, paidUpCapital:Float, revenue:Float, netProfit:Float, eps:Float, roa:Float, roe:Float, netProfitMargin:Float, dvdYield:Float) {
+        self.asOfDate = asOfDate
+        self.assets = assets
+        self.liabilities = liabilities
+        self.equity = equity
+        self.paidUpCapital = paidUpCapital
+        self.revenue = revenue
+        self.netProfit = netProfit
+        self.eps = eps
+        self.roa = roa
+        self.roe = roe
+        self.netProfitMargin = netProfitMargin
+        self.dvdYield = dvdYield
+    }
+}
+
 class SET {
     
     static let csvURL = "http://eoss-setfin.appspot.com/csv?"
     static let indexURL = "http://eoss-setfin.appspot.com/SETIndexServlet"
+    static let historicalURL = "http://eoss-setfin.appspot.com/his?s="
     
     static var cache = [SET]()
     static var filters = [SET]()
@@ -32,7 +63,7 @@ class SET {
     var dvd:String?
     
     var values = [String:Float]()
-    
+    var histories = [SETHistorical]()
     
     init(line:String) {
         let tokens = line.components(separatedBy: ",")
@@ -228,6 +259,36 @@ class SET {
         }
         
         return false
+    }
+    
+    func loadHistoricals () {
+        var s = symbol!.replacingOccurrences(of: "&", with: "%26")
+        s = s.replacingOccurrences(of: " ", with: "%20")
+        if let url = URL(string: SET.historicalURL + s) {
+            if let data = try? String(contentsOf: url) {
+                let lines = data.components(separatedBy: "\n")
+                
+                for i in 1..<lines.count {
+                    let columns = lines[i].components(separatedBy: ",")
+                    
+                    if columns.count >= 12 {
+                        histories.append(SETHistorical(columns[0],
+                            assets: Float(columns[1])!,
+                            liabilities:Float(columns[2])!,
+                            equity:Float(columns[3])!,
+                            paidUpCapital:Float(columns[4])!,
+                            revenue:Float(columns[5])!,
+                            netProfit:Float(columns[6])!,
+                            eps:Float(columns[7])!,
+                            roa:Float(columns[8])!,
+                            roe:Float(columns[9])!,
+                            netProfitMargin:Float(columns[10])!,
+                            dvdYield:Float(columns[11])!
+                        ))
+                    }
+                }
+            }
+        }
     }
     
     class func toggleSort (_ field:String) {
