@@ -17,8 +17,6 @@ class ChartViewController : UIViewController {
     
     var daysIndex = 0
     
-    var financeIndex = 0
-    
     var yahoo:Yahoo?
     
     var set:SET?
@@ -26,16 +24,6 @@ class ChartViewController : UIViewController {
     @IBOutlet weak var combinedChartView: CombinedChartView!
     
     @IBOutlet weak var toolBar: UIToolbar!
-    @IBOutlet weak var assetsButtonItem: UIBarButtonItem!
-    @IBOutlet weak var revenueButtonItem: UIBarButtonItem!
-    @IBOutlet weak var earnButtonItem: UIBarButtonItem!
-    @IBOutlet weak var weekButtonItem: UIBarButtonItem!
-    @IBOutlet weak var monthButtonItem: UIBarButtonItem!
-    @IBOutlet weak var threeMonthsButtonItem: UIBarButtonItem!
-    @IBOutlet weak var sixMonthsButtonItem: UIBarButtonItem!
-    @IBOutlet weak var yearButtonItem: UIBarButtonItem!
-    @IBOutlet weak var threeYearsButtonItem: UIBarButtonItem!
-    @IBOutlet weak var sixYearsButtonItem: UIBarButtonItem!
     
     override func viewDidLoad() {
         
@@ -86,7 +74,7 @@ class ChartViewController : UIViewController {
         combinedChartView.setNeedsDisplay()
     }
     
-    func loadFinance(_ financeIndex:Int = 0) {
+    func loadFinance() {
         
         if let _ = self.set {
             if (self.set?.histories.isEmpty)! {
@@ -95,12 +83,12 @@ class ChartViewController : UIViewController {
                     self.set?.loadHistoricals()
                     
                     DispatchQueue.main.async {
-                        self.load(description: (self.set?.symbol!)!, set: self.set!, financeIndex: financeIndex)
+                        self.load(description: (self.set?.symbol!)!, set: self.set!)
                     }
                 }
                 
             } else {
-                self.load(description: (self.set?.symbol!)!, set: self.set!, financeIndex: financeIndex)
+                self.load(description: (self.set?.symbol!)!, set: self.set!)
             }
         }
         
@@ -128,12 +116,6 @@ class ChartViewController : UIViewController {
  
     @IBAction func loadAssets(_ sender: UIBarButtonItem) {
         loadFinance()
-    }
-    @IBAction func loadRevenue(_ sender: UIBarButtonItem) {
-        loadFinance(1)
-    }
-    @IBAction func loadEarn(_ sender: UIBarButtonItem) {
-        loadFinance(2)
     }
     @IBAction func loadWeek(_ sender: UIBarButtonItem) {
         loadYahoo()
@@ -243,28 +225,50 @@ class ChartViewController : UIViewController {
         combinedChartView.setNeedsDisplay()
     }
     
-    func load(description:String, set:SET, financeIndex:Int = 0) {
+    func load(description:String, set:SET) {
         
         self.set = set
-        self.financeIndex = financeIndex
         
         combinedChartView.chartDescription?.text = description
         
         let assetDataSet = BarChartDataSet (values: createAssetDataEntries(), label: "Asset")
-        assetDataSet.setColors(NSUIColor.green, NSUIColor.lightGray)
+        assetDataSet.axisDependency = combinedChartView.rightAxis.axisDependency
+        assetDataSet.setColors(UIColor(netHex:0xb4ecb4), UIColor(netHex:0xf2f2ef))
         assetDataSet.stackLabels = ["Equity", "Liabilities"]
         
         let paidUpCapital = BarChartDataSet (values: createPaidUpCapitalDataEntries(), label: "Paidup Capital")
-        paidUpCapital.setColor(NSUIColor.cyan)
+        paidUpCapital.axisDependency = combinedChartView.rightAxis.axisDependency
+        paidUpCapital.setColor(NSUIColor(netHex:0xbed1d8))
         
         let barData = BarChartData()
         barData.addDataSet(assetDataSet)
         barData.addDataSet(paidUpCapital)
         
+        let revenueDataSet = LineChartDataSet (values: createRevenueDataEntries(), label: "Revenue")
+        revenueDataSet.circleRadius = 0
+        revenueDataSet.axisDependency = combinedChartView.rightAxis.axisDependency
+        revenueDataSet.setColor(NSUIColor.orange)
+        
+        let netDataSet = LineChartDataSet (values: createNetDataEntries(), label: "Net")
+        netDataSet.circleRadius = 0
+        netDataSet.axisDependency = combinedChartView.rightAxis.axisDependency
+        netDataSet.setColor(NSUIColor.green)
+        
+        let epsDataSet = LineChartDataSet (values: createEPSDataEntries(), label: "EPS")
+        epsDataSet.circleRadius = 0
+        epsDataSet.axisDependency = combinedChartView.leftAxis.axisDependency
+        epsDataSet.setColor(NSUIColor.gray)
+        
+        let lineData = LineChartData()
+        lineData.addDataSet(revenueDataSet)
+        lineData.addDataSet(netDataSet)
+        lineData.addDataSet(epsDataSet)
+        
         combinedChartView.xAxis.valueFormatter = XValueFormatter(values: createFSDates())
         
         let data = CombinedChartData()
         data.barData = barData
+        data.lineData = lineData
         
         //Reset View
         combinedChartView.data = data
@@ -272,7 +276,7 @@ class ChartViewController : UIViewController {
         combinedChartView.fitScreen()
         
         combinedChartView.leftAxis.axisMinimum = 0
-        combinedChartView.leftAxis.axisMaximum = assetDataSet.yMax * 1.2
+        combinedChartView.leftAxis.axisMaximum = epsDataSet.yMax * 1.2
         combinedChartView.leftAxis.spaceTop = 10
         //combinedChartView.leftAxis.enabled = false
         
@@ -468,6 +472,41 @@ class ChartViewController : UIViewController {
         return dataEntries
     }
     
+    func createRevenueDataEntries () -> [ChartDataEntry] {
+        var dataEntries = [ChartDataEntry]()
+        var i = 0
+        let histories = set?.histories
+        for h in histories! {
+            dataEntries.append(BarChartDataEntry(x: Double(i), y: Double(h.revenue)))
+            i += 1
+        }
+        
+        return dataEntries
+    }
+    
+    func createNetDataEntries () -> [ChartDataEntry] {
+        var dataEntries = [ChartDataEntry]()
+        var i = 0
+        let histories = set?.histories
+        for h in histories! {
+            dataEntries.append(BarChartDataEntry(x: Double(i), y: Double(h.netProfit)))
+            i += 1
+        }
+        
+        return dataEntries
+    }
+    
+    func createEPSDataEntries () -> [ChartDataEntry] {
+        var dataEntries = [ChartDataEntry]()
+        var i = 0
+        let histories = set?.histories
+        for h in histories! {
+            dataEntries.append(BarChartDataEntry(x: Double(i), y: Double(h.eps)))
+            i += 1
+        }
+        
+        return dataEntries
+    }
     
     func createFSDates () -> [String] {
         var dates = [String]()
