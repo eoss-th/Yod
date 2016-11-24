@@ -17,6 +17,8 @@ class ChartViewController : UIViewController {
     
     var daysIndex = 0
     
+    var financeIndex = 0
+    
     var yahoo:Yahoo?
     
     var set:SET?
@@ -24,6 +26,16 @@ class ChartViewController : UIViewController {
     @IBOutlet weak var combinedChartView: CombinedChartView!
     
     @IBOutlet weak var toolBar: UIToolbar!
+    @IBOutlet weak var assetsButtonItem: UIBarButtonItem!
+    @IBOutlet weak var revenueButtonItem: UIBarButtonItem!
+    @IBOutlet weak var earnButtonItem: UIBarButtonItem!
+    @IBOutlet weak var weekButtonItem: UIBarButtonItem!
+    @IBOutlet weak var monthButtonItem: UIBarButtonItem!
+    @IBOutlet weak var threeMonthsButtonItem: UIBarButtonItem!
+    @IBOutlet weak var sixMonthsButtonItem: UIBarButtonItem!
+    @IBOutlet weak var yearButtonItem: UIBarButtonItem!
+    @IBOutlet weak var threeYearsButtonItem: UIBarButtonItem!
+    @IBOutlet weak var sixYearsButtonItem: UIBarButtonItem!
     
     override func viewDidLoad() {
         
@@ -61,49 +73,91 @@ class ChartViewController : UIViewController {
         rotated()
     }
     
-    func waiting() {        
+    func reset(set:SET) {
+        self.set = set
+        self.yahoo = nil
+        
+        loadFinance()
+    }
+    
+    func waiting() {
         combinedChartView.data = nil
         combinedChartView.noDataText = "Loading..."
         combinedChartView.setNeedsDisplay()
     }
     
-    @IBAction func loadWeek(_ sender: UIBarButtonItem) {
-        if let yahoo = self.yahoo {
-            load(description: yahoo.symbol, yahoo: yahoo, daysIndex: 0)
+    func loadFinance(_ financeIndex:Int = 0) {
+        
+        if let _ = self.set {
+            if (self.set?.histories.isEmpty)! {
+                waiting()
+                DispatchQueue.global().async {
+                    self.set?.loadHistoricals()
+                    
+                    DispatchQueue.main.async {
+                        self.load(description: (self.set?.symbol!)!, set: self.set!, financeIndex: financeIndex)
+                    }
+                }
+                
+            } else {
+                self.load(description: (self.set?.symbol!)!, set: self.set!, financeIndex: financeIndex)
+            }
         }
-    }
-    @IBAction func loadMonth(_ sender: UIBarButtonItem) {
-        if let yahoo = self.yahoo {
-            load(description: yahoo.symbol, yahoo: yahoo, daysIndex: 1)
-        }
-    }
-    @IBAction func load3Months(_ sender: UIBarButtonItem) {
-        if let yahoo = self.yahoo {
-            load(description: yahoo.symbol, yahoo: yahoo, daysIndex: 2)
-        }
-    }
-    @IBAction func load6Months(_ sender: UIBarButtonItem) {
-        if let yahoo = self.yahoo {
-            load(description: yahoo.symbol, yahoo: yahoo, daysIndex: 3)
-        }
-    }
-    @IBAction func loadYear(_ sender: UIBarButtonItem) {
-        if let yahoo = self.yahoo {
-            load(description: yahoo.symbol, yahoo: yahoo, daysIndex: 4)
-        }
-    }
-    @IBAction func load3Years(_ sender: UIBarButtonItem) {
-        if let yahoo = self.yahoo {
-            load(description: yahoo.symbol, yahoo: yahoo, daysIndex: 5)
-        }
-    }
-    @IBAction func load6Years(_ sender: UIBarButtonItem) {
-        if let yahoo = self.yahoo {
-            load(description: yahoo.symbol, yahoo: yahoo, daysIndex: 6)
-        }
+        
     }
     
-    internal func load(description:String, yahoo:Yahoo, daysIndex:Int=0) {
+    func loadYahoo(_ daysIndex:Int = 0) {
+        
+        if let _ = self.yahoo {
+            
+            self.load(description: (self.yahoo?.symbol)!, yahoo: self.yahoo!, daysIndex: daysIndex)
+            
+        } else {
+            waiting()
+            DispatchQueue.global().async {
+
+                self.yahoo = Yahoo(symbol: self.set!.symbol!)
+ 
+                DispatchQueue.main.async {
+                    self.load(description: (self.yahoo?.symbol)!, yahoo: self.yahoo!, daysIndex: daysIndex)
+                }
+            }
+        }
+        
+    }
+ 
+    @IBAction func loadAssets(_ sender: UIBarButtonItem) {
+        loadFinance()
+    }
+    @IBAction func loadRevenue(_ sender: UIBarButtonItem) {
+        loadFinance(1)
+    }
+    @IBAction func loadEarn(_ sender: UIBarButtonItem) {
+        loadFinance(2)
+    }
+    @IBAction func loadWeek(_ sender: UIBarButtonItem) {
+        loadYahoo()
+    }
+    @IBAction func loadMonth(_ sender: UIBarButtonItem) {
+        loadYahoo(1)
+    }
+    @IBAction func load3Months(_ sender: UIBarButtonItem) {
+        loadYahoo(2)
+    }
+    @IBAction func load6Months(_ sender: UIBarButtonItem) {
+        loadYahoo(3)
+    }
+    @IBAction func loadYear(_ sender: UIBarButtonItem) {
+        loadYahoo(4)
+    }
+    @IBAction func load3Years(_ sender: UIBarButtonItem) {
+        loadYahoo(5)
+    }
+    @IBAction func load6Years(_ sender: UIBarButtonItem) {
+        loadYahoo(6)
+    }
+    
+    func load(description:String, yahoo:Yahoo, daysIndex:Int=0) {
         
         self.yahoo = yahoo
         self.daysIndex = daysIndex
@@ -189,28 +243,22 @@ class ChartViewController : UIViewController {
         combinedChartView.setNeedsDisplay()
     }
     
-    internal func load(description:String, set:SET) {
+    func load(description:String, set:SET, financeIndex:Int = 0) {
         
         self.set = set
+        self.financeIndex = financeIndex
         
         combinedChartView.chartDescription?.text = description
         
         let assetDataSet = BarChartDataSet (values: createAssetDataEntries(), label: "Asset")
-        assetDataSet.setColor(NSUIColor.cyan)
-        
-        let liabilitiesDataSet = BarChartDataSet (values: createLiabilitiesDataEntries(), label: "Liabilities")
-        liabilitiesDataSet.setColor(NSUIColor.lightGray)
-        
-        let equityDataSet = BarChartDataSet (values: createEquityDataEntries(), label: "Equity")
-        equityDataSet.setColor(UIColor.green)
+        assetDataSet.setColors(NSUIColor.green, NSUIColor.lightGray)
+        assetDataSet.stackLabels = ["Equity", "Liabilities"]
         
         let paidUpCapital = BarChartDataSet (values: createPaidUpCapitalDataEntries(), label: "Paidup Capital")
-        paidUpCapital.setColor(UIColor.blue)
+        paidUpCapital.setColor(NSUIColor.cyan)
         
         let barData = BarChartData()
         barData.addDataSet(assetDataSet)
-        barData.addDataSet(liabilitiesDataSet)
-        barData.addDataSet(equityDataSet)
         barData.addDataSet(paidUpCapital)
         
         combinedChartView.xAxis.valueFormatter = XValueFormatter(values: createFSDates())
@@ -222,6 +270,16 @@ class ChartViewController : UIViewController {
         combinedChartView.data = data
         
         combinedChartView.fitScreen()
+        
+        combinedChartView.leftAxis.axisMinimum = 0
+        combinedChartView.leftAxis.axisMaximum = assetDataSet.yMax * 1.2
+        combinedChartView.leftAxis.spaceTop = 10
+        //combinedChartView.leftAxis.enabled = false
+        
+        combinedChartView.rightAxis.axisMinimum = 0
+        combinedChartView.rightAxis.axisMaximum = assetDataSet.yMax * 1.2
+        combinedChartView.rightAxis.spaceTop = 10
+        
         combinedChartView.moveViewToX(Double(assetDataSet.entryCount-1))
         combinedChartView.setNeedsDisplay()
     }
@@ -237,12 +295,10 @@ class ChartViewController : UIViewController {
             if(UIDeviceOrientationIsPortrait(UIDevice.current.orientation))
             {
                 toolBar.isHidden = true
+                loadFinance()
             }
         }
         
-        if let yahoo = self.yahoo {
-            load(description: yahoo.symbol, yahoo: yahoo, daysIndex: 0)
-        }
     }
     
     func createCloseDataEntries () -> [ChartDataEntry] {
@@ -381,19 +437,7 @@ class ChartViewController : UIViewController {
         var i = 0
         let histories = set?.histories
         for h in histories! {
-            dataEntries.append(BarChartDataEntry(x: Double(i), y: Double(h.assets)))
-            i += 1
-        }
-        
-        return dataEntries
-    }
-    
-    func createLiabilitiesDataEntries () -> [ChartDataEntry] {
-        var dataEntries = [ChartDataEntry]()
-        var i = 0
-        let histories = set?.histories
-        for h in histories! {
-            dataEntries.append(BarChartDataEntry(x: Double(i), y: Double(h.liabilities)))
+            dataEntries.append(BarChartDataEntry(x: Double(i), yValues: [Double(h.equity), Double(h.liabilities)]))
             i += 1
         }
         

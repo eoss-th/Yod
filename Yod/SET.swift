@@ -262,29 +262,31 @@ class SET {
     }
     
     func loadHistoricals () {
-        var s = symbol!.replacingOccurrences(of: "&", with: "%26")
-        s = s.replacingOccurrences(of: " ", with: "%20")
-        if let url = URL(string: SET.historicalURL + s) {
-            if let data = try? String(contentsOf: url) {
-                let lines = data.components(separatedBy: "\n")
-                
-                for i in 1..<lines.count {
-                    let columns = lines[i].components(separatedBy: ",")
+        if histories.isEmpty {
+            var s = symbol!.replacingOccurrences(of: "&", with: "%26")
+            s = s.replacingOccurrences(of: " ", with: "%20")
+            if let url = URL(string: SET.historicalURL + s) {
+                if let data = try? String(contentsOf: url) {
+                    let lines = data.components(separatedBy: "\n")
                     
-                    if columns.count >= 12 {
-                        histories.append(SETHistorical(columns[0],
-                            assets: Float(columns[1])!,
-                            liabilities:Float(columns[2])!,
-                            equity:Float(columns[3])!,
-                            paidUpCapital:Float(columns[4])!,
-                            revenue:Float(columns[5])!,
-                            netProfit:Float(columns[6])!,
-                            eps:Float(columns[7])!,
-                            roa:Float(columns[8])!,
-                            roe:Float(columns[9])!,
-                            netProfitMargin:Float(columns[10])!,
-                            dvdYield:Float(columns[11])!
-                        ))
+                    for i in 1..<lines.count {
+                        let columns = lines[i].components(separatedBy: ",")
+                        
+                        if columns.count >= 12 {
+                            histories.append(SETHistorical(columns[0],
+                                                           assets: Float(columns[1])!,
+                                                           liabilities:Float(columns[2])!,
+                                                           equity:Float(columns[3])!,
+                                                           paidUpCapital:Float(columns[4])!,
+                                                           revenue:Float(columns[5])!,
+                                                           netProfit:Float(columns[6])!,
+                                                           eps:Float(columns[7])!,
+                                                           roa:Float(columns[8])!,
+                                                           roe:Float(columns[9])!,
+                                                           netProfitMargin:Float(columns[10])!,
+                                                           dvdYield:Float(columns[11])!
+                            ))
+                        }
                     }
                 }
             }

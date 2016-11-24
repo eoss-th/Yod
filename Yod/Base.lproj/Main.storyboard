@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="8G8-zi-auH">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="8G8-zi-auH">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -45,7 +45,7 @@
                                 <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DOC-wB-WLh" id="sDd-iZ-A3E">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <searchBar contentMode="redraw" placeholder="Symbols" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="afj-09-iYs">
@@ -73,7 +73,7 @@
                                 <rect key="frame" x="0.0" y="72" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bC5-cN-JBo" id="hg8-aP-hOD">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -119,7 +119,7 @@
                                 <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5Zr-16-pgm" id="RzF-uH-qG7">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g6c-4z-H16">
@@ -233,7 +233,7 @@
                                 <rect key="frame" x="0.0" y="72" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QwX-h2-0rL" id="6lv-om-icO">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EdS-ZE-X13">
@@ -346,6 +346,21 @@
                                     <constraint firstAttribute="height" constant="50" id="Dxp-6K-r0u"/>
                                 </constraints>
                                 <items>
+                                    <barButtonItem title="Assets" id="FWR-Rv-ZlF">
+                                        <connections>
+                                            <action selector="loadAssets:" destination="tLo-Jp-ptc" id="OEA-Fr-8nC"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Revenue" id="Yit-KK-uB1">
+                                        <connections>
+                                            <action selector="loadRevenue:" destination="tLo-Jp-ptc" id="bJC-Rb-M9d"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Earn" id="12e-99-wuM">
+                                        <connections>
+                                            <action selector="loadEarn:" destination="tLo-Jp-ptc" id="Tf6-qa-4FI"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem title="Week" id="FkN-Ab-ZVv">
                                         <connections>
                                             <action selector="loadWeek:" destination="tLo-Jp-ptc" id="z2i-Os-Nce"/>
@@ -356,12 +371,12 @@
                                             <action selector="loadMonth:" destination="tLo-Jp-ptc" id="qaw-9I-lJ3"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="3 Months" id="6zc-pP-5ag">
+                                    <barButtonItem title="3M" id="6zc-pP-5ag">
                                         <connections>
                                             <action selector="load3Months:" destination="tLo-Jp-ptc" id="qqQ-ha-UUB"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="6 Months" id="EQ5-0J-3Uu">
+                                    <barButtonItem title="6M" id="EQ5-0J-3Uu">
                                         <connections>
                                             <action selector="load6Months:" destination="tLo-Jp-ptc" id="YUj-fi-w1k"/>
                                         </connections>
@@ -371,12 +386,12 @@
                                             <action selector="loadYear:" destination="tLo-Jp-ptc" id="JAh-nE-VfT"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="3 Years" id="K94-pj-u0H">
+                                    <barButtonItem title="3Y" id="K94-pj-u0H">
                                         <connections>
                                             <action selector="load3Years:" destination="tLo-Jp-ptc" id="qa8-eg-0cM"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="6 Years" id="raR-B9-TY9">
+                                    <barButtonItem title="6Y" id="raR-B9-TY9">
                                         <connections>
                                             <action selector="load6Years:" destination="tLo-Jp-ptc" id="Atk-xU-fxR"/>
                                         </connections>
@@ -397,8 +412,18 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="candleButton" selectedImage="candleButtonSelected" id="q3a-Ph-mzM"/>
                     <connections>
+                        <outlet property="assetsButtonItem" destination="FWR-Rv-ZlF" id="S1e-lA-t3x"/>
                         <outlet property="combinedChartView" destination="X8J-2s-alC" id="Xmj-3f-e00"/>
+                        <outlet property="earnButtonItem" destination="12e-99-wuM" id="qvb-2t-Pnn"/>
+                        <outlet property="monthButtonItem" destination="gTV-yQ-sFl" id="l2Y-Zd-HXj"/>
+                        <outlet property="revenueButtonItem" destination="Yit-KK-uB1" id="fi2-fz-bim"/>
+                        <outlet property="sixMonthsButtonItem" destination="EQ5-0J-3Uu" id="hSu-Vd-mdP"/>
+                        <outlet property="sixYearsButtonItem" destination="raR-B9-TY9" id="gVq-13-NWo"/>
+                        <outlet property="threeMonthsButtonItem" destination="6zc-pP-5ag" id="Ax7-XU-WOP"/>
+                        <outlet property="threeYearsButtonItem" destination="K94-pj-u0H" id="e8U-lY-KmS"/>
                         <outlet property="toolBar" destination="dCG-yw-0Jl" id="zyv-WO-OqU"/>
+                        <outlet property="weekButtonItem" destination="FkN-Ab-ZVv" id="TDt-TK-BvF"/>
+                        <outlet property="yearButtonItem" destination="XHw-Yb-EMi" id="zm2-0k-ZlI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uZq-ib-77f" userLabel="First Responder" sceneMemberID="firstResponder"/>

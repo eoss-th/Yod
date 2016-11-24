@@ -256,25 +256,10 @@ class AssetTableViewController: UITableViewController {
             
             self.tabBarController?.selectedIndex = 1
             let chartViewController = self.tabBarController?.viewControllers?[1] as! ChartViewController
-            chartViewController.waiting()
             
-            DispatchQueue.global().async {
-                
-                /*
-                let yahoo = Yahoo(symbol: SET.filters[indexPath.row].symbol!)
-                
-                DispatchQueue.main.async {
-                    chartViewController.load(description: yahoo.symbol, yahoo: yahoo)
-                }
-                 */
-                let set = SET.filters[indexPath.row]
-                set.loadHistoricals()
-                
-                DispatchQueue.main.async {
-                    chartViewController.load(description: set.symbol!, set: set)
-                }
-                
-            }
+            let set = SET.filters[indexPath.row]
+            chartViewController.reset(set: set)
+            
         }
     }
     
