@@ -262,7 +262,7 @@ class ChartViewController : UIViewController {
         let lineData = LineChartData()
         lineData.addDataSet(revenueDataSet)
         lineData.addDataSet(netDataSet)
-        lineData.addDataSet(epsDataSet)
+        //lineData.addDataSet(epsDataSet)
         
         combinedChartView.xAxis.valueFormatter = XValueFormatter(values: createFSDates())
         
@@ -273,18 +273,18 @@ class ChartViewController : UIViewController {
         //Reset View
         combinedChartView.data = data
         
-        combinedChartView.fitScreen()
+       combinedChartView.fitScreen()
         
-        combinedChartView.leftAxis.axisMinimum = 0
-        combinedChartView.leftAxis.axisMaximum = epsDataSet.yMax * 1.2
+        combinedChartView.leftAxis.axisMinimum = data.yMin > 0 ? 0:data.yMin * 1.2
+        combinedChartView.leftAxis.axisMaximum = data.yMax * 1.2
         combinedChartView.leftAxis.spaceTop = 10
         //combinedChartView.leftAxis.enabled = false
         
-        combinedChartView.rightAxis.axisMinimum = 0
-        combinedChartView.rightAxis.axisMaximum = assetDataSet.yMax * 1.2
+        combinedChartView.rightAxis.axisMinimum = data.yMin > 0 ? 0:data.yMin * 1.2
+        combinedChartView.rightAxis.axisMaximum = data.yMax * 1.2
         combinedChartView.rightAxis.spaceTop = 10
         
-        combinedChartView.moveViewToX(Double(assetDataSet.entryCount-1))
+        //combinedChartView.moveViewToX(Double(assetDataSet.entryCount-1))
         combinedChartView.setNeedsDisplay()
     }
     
@@ -514,6 +514,7 @@ class ChartViewController : UIViewController {
         for h in histories! {
             dates.append(h.asOfDate)
         }
+        
         return dates
     }
     

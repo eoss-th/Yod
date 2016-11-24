@@ -151,15 +151,6 @@ class SET {
             }
         }
         
-        if symbol == "IEC" {
-            print (values["Net Growth %"]!)
-            print (values["NG/E"]!)
-            print (net)
-            print (netGrowth)
-            print (equity)
-        }
-        
-        
         if equityGrowth != 0 {
             values["E/G"] = equity / equityGrowth
         } else {
