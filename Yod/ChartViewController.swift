@@ -229,11 +229,9 @@ class ChartViewController : UIViewController {
         
         self.set = set
         
-        combinedChartView.chartDescription?.text = description
-        
         let assetDataSet = BarChartDataSet (values: createAssetDataEntries(), label: "Asset")
         assetDataSet.axisDependency = combinedChartView.rightAxis.axisDependency
-        assetDataSet.setColors(UIColor(netHex:0xaec6cf), UIColor(netHex:0xf2f2ef))
+        assetDataSet.setColors(UIColor(netHex:0xdee8eb), UIColor(netHex:0xf2f2ef))
         assetDataSet.stackLabels = ["Equity", "Liabilities"]
         
         let paidUpCapital = BarChartDataSet (values: createPaidUpCapitalDataEntries(), label: "Paidup Capital")
@@ -266,12 +264,15 @@ class ChartViewController : UIViewController {
         lineData.addDataSet(netDataSet)
         //lineData.addDataSet(epsDataSet)
         
-        combinedChartView.xAxis.valueFormatter = XValueFormatter(values: createFSDates())
+        let fsDates:[String] = createFSDates()
+        combinedChartView.xAxis.valueFormatter = XValueFormatter(values: fsDates)
         
         let data = CombinedChartData()
         data.barData = barData
         data.lineData = lineData
         
+        combinedChartView.chartDescription?.text = description + " " + fsDates.last!
+
         //Reset View
         combinedChartView.data = data
         

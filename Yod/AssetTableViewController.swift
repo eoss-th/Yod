@@ -91,7 +91,7 @@ class AssetTableViewController: UITableViewController {
             if val {
                 cell.netButton.backgroundColor = UIColor(netHex:0xb4ecb4)
             } else {
-                cell.netButton.backgroundColor = UIColor(netHex:0x3ace3a)
+                cell.netButton.backgroundColor = UIColor(netHex:0xffb2ae)
             }
             
         } else {
@@ -202,7 +202,8 @@ class AssetTableViewController: UITableViewController {
             
             let egColor:UIColor
             if eg > 0 {
-                egColor = UIColor(netHex:0xaec6cf)
+//                egColor = UIColor(netHex:0xaec6cf)
+                egColor = UIColor.white
             } else {
                 egColor = UIColor(netHex:0xffebea)
                 eg = eg * -1
@@ -212,13 +213,14 @@ class AssetTableViewController: UITableViewController {
             if nge > 0 {
                 ngeColor = UIColor(netHex:0xb4ecb4)
             } else {
-                ngeColor = UIColor(netHex:0x3ace3a)
+                ngeColor = UIColor(netHex:0xffb2ae)
                 nge = nge * -1
             }
             
             let nngColor:UIColor
             if nng > 0 {
-                nngColor = UIColor(netHex:0x77dd77)
+//                nngColor = UIColor(netHex:0x77dd77)
+                nngColor = UIColor.white
             } else {
                 nngColor = UIColor(netHex:0xff6961)
                 nng = nng * -1
