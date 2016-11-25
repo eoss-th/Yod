@@ -51,11 +51,7 @@ class SET {
     static var industries = [String]()
     static var sections = [String:[String]]()
     static var industries_sections_count = [String:Int]()
-    
-    static var roeMean = Float(0)
-    static var netGrowthMean = Float(0)
-    static var growthMean = Float(0)
-    static var peMean = Float(0)
+    static var means = [String:[String:Float]]()
     
     var industry:String?
     var sector:String?
@@ -369,12 +365,13 @@ class SET {
         }
     }
     
-    class func applyFilter (field:String, operand:(Float, Float)->Bool, value:Float) {
+    class func applyFilter (field:String, operand:(Float, Float)->Bool) {
         
         var newFilter = [SET]()
         for set in filters {
+            let mean = means[field]![set.industry!+"."+set.sector!]!
             if let val = set.values[field] {
-                if operand(val, value) {
+                if operand(val, mean) {
                     newFilter.append(set)
                 }
             }
@@ -384,8 +381,9 @@ class SET {
         
         newFilter = [SET]()
         for set in subCache {
+            let mean = means[field]![set.industry!+"."+set.sector!]!
             if let val = set.values[field] {
-                if operand(val, value) {
+                if operand(val, mean) {
                     newFilter.append(set)
                 }
             }
@@ -395,18 +393,32 @@ class SET {
     }
     
     class func updateMeans () {
-        roeMean = mean("ROE")
-        netGrowthMean = mean("Net Growth %")
-        growthMean = mean("E/A Growth %")
-        peMean = mean("P/E")
+        
+        means["ROE"] = [String:Float]()
+        means["Net Growth %"] = [String:Float]()
+        means["E/A Growth %"] = [String:Float]()
+        means["P/E"] = [String:Float]()
+        
+        for industry in industries {
+            for section in sections[industry]! {
+                means["ROE"]![industry+"."+section] = mean("ROE", industry, section)
+                means["Net Growth %"]![industry+"."+section] = mean("Net Growth %", industry, section)
+                means["E/A Growth %"]![industry+"."+section] = mean("E/A Growth %", industry, section)
+                means["P/E"]![industry+"."+section] = mean("P/E", industry, section)
+            }
+        }
+                
     }
     
-    class func mean(_ field:String) -> Float {
+    class func mean(_ field:String, _ industry:String, _ sector:String) -> Float {
         
         var total:Float = 0
         var count:Float = 0
         
         for set in cache {
+            if set.industry != industry || set.sector != sector {
+                continue
+            }
             if let val = set.values[field], val > 0, val != Float.infinity {
                 total += val
                 count += 1

@@ -192,19 +192,19 @@ class SectorTableViewController: UITableViewController, UISearchBarDelegate {
         }
         
         if selectedFilters.contains(0) {
-            SET.applyFilter(field: "ROE", operand: >, value: SET.roeMean)
+            SET.applyFilter(field: "ROE", operand: >)
         }
         
         if selectedFilters.contains(1) {
-            SET.applyFilter(field: "Net Growth %", operand: >, value: SET.netGrowthMean)
+            SET.applyFilter(field: "Net Growth %", operand: >)
         }
         
         if selectedFilters.contains(2) {
-            SET.applyFilter(field: "E/A Growth %", operand: >, value: SET.growthMean)
+            SET.applyFilter(field: "E/A Growth %", operand: >)
         }
         
         if selectedFilters.contains(3) {
-            SET.applyFilter(field: "P/E", operand: <, value: SET.peMean)
+            SET.applyFilter(field: "P/E", operand: <)
         }
         
         if !self.symbolFilters.isEmpty {
