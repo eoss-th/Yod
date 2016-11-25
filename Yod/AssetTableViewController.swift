@@ -91,7 +91,7 @@ class AssetTableViewController: UITableViewController {
             if val {
                 cell.netButton.backgroundColor = UIColor(netHex:0xb4ecb4)
             } else {
-                cell.netButton.backgroundColor = UIColor(netHex:0xffb2ae)
+                cell.netButton.backgroundColor = UIColor(netHex:0x3ace3a)
             }
             
         } else {
@@ -101,11 +101,9 @@ class AssetTableViewController: UITableViewController {
         if let val =  SET.toggles[buttonFieldMap[(cell.growthButton.titleLabel?.text)!]!] {
             
             if val {
-//                cell.growthButton.backgroundColor = UIColor(netHex:0xfbfbfa)
-                cell.growthButton.backgroundColor = UIColor(netHex:0xffd394)
+                cell.growthButton.backgroundColor = UIColor(netHex:0xdee8eb)
             } else {
-//                cell.growthButton.backgroundColor = UIColor(netHex:0xe9e9e4)
-                cell.growthButton.backgroundColor = UIColor(netHex:0xfa9200)
+                cell.growthButton.backgroundColor = UIColor(netHex:0x7ea4b3)
             }
             
         } else {
@@ -116,6 +114,10 @@ class AssetTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50.0
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 50.0
     }
     
@@ -130,7 +132,6 @@ class AssetTableViewController: UITableViewController {
             
             cell.symbolLabel.text = set.symbol
             cell.stackView.clear()
-            //cell.stackView.backgroundColor = UIColor(netHex:0xe1e1da)
             cell.stackView.backgroundColor = UIColor.white
             
             let greenColor = UIColor(netHex:0x196319)
@@ -191,11 +192,9 @@ class AssetTableViewController: UITableViewController {
             
             if let growth = set.values["E/A Growth %"] {
                 if growth > 0 {
-//                    gaColor = UIColor(netHex:0xfbfbfa)
-                    gaColor = UIColor(netHex:0xffd394)
+                    gaColor = UIColor(netHex:0xdee8eb)
                 } else {
-//                    gaColor = UIColor(netHex:0xe9e9e4)
-                    gaColor = UIColor(netHex:0xfa9200)
+                    gaColor = UIColor(netHex:0x7ea4b3)
                 }
             } else {
                 gaColor = UIColor.white
@@ -203,8 +202,7 @@ class AssetTableViewController: UITableViewController {
             
             let egColor:UIColor
             if eg > 0 {
-                //egColor = UIColor(netHex:0xf2f2ef)
-                egColor = UIColor(netHex:0xffb347)
+                egColor = UIColor(netHex:0xaec6cf)
             } else {
                 egColor = UIColor(netHex:0xffebea)
                 eg = eg * -1
@@ -214,8 +212,7 @@ class AssetTableViewController: UITableViewController {
             if nge > 0 {
                 ngeColor = UIColor(netHex:0xb4ecb4)
             } else {
-                //ngeColor = UIColor(netHex:0xa5afa5)
-                ngeColor = UIColor(netHex:0xffb2ae)
+                ngeColor = UIColor(netHex:0x3ace3a)
                 nge = nge * -1
             }
             

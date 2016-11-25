@@ -233,12 +233,14 @@ class ChartViewController : UIViewController {
         
         let assetDataSet = BarChartDataSet (values: createAssetDataEntries(), label: "Asset")
         assetDataSet.axisDependency = combinedChartView.rightAxis.axisDependency
-        assetDataSet.setColors(UIColor(netHex:0xb4ecb4), UIColor(netHex:0xf2f2ef))
+        assetDataSet.setColors(UIColor(netHex:0xaec6cf), UIColor(netHex:0xf2f2ef))
         assetDataSet.stackLabels = ["Equity", "Liabilities"]
         
         let paidUpCapital = BarChartDataSet (values: createPaidUpCapitalDataEntries(), label: "Paidup Capital")
         paidUpCapital.axisDependency = combinedChartView.rightAxis.axisDependency
-        paidUpCapital.setColor(NSUIColor(netHex:0xbed1d8))
+        //paidUpCapital.setColor(NSUIColor(netHex:0xbed1d8))
+        paidUpCapital.setColor(NSUIColor(netHex:0x7ea4b3))
+        
         
         let barData = BarChartData()
         barData.addDataSet(assetDataSet)
@@ -247,12 +249,12 @@ class ChartViewController : UIViewController {
         let revenueDataSet = LineChartDataSet (values: createRevenueDataEntries(), label: "Revenue")
         revenueDataSet.circleRadius = 0
         revenueDataSet.axisDependency = combinedChartView.rightAxis.axisDependency
-        revenueDataSet.setColor(NSUIColor.orange)
+        revenueDataSet.setColor(NSUIColor.cyan)
         
         let netDataSet = LineChartDataSet (values: createNetDataEntries(), label: "Net")
         netDataSet.circleRadius = 0
         netDataSet.axisDependency = combinedChartView.rightAxis.axisDependency
-        netDataSet.setColor(NSUIColor.green)
+        netDataSet.setColor(UIColor.green)
         
         let epsDataSet = LineChartDataSet (values: createEPSDataEntries(), label: "EPS")
         epsDataSet.circleRadius = 0
