@@ -11,7 +11,7 @@ import UIKit
 class SectorTableViewController: UITableViewController, UISearchBarDelegate {
     
     
-    var filters = ["ROE > Avg", "Net Growth > Avg", "Equity Growth > Avg", "P/E < 20"]
+    var filters = ["ROE > Mean", "Net Growth > Mean", "Equity Growth > Mean", "P/E < Mean"]
     
     var selectedFilters = [Int]()
     var searchText = String()
@@ -77,7 +77,9 @@ class SectorTableViewController: UITableViewController, UISearchBarDelegate {
             
         } else {
             
-            cell.textLabel?.text = SET.sections[SET.industries[indexPath.section-1]]?[indexPath.row]
+            let industry = SET.industries[indexPath.section-1]
+            let sector = SET.sections[industry]?[indexPath.row]
+            cell.textLabel?.text = sector! + " (" + SET.getCount(industry, sector!) + ")"
             
             if (selectedIndustry==indexPath) {
                 cell.backgroundColor = UIColor(netHex: 0xd3e0e5)
@@ -181,7 +183,7 @@ class SectorTableViewController: UITableViewController, UISearchBarDelegate {
     
     func applyFilters() {
         
-        SET.removeFilter()
+        SET.resetFilter()
         
         if selectedIndustry != nil {
             let industry = SET.industries[selectedIndustry!.section-1]
@@ -203,12 +205,13 @@ class SectorTableViewController: UITableViewController, UISearchBarDelegate {
         
         if selectedFilters.contains(3) {
             SET.applyFilter(field: "P/E", operand: <, value: SET.peMean)
-            SET.applyFilter(field: "P/E", operand: <, value: 20)
         }
         
         if !self.symbolFilters.isEmpty {
             SET.applyFilter(symbols: self.symbolFilters)
         }
+        
+        SET.updateSectionsCount()
         
     }
     

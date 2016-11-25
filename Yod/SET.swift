@@ -45,10 +45,12 @@ class SET {
     static let historicalURL = "http://eoss-setfin.appspot.com/his?s="
     
     static var cache = [SET]()
+    static var subCache = [SET]()
     static var filters = [SET]()
     static var toggles = [String:Bool]()
     static var industries = [String]()
     static var sections = [String:[String]]()
+    static var industries_sections_count = [String:Int]()
     
     static var roeMean = Float(0)
     static var netGrowthMean = Float(0)
@@ -221,10 +223,7 @@ class SET {
                 if set.industry != "-" {
                     cache.append(set)
                 }
-                filters = cache
             }
-            
-            updateMeans()
             
             if let url = URL(string: indexURL) {
                 let text = try! String(contentsOf: url)
@@ -245,6 +244,9 @@ class SET {
             
             industries.remove(at: 0)
             
+            resetFilter()
+            updateMeans()
+            updateSectionsCount()
             
             return true
         }
@@ -325,9 +327,9 @@ class SET {
         }
     }
     
-    class func removeFilter () {
-        filters = cache
-        updateMeans()
+    class func resetFilter () {
+        subCache = cache
+        filters = subCache
     }
     
     class func applyFilter (symbols:[String]) {
@@ -342,6 +344,19 @@ class SET {
         }
         
         filters = newFilter
+        
+        newFilter = [SET]()
+        for set in subCache {
+            
+            for symbol in symbols {
+                if (set.symbol?.hasPrefix(symbol))! {
+                    newFilter.append(set)
+                }
+            }
+        }
+        
+        subCache = newFilter
+        
     }
     
     class func applyFilter (industry:String, sector:String) {
@@ -352,7 +367,6 @@ class SET {
                 filters.append(set)
             }
         }
-        updateMeans()
     }
     
     class func applyFilter (field:String, operand:(Float, Float)->Bool, value:Float) {
@@ -367,6 +381,17 @@ class SET {
         }
         
         filters = newFilter
+        
+        newFilter = [SET]()
+        for set in subCache {
+            if let val = set.values[field] {
+                if operand(val, value) {
+                    newFilter.append(set)
+                }
+            }
+        }
+        
+        subCache = newFilter
     }
     
     class func updateMeans () {
@@ -381,16 +406,44 @@ class SET {
         var total:Float = 0
         var count:Float = 0
         
-        for set in filters {
-            if let val = set.values[field] {
-                if val != Float.infinity {
-                    total += val
-                    count += 1
-                }
+        for set in cache {
+            if let val = set.values[field], val > 0, val != Float.infinity {
+                total += val
+                count += 1
             }
         }
         
         return total / count
+    }
+    
+    class func updateSectionsCount () {
+        
+        for industry in industries {
+            for section in sections[industry]! {
+                industries_sections_count [industry+"."+section] = 0
+            }
+        }
+        
+        for set in subCache {
+            if let count = industries_sections_count[set.industry!+"."+set.sector!] {
+                industries_sections_count[set.industry!+"."+set.sector!]! = count + 1
+            }
+        }
+    }
+    
+    class func printSectionsCount () {
+        for s in industries_sections_count.keys {
+            print (s)
+            print (industries_sections_count[s]!)
+            print ()
+        }
+    }
+    
+    class func getCount (_ industry: String,_ sector: String) -> String {
+        if let count = industries_sections_count[industry+"."+sector] {
+            return String(count)
+        }
+        return ""
     }
     
 }
