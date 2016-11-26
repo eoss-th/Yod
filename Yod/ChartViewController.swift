@@ -146,6 +146,7 @@ class ChartViewController : UIViewController {
         
         combinedChartView.chartDescription?.text = description
         
+        
         let closeDataSet = LineChartDataSet (values: createCloseDataEntries(), label: "Close")
         closeDataSet.circleRadius = 0
         closeDataSet.axisDependency = combinedChartView.rightAxis.axisDependency
@@ -157,6 +158,7 @@ class ChartViewController : UIViewController {
         //ma5DataSet.valueTextColor = NSUIColor.white
         //ma5DataSet.highlightColor = NSUIColor.white
         ma5DataSet.setColor(NSUIColor.green)
+        ma5DataSet.drawValuesEnabled = false
         
         let ma20DataSet = LineChartDataSet (values: createEMA20DataEntries(), label: "EMA20")
         ma20DataSet.circleRadius = 0
@@ -164,6 +166,7 @@ class ChartViewController : UIViewController {
         //ma20DataSet.valueTextColor = NSUIColor.white
         //ma20DataSet.highlightColor = NSUIColor.white
         ma20DataSet.setColor(NSUIColor.cyan)
+        ma20DataSet.drawValuesEnabled = false
         
         let ma80DataSet = LineChartDataSet (values: createEMA80DataEntries(), label: "EMA80")
         ma80DataSet.circleRadius = 0
@@ -171,6 +174,7 @@ class ChartViewController : UIViewController {
         //ma80DataSet.valueTextColor = NSUIColor.white
         //ma80DataSet.highlightColor = NSUIColor.white
         ma80DataSet.setColor(NSUIColor.orange)
+        ma80DataSet.drawValuesEnabled = false
         
         let lineData = LineChartData()
         //lineData.addDataSet(closeDataSet)
@@ -195,6 +199,7 @@ class ChartViewController : UIViewController {
         //volumeDataSet?.highlightColor = NSUIColor.white
         volumeDataSet.setColor(UIColor(netHex:0xf2f2ef))
         volumeDataSet.axisDependency = combinedChartView.leftAxis.axisDependency
+        volumeDataSet.drawValuesEnabled = false
         
         let barData = BarChartData()
         barData.addDataSet(volumeDataSet)

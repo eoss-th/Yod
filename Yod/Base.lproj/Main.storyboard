@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="8G8-zi-auH">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="8G8-zi-auH">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -45,7 +45,7 @@
                                 <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DOC-wB-WLh" id="sDd-iZ-A3E">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <searchBar contentMode="redraw" placeholder="Symbols" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="afj-09-iYs">
@@ -73,7 +73,7 @@
                                 <rect key="frame" x="0.0" y="72" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bC5-cN-JBo" id="hg8-aP-hOD">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -114,19 +114,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="headerAsset" id="5Zr-16-pgm" customClass="UIHeaderTableViewCell" customModule="Yod" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5Zr-16-pgm" id="RzF-uH-qG7">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g6c-4z-H16">
-                                            <rect key="frame" x="8" y="8" width="510" height="50"/>
+                                            <rect key="frame" x="-95" y="-3.5" width="510" height="50.5"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Pt-HB-LNb">
-                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="Tyc-MX-WCA"/>
                                                     </constraints>
@@ -136,14 +137,14 @@
                                                     </connections>
                                                 </button>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1HQ-TH-3a2">
-                                                    <rect key="frame" x="50" y="0.0" width="10" height="50"/>
+                                                    <rect key="frame" x="50" y="0.0" width="10" height="50.5"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="10" id="u7X-Yf-gZl"/>
                                                     </constraints>
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RvA-Dx-NHZ">
-                                                    <rect key="frame" x="60" y="0.0" width="105" height="50"/>
+                                                    <rect key="frame" x="60" y="0.0" width="105" height="50.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="105" id="7Ro-dF-IZG"/>
                                                     </constraints>
@@ -154,7 +155,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Q6-SB-O87">
-                                                    <rect key="frame" x="165" y="0.0" width="105" height="50"/>
+                                                    <rect key="frame" x="165" y="0.0" width="105" height="50.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="105" id="ihT-Nk-mkG"/>
                                                     </constraints>
@@ -165,7 +166,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A7H-Nl-q56">
-                                                    <rect key="frame" x="270" y="0.0" width="60" height="50"/>
+                                                    <rect key="frame" x="270" y="0.0" width="60" height="50.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="6AR-lf-N7y"/>
                                                     </constraints>
@@ -176,7 +177,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OCE-YH-n5O">
-                                                    <rect key="frame" x="330" y="0.0" width="60" height="50"/>
+                                                    <rect key="frame" x="330" y="0.0" width="60" height="50.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="Q6b-aT-Fng"/>
                                                     </constraints>
@@ -187,7 +188,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JHR-ro-R7b">
-                                                    <rect key="frame" x="390" y="0.0" width="60" height="50"/>
+                                                    <rect key="frame" x="390" y="0.0" width="60" height="50.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="fgs-Tl-aFO"/>
                                                     </constraints>
@@ -198,7 +199,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1hn-dr-Utm">
-                                                    <rect key="frame" x="450" y="0.0" width="60" height="50"/>
+                                                    <rect key="frame" x="450" y="0.0" width="60" height="50.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="623-Hv-SNl"/>
                                                     </constraints>
@@ -216,8 +217,8 @@
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstItem="g6c-4z-H16" firstAttribute="leading" secondItem="RzF-uH-qG7" secondAttribute="leadingMargin" id="Th6-zG-QOs"/>
-                                        <constraint firstItem="g6c-4z-H16" firstAttribute="top" secondItem="RzF-uH-qG7" secondAttribute="topMargin" id="YTK-S4-7iF"/>
+                                        <constraint firstItem="g6c-4z-H16" firstAttribute="centerX" secondItem="RzF-uH-qG7" secondAttribute="centerX" id="XwW-Su-I1r"/>
+                                        <constraint firstItem="g6c-4z-H16" firstAttribute="centerY" secondItem="RzF-uH-qG7" secondAttribute="centerY" id="eUe-Dz-ceL"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -233,11 +234,11 @@
                                 <rect key="frame" x="0.0" y="72" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QwX-h2-0rL" id="6lv-om-icO">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EdS-ZE-X13">
-                                            <rect key="frame" x="8" y="-4" width="510" height="50"/>
+                                            <rect key="frame" x="-95" y="-4" width="510" height="50"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Symbol" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Isd-2L-ZSU">
                                                     <rect key="frame" x="0.0" y="0.0" width="60" height="50"/>
@@ -298,8 +299,8 @@
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="EdS-ZE-X13" firstAttribute="centerY" secondItem="6lv-om-icO" secondAttribute="centerY" id="5N1-lO-QKD"/>
-                                        <constraint firstItem="EdS-ZE-X13" firstAttribute="leading" secondItem="6lv-om-icO" secondAttribute="leadingMargin" id="a6O-aX-NJD"/>
+                                        <constraint firstItem="EdS-ZE-X13" firstAttribute="centerX" secondItem="6lv-om-icO" secondAttribute="centerX" id="4v5-fK-iaP"/>
+                                        <constraint firstItem="EdS-ZE-X13" firstAttribute="centerY" secondItem="6lv-om-icO" secondAttribute="centerY" id="e6A-jC-dNM"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
