@@ -202,7 +202,6 @@ class AssetTableViewController: UITableViewController {
             
             let egColor:UIColor
             if eg > 0 {
-//                egColor = UIColor(netHex:0xaec6cf)
                 egColor = UIColor.white
             } else {
                 egColor = UIColor(netHex:0xffebea)
@@ -219,7 +218,6 @@ class AssetTableViewController: UITableViewController {
             
             let nngColor:UIColor
             if nng > 0 {
-//                nngColor = UIColor(netHex:0x77dd77)
                 nngColor = UIColor.white
             } else {
                 nngColor = UIColor(netHex:0xff6961)

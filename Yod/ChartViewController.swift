@@ -238,7 +238,7 @@ class ChartViewController : UIViewController {
         paidUpCapital.axisDependency = combinedChartView.rightAxis.axisDependency
         //paidUpCapital.setColor(NSUIColor(netHex:0xbed1d8))
         paidUpCapital.setColor(NSUIColor(netHex:0x7ea4b3))
-        
+        paidUpCapital.drawValuesEnabled = false
         
         let barData = BarChartData()
         barData.addDataSet(assetDataSet)
@@ -247,22 +247,38 @@ class ChartViewController : UIViewController {
         let revenueDataSet = LineChartDataSet (values: createRevenueDataEntries(), label: "Revenue")
         revenueDataSet.circleRadius = 0
         revenueDataSet.axisDependency = combinedChartView.rightAxis.axisDependency
-        revenueDataSet.setColor(NSUIColor.cyan)
+        revenueDataSet.setColor(NSUIColor(netHex:0x81dafc))
+        revenueDataSet.drawValuesEnabled = false
+        
+        let estimatedRevenueDataSet = LineChartDataSet (values: createEstimatedRevenueDataEntries(), label: "Forcast Revenue")
+        estimatedRevenueDataSet.circleRadius = 0
+        estimatedRevenueDataSet.axisDependency = combinedChartView.rightAxis.axisDependency
+        estimatedRevenueDataSet.setColor(NSUIColor.cyan)
+        estimatedRevenueDataSet.drawValuesEnabled = false
         
         let netDataSet = LineChartDataSet (values: createNetDataEntries(), label: "Net")
         netDataSet.circleRadius = 0
         netDataSet.axisDependency = combinedChartView.rightAxis.axisDependency
-        netDataSet.setColor(UIColor.green)
+        netDataSet.setColor(UIColor(netHex:0x56fe56))
         
+        let estimatedNetDataSet = LineChartDataSet (values: createEstimatedNetDataEntries(), label: "Forcast Net")
+        estimatedNetDataSet.circleRadius = 0
+        estimatedNetDataSet.axisDependency = combinedChartView.rightAxis.axisDependency
+        estimatedNetDataSet.setColor(UIColor.green)
+        estimatedNetDataSet.drawValuesEnabled = false
+        
+        /*
         let epsDataSet = LineChartDataSet (values: createEPSDataEntries(), label: "EPS")
         epsDataSet.circleRadius = 0
         epsDataSet.axisDependency = combinedChartView.leftAxis.axisDependency
         epsDataSet.setColor(NSUIColor.gray)
+        */
         
         let lineData = LineChartData()
         lineData.addDataSet(revenueDataSet)
+        lineData.addDataSet(estimatedRevenueDataSet)
         lineData.addDataSet(netDataSet)
-        //lineData.addDataSet(epsDataSet)
+        lineData.addDataSet(estimatedNetDataSet)
         
         let fsDates:[String] = createFSDates()
         combinedChartView.xAxis.valueFormatter = XValueFormatter(values: fsDates)
@@ -271,7 +287,11 @@ class ChartViewController : UIViewController {
         data.barData = barData
         data.lineData = lineData
         
-        combinedChartView.chartDescription?.text = description + " " + fsDates.last!
+        if let lastFSDate = fsDates.last {
+            combinedChartView.chartDescription?.text = description + " " + lastFSDate
+        } else {
+            combinedChartView.chartDescription?.text = description
+        }
 
         //Reset View
         combinedChartView.data = data
@@ -487,6 +507,17 @@ class ChartViewController : UIViewController {
         return dataEntries
     }
     
+    func createEstimatedRevenueDataEntries () -> [ChartDataEntry] {
+        var dataEntries = [ChartDataEntry]()
+        
+        if let count = set?.histories.count, count >= 2 {
+            dataEntries.append(BarChartDataEntry(x: Double(count - 2), y: Double((set?.histories[count-2].revenue)!)))
+            dataEntries.append(BarChartDataEntry(x: Double(count - 1), y: Double((set?.values["Estimated Revenue"])!)))
+        }
+        
+        return dataEntries
+    }
+    
     func createNetDataEntries () -> [ChartDataEntry] {
         var dataEntries = [ChartDataEntry]()
         var i = 0
@@ -494,6 +525,17 @@ class ChartViewController : UIViewController {
         for h in histories! {
             dataEntries.append(BarChartDataEntry(x: Double(i), y: Double(h.netProfit)))
             i += 1
+        }
+        
+        return dataEntries
+    }
+    
+    func createEstimatedNetDataEntries () -> [ChartDataEntry] {
+        var dataEntries = [ChartDataEntry]()
+        
+        if let count = set?.histories.count, count >= 2 {
+            dataEntries.append(BarChartDataEntry(x: Double(count - 2), y: Double((set?.histories[count-2].netProfit)!)))
+            dataEntries.append(BarChartDataEntry(x: Double(count - 1), y: Double((set?.values["Estimated Net"])!)))
         }
         
         return dataEntries
