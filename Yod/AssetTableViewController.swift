@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 class AssetTableViewController: UITableViewController {
     
     var buttonFieldMap = [String:String]()
+    
+    var interstitial: GADInterstitial!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,11 +23,29 @@ class AssetTableViewController: UITableViewController {
         buttonFieldMap["Last"] = "Last"
         buttonFieldMap["Predict"] = "Predict MA"
         buttonFieldMap["Predict %"] = "Predict Chg %"
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(rotated),
+                                               name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+        createAndLoadInterstitial()
     }
+    
+    func rotated() {
+        createAndLoadInterstitial()
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    fileprivate func createAndLoadInterstitial() {
+        interstitial = GADInterstitial(adUnitID: "ca-app-pub-2408994207086484/2420281853")
+        let request = GADRequest()
+        // Request test ads on devices you specify. Your test device ID is printed to the console when
+        // an ad request is made.
+        //request.testDevices = [ kGADSimulatorID, "83653C28-0ACD-4919-BF41-B66F95F7B019" ]
+        interstitial.load(request)
     }
     
     func sort (_ button:UIButton) {
@@ -70,16 +91,14 @@ class AssetTableViewController: UITableViewController {
         
         let  cell = tableView.dequeueReusableCell(withIdentifier: "headerAsset") as! UIHeaderTableViewCell
         
-        if(UIDeviceOrientationIsLandscape(UIDevice.current.orientation))
-        {
+        if(UIDeviceOrientationIsLandscape(UIDevice.current.orientation) || UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad) {
+            
             cell.pebutton.isHidden = false
             cell.lastButton.isHidden = false
             cell.predictButton.isHidden = false
             cell.predictChgButton.isHidden = false
-        }
-        
-        if(UIDeviceOrientationIsPortrait(UIDevice.current.orientation))
-        {
+            
+        } else if(UIDeviceOrientationIsPortrait(UIDevice.current.orientation)) {
             cell.pebutton.isHidden = true
             cell.lastButton.isHidden = true
             cell.predictButton.isHidden = true
@@ -173,16 +192,12 @@ class AssetTableViewController: UITableViewController {
                 cell.predictChgLabel.textColor = (predictChg >= 0) ? greenColor : redColor
             }
             
-            if(UIDeviceOrientationIsLandscape(UIDevice.current.orientation))
-            {
+            if(UIDeviceOrientationIsLandscape(UIDevice.current.orientation) || UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad) {
                 cell.peLabel.isHidden = false
                 cell.lastLabel.isHidden = false
                 cell.predictLabel.isHidden = false
                 cell.predictChgLabel.isHidden = false
-            }
-            
-            if(UIDeviceOrientationIsPortrait(UIDevice.current.orientation))
-            {
+            } else if(UIDeviceOrientationIsPortrait(UIDevice.current.orientation)) {
                 cell.peLabel.isHidden = true
                 cell.lastLabel.isHidden = true
                 cell.predictLabel.isHidden = true
@@ -256,6 +271,10 @@ class AssetTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if indexPath.row < SET.filters.count {
+            
+            if interstitial.isReady {
+                interstitial.present(fromRootViewController: self)
+            }
             
             self.tabBarController?.selectedIndex = 1
             let chartViewController = self.tabBarController?.viewControllers?[1] as! ChartViewController

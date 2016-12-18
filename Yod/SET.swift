@@ -204,10 +204,11 @@ class SET {
     }
     
     class func create() -> Bool {
-        let setURL = csvURL + String(arc4random_uniform(1000))
+        //let setURL = csvURL + String(arc4random_uniform(1000))
+        let setURL = csvURL
         
         if let url = URL(string: setURL) {
-            let text = try! String(contentsOf: url)
+            let text = try! String(contentsOf: url, encoding: String.Encoding.utf8)
             var lines = text.components(separatedBy: "\n")
             lines.remove(at: 0)
             var set:SET

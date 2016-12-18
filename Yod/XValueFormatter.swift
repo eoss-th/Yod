@@ -20,9 +20,11 @@ class XValueFormatter : NSObject, IAxisValueFormatter {
     func stringForValue(_ value: Double,
                         axis: AxisBase?) -> String {
         let index = Int(value)
-        if index < values.count {
+        
+        if index >= 0 && index < values.count {
             return values[Int(value)]
         }
+        
         return ""
     }
     

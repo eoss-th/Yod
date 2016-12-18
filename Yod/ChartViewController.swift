@@ -74,6 +74,12 @@ class ChartViewController : UIViewController {
         combinedChartView.setNeedsDisplay()
     }
     
+    func error() {
+        combinedChartView.data = nil
+        combinedChartView.noDataText = "No Data"
+        combinedChartView.setNeedsDisplay()
+    }
+    
     func loadFinance() {
         
         if let _ = self.set {
@@ -82,8 +88,12 @@ class ChartViewController : UIViewController {
                 DispatchQueue.global().async {
                     self.set?.loadHistoricals()
                     
-                    DispatchQueue.main.async {
-                        self.load(description: (self.set?.symbol!)!, set: self.set!)
+                    if (self.set?.histories.isEmpty)! {
+                        self.error()
+                    } else {
+                        DispatchQueue.main.async {
+                            self.load(description: (self.set?.symbol!)!, set: self.set!)
+                        }
                     }
                 }
                 
@@ -146,7 +156,6 @@ class ChartViewController : UIViewController {
         
         combinedChartView.chartDescription?.text = description
         
-        
         let closeDataSet = LineChartDataSet (values: createCloseDataEntries(), label: "Close")
         closeDataSet.circleRadius = 0
         closeDataSet.axisDependency = combinedChartView.rightAxis.axisDependency
@@ -204,7 +213,9 @@ class ChartViewController : UIViewController {
         let barData = BarChartData()
         barData.addDataSet(volumeDataSet)
         
-        combinedChartView.xAxis.valueFormatter = XValueFormatter(values: createDates())
+        let dates = createDates()
+        
+        combinedChartView.xAxis.valueFormatter = XValueFormatter(values: dates)
         
         let data = CombinedChartData()
         data.lineData = lineData
@@ -225,6 +236,9 @@ class ChartViewController : UIViewController {
         combinedChartView.rightAxis.axisMaximum = closeDataSet.yMax * 1.05
         combinedChartView.rightAxis.spaceTop = 20
         
+        combinedChartView.xAxis.axisMinimum = -1
+        combinedChartView.xAxis.axisMaximum = Double(dates.count)
+        
         combinedChartView.moveViewToX(Double(lineData.dataSets.count - 1))
         
         combinedChartView.setNeedsDisplay()
@@ -233,6 +247,8 @@ class ChartViewController : UIViewController {
     func load(description:String, set:SET) {
         
         self.set = set
+        
+        combinedChartView.chartDescription?.text = description
         
         let assetDataSet = BarChartDataSet (values: createAssetDataEntries(), label: "Asset")
         assetDataSet.axisDependency = combinedChartView.rightAxis.axisDependency
@@ -248,6 +264,8 @@ class ChartViewController : UIViewController {
         let barData = BarChartData()
         barData.addDataSet(assetDataSet)
         barData.addDataSet(paidUpCapital)
+        
+        barData.barWidth = 0.8
         
         let revenueDataSet = LineChartDataSet (values: createRevenueDataEntries(), label: "Revenue")
         revenueDataSet.circleRadius = 0
@@ -292,12 +310,6 @@ class ChartViewController : UIViewController {
         data.barData = barData
         data.lineData = lineData
         
-        if let lastFSDate = fsDates.last {
-            combinedChartView.chartDescription?.text = description + " " + lastFSDate
-        } else {
-            combinedChartView.chartDescription?.text = description
-        }
-
         //Reset View
         combinedChartView.data = data
         
@@ -312,6 +324,9 @@ class ChartViewController : UIViewController {
         combinedChartView.rightAxis.axisMaximum = data.yMax * 1.2
         combinedChartView.rightAxis.spaceTop = 10
         
+        combinedChartView.xAxis.axisMinimum = -1
+        combinedChartView.xAxis.axisMaximum = Double(fsDates.count)
+        
         //combinedChartView.moveViewToX(Double(assetDataSet.entryCount-1))
         combinedChartView.setNeedsDisplay()
     }
@@ -319,13 +334,9 @@ class ChartViewController : UIViewController {
     func rotated() {
         
         if toolBar != nil {
-            if(UIDeviceOrientationIsLandscape(UIDevice.current.orientation))
-            {
+            if(UIDeviceOrientationIsLandscape(UIDevice.current.orientation) || UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad) {
                 toolBar.isHidden = false
-            }
-            
-            if(UIDeviceOrientationIsPortrait(UIDevice.current.orientation))
-            {
+            } else if(UIDeviceOrientationIsPortrait(UIDevice.current.orientation)) {
                 toolBar.isHidden = true
                 loadFinance()
             }
@@ -435,11 +446,12 @@ class ChartViewController : UIViewController {
         
         if (daysIndex==0) {
             
-            if(UIDeviceOrientationIsPortrait(UIDevice.current.orientation)) {
+            if(UIDeviceOrientationIsLandscape(UIDevice.current.orientation) || UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad) {
+                dateFormatter.dateFormat = "EE dd"
+            } else if(UIDeviceOrientationIsPortrait(UIDevice.current.orientation)) {
                 dateFormatter.dateFormat = "dd"
-            } else {
-                dateFormatter.dateFormat = "EEEE dd"
             }
+            
             
         } else if (daysIndex<3) {
             
